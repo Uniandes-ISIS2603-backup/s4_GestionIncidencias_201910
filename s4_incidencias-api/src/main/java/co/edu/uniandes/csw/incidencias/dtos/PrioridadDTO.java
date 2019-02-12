@@ -12,6 +12,7 @@ package co.edu.uniandes.csw.incidencias.dtos;
 public class PrioridadDTO {
     
     private String tipoPrioridad;
+    private SlaDTO sla;
     
     public PrioridadDTO()
     {
@@ -21,6 +22,18 @@ public class PrioridadDTO {
     public String darTipoPrioridad()
     {
         return tipoPrioridad;
+    }
+    
+    public SlaDTO darSLA(){
+        return sla;
+    }
+    
+    public void toEntity(){
+        
+    }
+    
+    public String toString(){
+        return "Prioridad{'tipoPrioridad':"+tipoPrioridad+",'SLA':"+sla.toString()+"} ";
     }
     
 }
