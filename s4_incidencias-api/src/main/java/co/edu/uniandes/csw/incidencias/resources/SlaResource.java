@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.incidencias.resources;
 
 import javax.ws.rs.Path;
 import co.edu.uniandes.csw.incidencias.dtos.IncidenciaDTO;
+import co.edu.uniandes.csw.incidencias.dtos.SlaDTO;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
@@ -29,13 +30,13 @@ public class SlaResource {
 private final static Logger LOGGER = Logger.getLogger(IncidenciaResource.class.getName());
     
     @POST
-    public IncidenciaDTO createPrioridadDTO(IncidenciaDTO incidencia){
+    public SlaDTO createPrioridadDTO(SlaDTO incidencia){
         return incidencia;
     }
    
     
     @PUT
-    public void UpdatePrioridadDTO(String estado){
+    public void UpdateSlaDTO(String estado){
         
     } 
     
