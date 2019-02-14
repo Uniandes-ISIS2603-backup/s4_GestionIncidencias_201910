@@ -5,11 +5,13 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author estudiante
  */
-public class PrioridadDTO {
+public class PrioridadDTO implements Serializable {
     
     private String tipoPrioridad;
     private SlaDTO sla;
@@ -19,14 +21,21 @@ public class PrioridadDTO {
         
     }
     
-    public String darTipoPrioridad()
+    public String getTipoPrioridad()
     {
         return tipoPrioridad;
     }
     
-    public SlaDTO darSLA(){
+    
+    public void setTipoPrioridad(String ptipo)
+    {
+        this.tipoPrioridad = ptipo;
+    }
+    
+    public SlaDTO getSLA(){
         return sla;
     }
+   
     
     public void toEntity(){
         
