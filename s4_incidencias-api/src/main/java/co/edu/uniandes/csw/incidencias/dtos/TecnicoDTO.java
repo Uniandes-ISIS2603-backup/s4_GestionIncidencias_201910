@@ -34,7 +34,7 @@ public class TecnicoDTO extends UsuarioDTO implements Serializable{
     public void setIncidencias(List<IncidenciaDTO> incidencias) {
         this.incidencias = incidencias;
     }
-    
+       
     
     
 }
