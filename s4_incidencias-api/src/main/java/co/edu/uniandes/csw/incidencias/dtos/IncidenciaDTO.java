@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  */
 public class IncidenciaDTO implements Serializable{
     
-     private LocalDateTime fecha;
+    private LocalDateTime fecha;
     private String descripcion;
     private String estado;
     private Double incidencia;
