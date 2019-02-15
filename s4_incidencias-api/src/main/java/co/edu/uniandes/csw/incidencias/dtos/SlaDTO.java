@@ -5,11 +5,13 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author estudiante
  */
-public class SlaDTO {
+public class SlaDTO implements Serializable {
     
     private String idSLA;
     private String descripcion;
