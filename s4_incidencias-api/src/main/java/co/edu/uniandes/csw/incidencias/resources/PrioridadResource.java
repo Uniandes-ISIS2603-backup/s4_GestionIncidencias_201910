@@ -28,6 +28,7 @@ public class PrioridadResource {
       
        
 private final static Logger LOGGER = Logger.getLogger(IncidenciaResource.class.getName());
+
     
     @POST
     public PrioridadDTO createPrioridadDTO(PrioridadDTO incidencia){
