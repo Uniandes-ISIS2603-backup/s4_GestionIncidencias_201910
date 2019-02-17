@@ -3,28 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.incidencias.dtos;
+package co.edu.uniandes.csw.incidencias.entities;
+
+import java.io.Serializable;
 
 /**
  *
  * @author estudiante
  */
-public class CalificacionDTO {
-    private Integer numeroEst;
+public class EquipoComputoEntity extends BaseEntity implements Serializable {
+    private Integer idEquipo;
     private String descripcion;
 
+    public EquipoComputoEntity()
+    {
+        
+    }
     /**
-     * @return the numeroEst
+     * @return the idEquipo
      */
-    public Integer getNumeroEst() {
-        return numeroEst;
+    public Integer getIdEquipo() {
+        return idEquipo;
     }
 
     /**
-     * @param numeroEst the numeroEst to set
+     * @param idEquipo the idEquipo to set
      */
-    public void setNumeroEst(Integer numeroEst) {
-        this.numeroEst = numeroEst;
+    public void setIdEquipo(Integer idEquipo) {
+        this.idEquipo = idEquipo;
     }
 
     /**

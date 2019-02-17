@@ -9,22 +9,22 @@ package co.edu.uniandes.csw.incidencias.dtos;
  *
  * @author estudiante
  */
-public class CalificacionDTO {
-    private Integer numeroEst;
+public class EquipoComputoDTO {
+    private Integer idEquipo;
     private String descripcion;
 
     /**
-     * @return the numeroEst
+     * @return the idEquipo
      */
-    public Integer getNumeroEst() {
-        return numeroEst;
+    public Integer getIdEquipo() {
+        return idEquipo;
     }
 
     /**
-     * @param numeroEst the numeroEst to set
+     * @param idEquipo the idEquipo to set
      */
-    public void setNumeroEst(Integer numeroEst) {
-        this.numeroEst = numeroEst;
+    public void setIdEquipo(Integer idEquipo) {
+        this.idEquipo = idEquipo;
     }
 
     /**
@@ -40,6 +40,5 @@ public class CalificacionDTO {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
     
 }
