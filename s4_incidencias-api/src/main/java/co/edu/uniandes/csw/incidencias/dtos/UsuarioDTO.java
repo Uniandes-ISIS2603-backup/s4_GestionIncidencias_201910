@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.incidencias.dtos;
-
 import java.io.Serializable;
 import java.util.logging.Logger;
 

@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.incidencias.dtos;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
