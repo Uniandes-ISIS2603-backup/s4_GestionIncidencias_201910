@@ -19,11 +19,11 @@ public class IncidenciaDTO implements Serializable{
     private String estado;
     private Double incidencia;
     
-    //private CalificacionDTO calificacion;
-    //private EquipoComputoDTO equipoComputo;
-    //private TecnicoDTO tecnico;
-    //private EmpleadoDTO empleado;
-    //private PioridadDTOP prioridad;
+    private CalificacionDTO calificacion;
+    private EquipoComputoDTO equipoComputo;
+    private TecnicoDTO tecnico;
+    private EmpleadoDTO empleado;
+    private PrioridadDTO prioridad;
 
     
     //Constructor
