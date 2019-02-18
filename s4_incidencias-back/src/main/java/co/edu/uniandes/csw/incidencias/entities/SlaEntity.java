@@ -13,4 +13,39 @@ import java.io.Serializable;
  */
 public class SlaEntity extends BaseEntity implements Serializable{
     
+    private String idSla;
+    private String descripcion;
+    
+    public SlaEntity()
+    {
+        
+    }
+
+    /**
+     * @return the idSla
+     */
+    public String getIdSla() {
+        return idSla;
+    }
+
+    /**
+     * @param idSla the idSla to set
+     */
+    public void setIdSla(String idSla) {
+        this.idSla = idSla;
+    }
+
+    /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }
