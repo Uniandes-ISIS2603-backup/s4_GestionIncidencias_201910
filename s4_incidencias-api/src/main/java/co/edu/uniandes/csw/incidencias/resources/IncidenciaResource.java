@@ -37,5 +37,9 @@ private final static Logger LOGGER = Logger.getLogger(IncidenciaResource.class.g
     public void UpdateIncidenciaDTO(String estado){
         
     } 
+    @GET
+    public void getIncidenciaDTO(String estado){
+        
+    } 
     
 }
