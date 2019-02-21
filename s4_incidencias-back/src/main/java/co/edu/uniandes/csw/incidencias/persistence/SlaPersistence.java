@@ -46,5 +46,9 @@ public class SlaPersistence {
         SlaEntity entity = em.find(SlaEntity.class, slaId);
         em.remove(entity);
     }
+
+    public Object findByName(String idSla) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
