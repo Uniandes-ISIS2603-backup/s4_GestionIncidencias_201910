@@ -5,10 +5,8 @@
  */
 package co.edu.uniandes.csw.incidencias.ejb;
 
-import co.edu.uniandes.csw.incidencias.entities.PrioridadEntity;
 import co.edu.uniandes.csw.incidencias.entities.SlaEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.incidencias.persistence.PrioridadPersistence;
 import co.edu.uniandes.csw.incidencias.persistence.SlaPersistence;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
