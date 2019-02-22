@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Santamaria
  */
 public class PrioridadEntity extends BaseEntity implements Serializable {
     
