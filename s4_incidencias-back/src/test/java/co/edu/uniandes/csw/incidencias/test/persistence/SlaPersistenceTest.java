@@ -72,7 +72,7 @@ public class SlaPersistenceTest {
     }
 
     private void clearData() {
-        em.createQuery("delete from PrioridadEntity").executeUpdate();
+        em.createQuery("delete from SlaEntity").executeUpdate();
     }
 
     private void insertData() {
@@ -85,7 +85,7 @@ public class SlaPersistenceTest {
     }
     
     @Test
-    public void createDepartamentoTest() {
+    public void createSlaTest() {
         PodamFactory factory = new PodamFactoryImpl();
         SlaEntity newEntity = factory.manufacturePojo(SlaEntity.class);
         SlaEntity de = dp.create(newEntity);
@@ -95,7 +95,7 @@ public class SlaPersistenceTest {
     }
     
     @Test
-    public void findDepartamentoTest() {
+    public void findSlaTest() {
         SlaEntity entity = data.get(0);
         SlaEntity newEntity = dp.find(entity.getId());
         Assert.assertNotNull(newEntity);
@@ -103,7 +103,7 @@ public class SlaPersistenceTest {
     }
     
     @Test
-    public void findAllDepartamentoTest() {
+    public void findAllSlaTest() {
         List<SlaEntity> results = dp.findAll();
         Assert.assertEquals(data.size(), results.size());
         for (SlaEntity ent : results) {
@@ -118,7 +118,7 @@ public class SlaPersistenceTest {
     } 
     
     @Test
-    public void deleteDepartamentoTest() {
+    public void deleteSlaTest() {
         SlaEntity entity = data.get(0);
         dp.delete(entity.getId());
         SlaEntity deleted = em.find(SlaEntity.class, entity.getId());
@@ -126,7 +126,7 @@ public class SlaPersistenceTest {
     }
 
     @Test
-    public void updateDepartamentoTest() {
+    public void updateSlaTest() {
         SlaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         SlaEntity newEntity = factory.manufacturePojo(SlaEntity.class);
