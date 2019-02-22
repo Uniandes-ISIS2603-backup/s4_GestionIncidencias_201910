@@ -5,10 +5,10 @@
  */
 package co.edu.uniandes.csw.incidencias.test.persistence;
 
-import co.edu.uniandes.csw.incidencias.entities.DepartamentoEntity;
 import co.edu.uniandes.csw.incidencias.entities.PrioridadEntity;
-import co.edu.uniandes.csw.incidencias.persistence.DepartamentoPersistence;
+import co.edu.uniandes.csw.incidencias.entities.SlaEntity;
 import co.edu.uniandes.csw.incidencias.persistence.PrioridadPersistence;
+import co.edu.uniandes.csw.incidencias.persistence.SlaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -31,10 +31,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author estudiante
  */
 @RunWith(Arquillian.class)
-public class PrioridadPersistenceTest1 {
+public class SlaPersistenceTest {
     
     @Inject
-    private PrioridadPersistence dp;
+    private SlaPersistence dp;
     
     @PersistenceContext
     private EntityManager em;
@@ -42,13 +42,13 @@ public class PrioridadPersistenceTest1 {
     @Inject
     UserTransaction utx;
     
-    private List<PrioridadEntity> data = new ArrayList<PrioridadEntity>();
+    private List<SlaEntity> data = new ArrayList<SlaEntity>();
     
     @Deployment
     public static JavaArchive createDeployment() {   
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PrioridadEntity.class.getPackage())
-                .addPackage(PrioridadPersistence.class.getPackage())
+                .addPackage(SlaEntity.class.getPackage())
+                .addPackage(SlaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -78,7 +78,7 @@ public class PrioridadPersistenceTest1 {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            PrioridadEntity entity = factory.manufacturePojo(PrioridadEntity.class);
+            SlaEntity entity = factory.manufacturePojo(SlaEntity.class);
             em.persist(entity);
             data.add(entity);
         }
@@ -87,28 +87,28 @@ public class PrioridadPersistenceTest1 {
     @Test
     public void createDepartamentoTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        PrioridadEntity newEntity = factory.manufacturePojo(PrioridadEntity.class);
-        PrioridadEntity de = dp.create(newEntity);
+        SlaEntity newEntity = factory.manufacturePojo(SlaEntity.class);
+        SlaEntity de = dp.create(newEntity);
         Assert.assertNotNull(de);
-        PrioridadEntity entity = em.find(PrioridadEntity.class, de.getId());
+        SlaEntity entity = em.find(SlaEntity.class, de.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
     
     @Test
     public void findDepartamentoTest() {
-        PrioridadEntity entity = data.get(0);
-        PrioridadEntity newEntity = dp.find(entity.getId());
+        SlaEntity entity = data.get(0);
+        SlaEntity newEntity = dp.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());  
     }
     
     @Test
     public void findAllDepartamentoTest() {
-        List<PrioridadEntity> results = dp.findAll();
+        List<SlaEntity> results = dp.findAll();
         Assert.assertEquals(data.size(), results.size());
-        for (PrioridadEntity ent : results) {
+        for (SlaEntity ent : results) {
             boolean found = false;
-            for (PrioridadEntity entity : data) {
+            for (SlaEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -119,20 +119,20 @@ public class PrioridadPersistenceTest1 {
     
     @Test
     public void deleteDepartamentoTest() {
-        PrioridadEntity entity = data.get(0);
+        SlaEntity entity = data.get(0);
         dp.delete(entity.getId());
-        PrioridadEntity deleted = em.find(PrioridadEntity.class, entity.getId());
+        SlaEntity deleted = em.find(SlaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     @Test
     public void updateDepartamentoTest() {
-        PrioridadEntity entity = data.get(0);
+        SlaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        PrioridadEntity newEntity = factory.manufacturePojo(PrioridadEntity.class);
+        SlaEntity newEntity = factory.manufacturePojo(SlaEntity.class);
         newEntity.setId(entity.getId());
         dp.update(newEntity);
-        PrioridadEntity resp = em.find(PrioridadEntity.class, entity.getId());
+        SlaEntity resp = em.find(SlaEntity.class, entity.getId());
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }
 }
