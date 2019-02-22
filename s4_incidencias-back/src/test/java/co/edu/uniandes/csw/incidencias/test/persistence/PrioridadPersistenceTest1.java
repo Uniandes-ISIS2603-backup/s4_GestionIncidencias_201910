@@ -31,7 +31,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Daniel Santamaria
  */
 @RunWith(Arquillian.class)
-public class PrioridadPersistenceTest {
+public class PrioridadPersistenceTest1 {
     
     @Inject
     private PrioridadPersistence dp;
