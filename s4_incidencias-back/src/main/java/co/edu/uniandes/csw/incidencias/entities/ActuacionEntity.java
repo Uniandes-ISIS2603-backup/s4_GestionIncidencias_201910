@@ -6,7 +6,10 @@
 package co.edu.uniandes.csw.incidencias.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -15,54 +18,28 @@ import javax.persistence.Entity;
 @Entity
 public class ActuacionEntity extends BaseEntity  implements Serializable {
     
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
     
-    private String fecha;
-    private String calificacion;
-    private String prioridad;
     private String descripcion;
 
     /**
      * @return the fecha
      */
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
     /**
      * @param fecha the fecha to set
      */
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    /**
-     * @return the calificacion
-     */
-    public String getCalificacion() {
-        return calificacion;
-    }
+   
 
-    /**
-     * @param calificacion the calificacion to set
-     */
-    public void setCalificacion(String calificacion) {
-        this.calificacion = calificacion;
-    }
-
-    /**
-     * @return the prioridad
-     */
-    public String getPrioridad() {
-        return prioridad;
-    }
-
-    /**
-     * @param prioridad the prioridad to set
-     */
-    public void setPrioridad(String prioridad) {
-        this.prioridad = prioridad;
-    }
-
+ 
     /**
      * @return the descripcion
      */

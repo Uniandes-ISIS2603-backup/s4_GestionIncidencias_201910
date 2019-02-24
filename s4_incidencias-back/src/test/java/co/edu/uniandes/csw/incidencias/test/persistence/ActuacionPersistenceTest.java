@@ -97,7 +97,7 @@ public class ActuacionPersistenceTest {
     }
     
     @Test
-    public void findDepartamentoTest() {
+    public void findActuacionTest() {
        ActuacionEntity entity = data.get(0);
         ActuacionEntity newEntity = dp.find(entity.getId());
         Assert.assertNotNull(newEntity);
@@ -105,7 +105,7 @@ public class ActuacionPersistenceTest {
     }
     
     @Test
-    public void findAllDepartamentoTest() {
+    public void findAllActuacionTest() {
         List<ActuacionEntity> results = dp.findAll();
         Assert.assertEquals(data.size(), results.size());
         for (ActuacionEntity ent : results) {
