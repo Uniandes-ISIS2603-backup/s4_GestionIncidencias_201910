@@ -85,7 +85,7 @@ public class PrioridadPersistenceTest1 {
     }
     
     @Test
-    public void createDepartamentoTest() {
+    public void createPrioridadTest() {
         PodamFactory factory = new PodamFactoryImpl();
         PrioridadEntity newEntity = factory.manufacturePojo(PrioridadEntity.class);
         PrioridadEntity de = dp.create(newEntity);
@@ -95,7 +95,7 @@ public class PrioridadPersistenceTest1 {
     }
     
     @Test
-    public void findDepartamentoTest() {
+    public void findPrioridadTest() {
         PrioridadEntity entity = data.get(0);
         PrioridadEntity newEntity = dp.find(entity.getId());
         Assert.assertNotNull(newEntity);
@@ -103,7 +103,7 @@ public class PrioridadPersistenceTest1 {
     }
     
     @Test
-    public void findAllDepartamentoTest() {
+    public void findAllPrioridadTest() {
         List<PrioridadEntity> results = dp.findAll();
         Assert.assertEquals(data.size(), results.size());
         for (PrioridadEntity ent : results) {
@@ -118,7 +118,7 @@ public class PrioridadPersistenceTest1 {
     } 
     
     @Test
-    public void deleteDepartamentoTest() {
+    public void deletePrioridadTest() {
         PrioridadEntity entity = data.get(0);
         dp.delete(entity.getId());
         PrioridadEntity deleted = em.find(PrioridadEntity.class, entity.getId());
@@ -126,7 +126,7 @@ public class PrioridadPersistenceTest1 {
     }
 
     @Test
-    public void updateDepartamentoTest() {
+    public void updatePrioridadTest() {
         PrioridadEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         PrioridadEntity newEntity = factory.manufacturePojo(PrioridadEntity.class);
