@@ -28,15 +28,15 @@ public class TecnicoEntity extends BaseEntity implements Serializable{
     /**
      * @return the user
      */
-    public String getUser() {
+    public String getUsuario() {
         return usuario;
     }
 
     /**
-     * @param user the user to set
+     * @param usuario the user to set
      */
-    public void setUser(String user) {
-        this.usuario = user;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     /**

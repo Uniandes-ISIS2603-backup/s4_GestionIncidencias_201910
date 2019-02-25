@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.incidencias.test.persistence;
 
-import co.edu.uniandes.csw.incidencias.entities.UbicacionEntity;
-import co.edu.uniandes.csw.incidencias.persistence.UbicacionPersistence;
+import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.incidencias.persistence.EmpleadoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -15,6 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
@@ -28,11 +29,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author estudiante
  */
+
+
 @RunWith(Arquillian.class)
-public class UbicacionPersistenceTest {
-    
-    @Inject
-    private UbicacionPersistence dp;
+public class EmpleadoPersistenceTest {
     
     @PersistenceContext
     private EntityManager em;
@@ -40,17 +40,20 @@ public class UbicacionPersistenceTest {
     @Inject
     UserTransaction utx;
     
-    private List<UbicacionEntity> data = new ArrayList<UbicacionEntity>();
+    private List<EmpleadoEntity> data = new ArrayList<EmpleadoEntity>();
     
-    @Deployment
-    public static JavaArchive createDeployment() {   
+     @Inject
+    private EmpleadoPersistence ep;
+     
+     @Deployment
+    public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(UbicacionEntity.class.getPackage())
-                .addPackage(UbicacionPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-    
+                .addPackage(EmpleadoEntity.class.getPackage())
+                .addPackage(EmpleadoPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml","beans.xml");
+    } 
+
     @Before
     public void configTest() {
         try {
@@ -64,49 +67,49 @@ public class UbicacionPersistenceTest {
             try {
                 utx.rollback();
             } catch (Exception e1) {
-            e1.printStackTrace();
+                e1.printStackTrace();
             }
         }
     }
 
     private void clearData() {
-        em.createQuery("delete from UbicacionEntity").executeUpdate();
+        em.createQuery("delete from EmpleadoEntity").executeUpdate();
     }
 
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            UbicacionEntity entity = factory.manufacturePojo(UbicacionEntity.class);
+            EmpleadoEntity entity = factory.manufacturePojo(EmpleadoEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     @Test
-    public void createUbicacionTest() {
+    public void createEmpleadoTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        UbicacionEntity newEntity = factory.manufacturePojo(UbicacionEntity.class);
-        UbicacionEntity de = dp.create(newEntity);
-        Assert.assertNotNull(de);
-        UbicacionEntity entity = em.find(UbicacionEntity.class, de.getId());
-        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+        EmpleadoEntity newEntity = factory.manufacturePojo(EmpleadoEntity.class);
+        EmpleadoEntity te = ep.create(newEntity);
+        Assert.assertNotNull(te);
+        EmpleadoEntity entity = em.find(EmpleadoEntity.class, te.getId());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
     }
+
     
     @Test
-    public void findUbicacionTest() {
-        UbicacionEntity entity = data.get(0);
-        UbicacionEntity newEntity = dp.find(entity.getId());
+    public void findEmpleadoTest() {
+        EmpleadoEntity entity = data.get(0);
+        EmpleadoEntity newEntity = ep.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());  
+        Assert.assertEquals(entity.getName(), newEntity.getName());  
     }
-    
     @Test
-    public void findAllUbicacionTest() {
-        List<UbicacionEntity> results = dp.findAll();
+    public void findAlEmpleadoTest() {
+        List<EmpleadoEntity> results = ep.findAll();
         Assert.assertEquals(data.size(), results.size());
-        for (UbicacionEntity ent : results) {
+        for (EmpleadoEntity ent : results) {
             boolean found = false;
-            for (UbicacionEntity entity : data) {
+            for (EmpleadoEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -116,21 +119,22 @@ public class UbicacionPersistenceTest {
     } 
     
     @Test
-    public void deleteUbicacionTest() {
-        UbicacionEntity entity = data.get(0);
-        dp.delete(entity.getId());
-        UbicacionEntity deleted = em.find(UbicacionEntity.class, entity.getId());
+    public void deleteEmpleadoTest() {
+        EmpleadoEntity entity = data.get(0);
+        ep.delete(entity.getId());
+        EmpleadoEntity deleted = em.find(EmpleadoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-
+    
     @Test
-    public void updateUbicacionTest() {
-        UbicacionEntity entity = data.get(0);
+    public void updateEmpleadoTest() {
+        EmpleadoEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        UbicacionEntity newEntity = factory.manufacturePojo(UbicacionEntity.class);
+        EmpleadoEntity newEntity = factory.manufacturePojo(EmpleadoEntity.class);
         newEntity.setId(entity.getId());
-        dp.update(newEntity);
-        UbicacionEntity resp = em.find(UbicacionEntity.class, entity.getId());
-        Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
+        ep.update(newEntity);
+        EmpleadoEntity resp = em.find(EmpleadoEntity.class, entity.getId());
+        Assert.assertEquals(newEntity.getName(), resp.getName());
     }
+    
 }

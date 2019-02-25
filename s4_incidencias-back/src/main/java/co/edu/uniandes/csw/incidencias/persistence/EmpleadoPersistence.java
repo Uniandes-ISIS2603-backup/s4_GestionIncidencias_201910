@@ -7,14 +7,15 @@ package co.edu.uniandes.csw.incidencias.persistence;
 
 import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
  * @author estudiante
  */
+@Stateless
 public class EmpleadoPersistence {
     
     @PersistenceContext (unitName = "incidenciasPU")
