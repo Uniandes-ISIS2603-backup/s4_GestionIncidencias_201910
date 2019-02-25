@@ -102,4 +102,46 @@ public class DepartamentoLogicTest {
         departamentoLogic.createDepartamento(newEntity);
     }
     
+    @Test
+    public void getDepartamentosTest() {
+        List<DepartamentoEntity> list = departamentoLogic.getDepartamentos();
+        Assert.assertEquals(data.size(), list.size());
+        for (DepartamentoEntity entity : list) {
+            boolean found = false;
+            for (DepartamentoEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+
+    @Test
+    public void getDepartamentoTest() {
+        DepartamentoEntity entity = data.get(0);
+        DepartamentoEntity resultEntity = departamentoLogic.getDepartamento(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
+    }
+
+    @Test
+    public void updateDepartamentoTest() {
+        DepartamentoEntity entity = data.get(0);
+        DepartamentoEntity pojoEntity = factory.manufacturePojo(DepartamentoEntity.class);
+        pojoEntity.setId(entity.getId());
+        departamentoLogic.updateDepartamento(pojoEntity.getId(), pojoEntity);
+        DepartamentoEntity resp = em.find(DepartamentoEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
+    }
+
+    @Test
+    public void deleteDepartamentoTest() throws BusinessLogicException {
+        DepartamentoEntity entity = data.get(1);
+        departamentoLogic.deleteDepartamento(entity.getId());
+        DepartamentoEntity deleted = em.find(DepartamentoEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
 }

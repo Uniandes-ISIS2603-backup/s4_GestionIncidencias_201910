@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.incidencias.ejb;
 import co.edu.uniandes.csw.incidencias.entities.DepartamentoEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.incidencias.persistence.DepartamentoPersistence;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -27,5 +28,24 @@ public class DepartamentoLogic {
         }
         departamentoEntity = persistence.create(departamentoEntity);
         return departamentoEntity;
+    }
+    
+    public List<DepartamentoEntity> getDepartamentos() {
+        List<DepartamentoEntity> departamentos = persistence.findAll();
+        return departamentos;
+    }
+
+    public DepartamentoEntity getDepartamento(Long departamentoId) {
+        DepartamentoEntity departamentoEntity = persistence.find(departamentoId);
+        return departamentoEntity;
+    }
+
+    public DepartamentoEntity updateDepartamento(Long departamentoId, DepartamentoEntity departamentoEntity) {
+        DepartamentoEntity newEntity = persistence.update(departamentoEntity);
+        return newEntity;
+    }
+
+    public void deleteDepartamento(Long departamentoId) {
+        persistence.delete(departamentoId);
     }
 }

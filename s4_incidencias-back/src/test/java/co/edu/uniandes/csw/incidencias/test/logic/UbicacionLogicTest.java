@@ -102,4 +102,46 @@ public class UbicacionLogicTest {
         ubicacionLogic.createUbicacion(newEntity);
     }
     
+    @Test
+    public void getUbicacionsTest() {
+        List<UbicacionEntity> list = ubicacionLogic.getUbicacions();
+        Assert.assertEquals(data.size(), list.size());
+        for (UbicacionEntity entity : list) {
+            boolean found = false;
+            for (UbicacionEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+
+    @Test
+    public void getUbicacionTest() {
+        UbicacionEntity entity = data.get(0);
+        UbicacionEntity resultEntity = ubicacionLogic.getUbicacion(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
+    }
+
+    @Test
+    public void updateUbicacionTest() {
+        UbicacionEntity entity = data.get(0);
+        UbicacionEntity pojoEntity = factory.manufacturePojo(UbicacionEntity.class);
+        pojoEntity.setId(entity.getId());
+        ubicacionLogic.updateUbicacion(pojoEntity.getId(), pojoEntity);
+        UbicacionEntity resp = em.find(UbicacionEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
+    }
+
+    @Test
+    public void deleteUbicacionTest() throws BusinessLogicException {
+        UbicacionEntity entity = data.get(1);
+        ubicacionLogic.deleteUbicacion(entity.getId());
+        UbicacionEntity deleted = em.find(UbicacionEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
 }
