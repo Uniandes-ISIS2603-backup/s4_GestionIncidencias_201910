@@ -5,9 +5,7 @@
  */
 package co.edu.uniandes.csw.incidencias.test.persistence;
 
-import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.incidencias.entities.SlaEntity;
-import co.edu.uniandes.csw.incidencias.persistence.EmpleadoPersistence;
 import co.edu.uniandes.csw.incidencias.persistence.SlaPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -129,7 +127,7 @@ public class SlaPersistenceTest {
     }
     
     @Test
-    public void updateEmpleadoTest() {
+    public void updateSlaTest() {
         SlaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         SlaEntity newEntity = factory.manufacturePojo(SlaEntity.class);
