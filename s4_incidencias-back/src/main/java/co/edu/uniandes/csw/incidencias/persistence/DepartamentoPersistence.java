@@ -45,4 +45,19 @@ public class DepartamentoPersistence {
         em.remove(entity);
     }
     
+    public DepartamentoEntity findByName(String nombre) {
+        TypedQuery query = em.createQuery("Select e From DepartamentoEntity e where e.nombre = :nombre", DepartamentoEntity.class);
+        query = query.setParameter("nombre", nombre);
+        List<DepartamentoEntity> sameName = query.getResultList();
+        DepartamentoEntity result;
+        if (sameName == null) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+            result = null;
+        } else {
+            result = sameName.get(0);
+        }
+        return result;
+    }
+    
 }

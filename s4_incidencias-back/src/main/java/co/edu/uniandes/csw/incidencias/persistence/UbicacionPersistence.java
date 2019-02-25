@@ -45,4 +45,19 @@ public class UbicacionPersistence {
         em.remove(entity);
     }
     
+    public UbicacionEntity findByDescription(String descripcion) {
+        TypedQuery query = em.createQuery("Select e From UbicacionEntity e where e.descripcion = :descripcion", UbicacionEntity.class);
+        query = query.setParameter("descripcion", descripcion);
+        List<UbicacionEntity> sameDescription = query.getResultList();
+        UbicacionEntity result;
+        if (sameDescription == null) {
+            result = null;
+        } else if (sameDescription.isEmpty()) {
+            result = null;
+        } else {
+            result = sameDescription.get(0);
+        }
+        return result;
+    }
+    
 }
