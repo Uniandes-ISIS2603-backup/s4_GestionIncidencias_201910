@@ -48,4 +48,6 @@ public class DepartamentoLogic {
     public void deleteDepartamento(Long departamentoId) {
         persistence.delete(departamentoId);
     }
+    
+    
 }

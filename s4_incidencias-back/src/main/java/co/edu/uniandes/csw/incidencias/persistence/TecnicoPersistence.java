@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.incidencias.persistence;
-
 import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -45,4 +44,34 @@ public class TecnicoPersistence {
         em.remove(entity);
     }
     
+    
+    public TecnicoEntity findByUsuario(String user) {
+        TypedQuery query = em.createQuery("Select e From TecnicoEntity e where e.usuario = :nombre", TecnicoEntity.class);
+        query = query.setParameter("nombre", user);
+        List<TecnicoEntity> sameName = query.getResultList();
+        TecnicoEntity result;
+        if (sameName == null) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+            result = null;
+        } else {
+            result = sameName.get(0);
+        }
+        return result;
+    }
+    
+     public TecnicoEntity findByCedula(String cedula) {
+        TypedQuery query = em.createQuery("Select e From TecnicoEntity e where e.cedula = :nombre", TecnicoEntity.class);
+        query = query.setParameter("nombre", cedula);
+        List<TecnicoEntity> sameName = query.getResultList();
+        TecnicoEntity result;
+        if (sameName == null) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+            result = null;
+        } else {
+            result = sameName.get(0);
+        }
+        return result;
+    }
 }
