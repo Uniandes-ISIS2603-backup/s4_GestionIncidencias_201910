@@ -27,7 +27,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Daniel Santamaría
+ * @author Daniel Santamaría Álvarez
  */
 
 
