@@ -60,7 +60,7 @@ public class TecnicoPersistence {
         return result;
     }
     
-     public TecnicoEntity findByCedula(String cedula) {
+    public TecnicoEntity findByCedula(String cedula) {
         TypedQuery query = em.createQuery("Select e From TecnicoEntity e where e.cedula = :nombre", TecnicoEntity.class);
         query = query.setParameter("nombre", cedula);
         List<TecnicoEntity> sameName = query.getResultList();

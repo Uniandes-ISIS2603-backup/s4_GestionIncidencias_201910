@@ -37,8 +37,8 @@ public class TecnicoLogic {
      }
      
      public  List<TecnicoEntity> getTecnicos(){
-        List<TecnicoEntity> departamentos = persistence.findAll();
-        return departamentos;
+        List<TecnicoEntity> tecnicos = persistence.findAll();
+        return tecnicos;
      }
      
      public TecnicoEntity getTecnico(Long tecnicoId) {

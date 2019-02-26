@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.incidencias.test.logic;
-import co.edu.uniandes.csw.incidencias.ejb.TecnicoLogic;
-import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
+
+import co.edu.uniandes.csw.incidencias.ejb.EmpleadoLogic;
+import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.incidencias.persistence.DepartamentoPersistence;
+import co.edu.uniandes.csw.incidencias.persistence.EmpleadoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -26,31 +27,36 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- * @author estudiante
+  * @author Valerie Parra Cortés
  */
+
 @RunWith(Arquillian.class)
-public class TecnicoLogicTest {
-   @PersistenceContext
-    private EntityManager em;
+public class EmpleadoLogicTest {
+    
+    private List<EmpleadoEntity> data= new ArrayList<EmpleadoEntity>();
     
     @Inject
-    UserTransaction utx;
-  
-    @Inject
-    private TecnicoLogic tecnicoLogic;
-    private List<TecnicoEntity> data = new ArrayList<TecnicoEntity>();
+    private EmpleadoLogic el;
+    
+    @Inject 
+    private UserTransaction utx;
     
     private PodamFactory factory = new PodamFactoryImpl();
-    @Deployment
-    public static JavaArchive createDeployment() {   
+    
+    @PersistenceContext
+    private EntityManager em;
+   
+    
+    @Deployment    
+    public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(TecnicoEntity.class.getPackage())
-                .addPackage(TecnicoLogic.class.getPackage())
-                .addPackage(DepartamentoPersistence.class.getPackage())
+                .addPackage(EmpleadoEntity.class.getPackage())
+                .addPackage(EmpleadoLogic.class.getPackage())
+                .addPackage(EmpleadoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+ 
     @Before
     public void configTest() {
         try {
@@ -70,24 +76,24 @@ public class TecnicoLogicTest {
     }
 
     private void clearData() {
-        em.createQuery("delete from TecnicoEntity").executeUpdate();
+        em.createQuery("delete from EmpleadoEntity").executeUpdate();
     }
 
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            TecnicoEntity entity = factory.manufacturePojo(TecnicoEntity.class);
+            EmpleadoEntity entity = factory.manufacturePojo(EmpleadoEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
     
     @Test    
-    public void createTecnicoTest() throws BusinessLogicException {
-        TecnicoEntity newEntity = factory.manufacturePojo(TecnicoEntity.class);
-        TecnicoEntity result = tecnicoLogic.createTecnico(newEntity);
+    public void createEmpleadoTest() throws BusinessLogicException {
+        EmpleadoEntity newEntity = factory.manufacturePojo(EmpleadoEntity.class);
+        EmpleadoEntity result = el.createEmpleadoEntity(newEntity);
         Assert.assertNotNull(result);
-        TecnicoEntity entity = em.find(TecnicoEntity.class, result.getId());
+        EmpleadoEntity entity = em.find(EmpleadoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getCedula(), entity.getCedula());
@@ -95,26 +101,26 @@ public class TecnicoLogicTest {
     }
     
     @Test(expected = BusinessLogicException.class)
-    public void createTecnicoMismaCedula() throws BusinessLogicException {
-        TecnicoEntity newEntity = factory.manufacturePojo(TecnicoEntity.class);
+    public void createEmpleadoMismaCedula() throws BusinessLogicException {
+        EmpleadoEntity newEntity = factory.manufacturePojo(EmpleadoEntity.class);
         newEntity.setCedula(data.get(0).getCedula());
-        tecnicoLogic.createTecnico(newEntity);
+        el.createEmpleadoEntity(newEntity);
     }
     
     @Test(expected = BusinessLogicException.class)
-    public void createTecnicoMismoUsuario() throws BusinessLogicException {
-        TecnicoEntity newEntity = factory.manufacturePojo(TecnicoEntity.class);
+    public void createEmpleadoMismoUsuario() throws BusinessLogicException {
+        EmpleadoEntity newEntity = factory.manufacturePojo(EmpleadoEntity.class);
         newEntity.setUsuario(data.get(0).getUsuario());
-        tecnicoLogic.createTecnico(newEntity);
+        el.createEmpleadoEntity(newEntity);
     }
     
     @Test
     public void getDepartamentosTest() {
-        List<TecnicoEntity> list = tecnicoLogic.getTecnicos();
+        List<EmpleadoEntity> list = el.getEmpleados();
         Assert.assertEquals(data.size(), list.size());
-        for (TecnicoEntity entity : list) {
+        for (EmpleadoEntity entity : list) {
             boolean found = false;
-            for (TecnicoEntity storedEntity : data) {
+            for (EmpleadoEntity storedEntity : data) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -125,8 +131,8 @@ public class TecnicoLogicTest {
     
     @Test
     public void getTecnicoTest() {
-        TecnicoEntity entity = data.get(0);
-        TecnicoEntity resultEntity = tecnicoLogic.getTecnico(entity.getId());
+        EmpleadoEntity entity = data.get(0);
+        EmpleadoEntity resultEntity = el.getEmpleado(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
@@ -136,11 +142,11 @@ public class TecnicoLogicTest {
     
     @Test
     public void updateTecnicoTest() {
-        TecnicoEntity entity = data.get(0);
-        TecnicoEntity pojoEntity = factory.manufacturePojo(TecnicoEntity.class);
+        EmpleadoEntity entity = data.get(0);
+        EmpleadoEntity pojoEntity = factory.manufacturePojo(EmpleadoEntity.class);
         pojoEntity.setId(entity.getId());
-        tecnicoLogic.updateTecnico(pojoEntity.getId(), pojoEntity);
-        TecnicoEntity resp = em.find(TecnicoEntity.class, entity.getId());
+        el.updateEmpleado(pojoEntity);
+        EmpleadoEntity resp = em.find(EmpleadoEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getUsuario(),resp.getUsuario());
@@ -148,13 +154,13 @@ public class TecnicoLogicTest {
 
     @Test
     public void deleteDepartamentoTest() throws BusinessLogicException {
-        TecnicoEntity entity = data.get(1);
-        tecnicoLogic.deleteTecnico(entity.getId());
-        TecnicoEntity deleted = em.find(TecnicoEntity.class, entity.getId());
+        EmpleadoEntity entity = data.get(1);
+        el.deleteEmpleado(entity.getId());
+        EmpleadoEntity deleted = em.find(EmpleadoEntity.class, entity.getId());
         Assert.assertNull(deleted);
-    }       
     }
-      
+            
     
     
     
+}

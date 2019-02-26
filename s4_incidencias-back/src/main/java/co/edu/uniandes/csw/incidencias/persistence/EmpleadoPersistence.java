@@ -44,4 +44,33 @@ public class EmpleadoPersistence {
         em.remove(entity);
     }
     
+    public EmpleadoEntity findByUsuario(String user) {
+        TypedQuery query = em.createQuery("Select e From EmpleadoEntity e where e.usuario = :nombre", EmpleadoEntity.class);
+        query = query.setParameter("nombre", user);
+        List<EmpleadoEntity> sameName = query.getResultList();
+        EmpleadoEntity result;
+        if (sameName == null) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+            result = null;
+        } else {
+            result = sameName.get(0);
+        }
+        return result;
+    }
+    public EmpleadoEntity findByCedula(String cedula) {
+        TypedQuery query = em.createQuery("Select e From EmpleadoEntity e where e.cedula = :nombre", EmpleadoEntity.class);
+        query = query.setParameter("nombre", cedula);
+        List<EmpleadoEntity> sameName = query.getResultList();
+        EmpleadoEntity result;
+        if (sameName == null) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+            result = null;
+        } else {
+            result = sameName.get(0);
+        }
+        return result;
+    }
+    
 }
