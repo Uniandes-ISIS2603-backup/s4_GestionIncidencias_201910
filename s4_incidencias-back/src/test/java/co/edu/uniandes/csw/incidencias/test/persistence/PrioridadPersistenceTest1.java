@@ -42,7 +42,7 @@ public class PrioridadPersistenceTest1 {
     @Inject
     UserTransaction utx;
     
-    private List<PrioridadEntity> data = new ArrayList<PrioridadEntity>();
+    private List<PrioridadEntity> data = new ArrayList <PrioridadEntity>();
     
     @Deployment
     public static JavaArchive createDeployment() {   
