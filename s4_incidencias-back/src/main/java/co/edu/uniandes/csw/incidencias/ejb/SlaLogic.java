@@ -15,7 +15,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Daniel Santamaria
+ * @author Daniel Santamaría Álvarez
  */
 
 @Stateless
