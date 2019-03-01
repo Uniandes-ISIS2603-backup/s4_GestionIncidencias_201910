@@ -5,12 +5,9 @@
  */
 package co.edu.uniandes.csw.incidencias.test.logic;
 
-import co.edu.uniandes.csw.incidencias.ejb.DepartamentoLogic;
 import co.edu.uniandes.csw.incidencias.ejb.SlaLogic;
-import co.edu.uniandes.csw.incidencias.entities.DepartamentoEntity;
 import co.edu.uniandes.csw.incidencias.entities.SlaEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.incidencias.persistence.DepartamentoPersistence;
 import co.edu.uniandes.csw.incidencias.persistence.SlaPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +42,7 @@ public class SlaLogicTest {
     private EntityManager em;
     
     @Inject
-    UserTransaction utx;
+    private UserTransaction utx;
     
     private List<SlaEntity> data = new ArrayList<SlaEntity>();
     
