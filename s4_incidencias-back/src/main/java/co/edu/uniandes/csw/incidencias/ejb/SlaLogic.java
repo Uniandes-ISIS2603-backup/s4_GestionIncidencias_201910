@@ -5,54 +5,46 @@
  */
 package co.edu.uniandes.csw.incidencias.ejb;
 
-import co.edu.uniandes.csw.incidencias.entities.PrioridadEntity;
 import co.edu.uniandes.csw.incidencias.entities.SlaEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.incidencias.persistence.SlaPersistence;
-import java.util.List;
 import javax.ejb.Stateless;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
  *
- * @author Daniel Santamaría Álvarez
+ * @author estudiante
  */
-
 @Stateless
 public class SlaLogic {
-     
     @Inject
     private SlaPersistence persistence;
     
-    public SlaEntity createSla(SlaEntity sla)throws BusinessLogicException
-    {
-        if( persistence.findAll() != null)
-        {
-            throw new BusinessLogicException("Ya existe un SLA Con el id \""+ sla.getId()+"\"" );
-        }
-        sla = persistence.create(sla);
-        return sla;
-    } 
+    public SlaEntity createSlaEntity(SlaEntity sla) throws BusinessLogicException{
+        if(persistence.find(sla.getId())!=null){
+             throw new BusinessLogicException("Ya existe un Sla con ese ID \"" + sla.getId() + "\"");
+         }           
+         sla=persistence.create(sla);
+         return sla;
+    }
     
-    public List<SlaEntity> getSlas() {
+    public  List<SlaEntity> getSlas(){
         List<SlaEntity> slas = persistence.findAll();
         return slas;
-    }
-
-    public SlaEntity getSla(Long slaId) {
-        SlaEntity slaEntity = persistence.find(slaId);
+     }
+     
+     public SlaEntity getSla(Long slaID) {
+        SlaEntity slaEntity = persistence.find(slaID);
         return slaEntity;
     }
-
-    public SlaEntity updateSla(Long slaId, SlaEntity slaEntity) {
-        SlaEntity newEntity = persistence.update(slaEntity);
+     
+     public SlaEntity updateSla( SlaEntity entity) {
+        SlaEntity newEntity = persistence.update(entity);
         return newEntity;
     }
-
-    public void deleteSla(Long slaId) {
+    
+      public void deleteSla(Long slaId) {
         persistence.delete(slaId);
-    }
-    
-    
-    
+    }     
 }

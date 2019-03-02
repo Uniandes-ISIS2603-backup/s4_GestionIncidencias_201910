@@ -10,45 +10,33 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author Daniel Santamaria
+ * @author estudiante
  */
-public class PrioridadEntity extends BaseEntity implements Serializable {
+
+@Entity
+public class PrioridadEntity extends BaseEntity  implements Serializable{
     
-    private String tipoPrioridad;
-    private SlaEntity sla;
+    private String tipoPrioridad;    
+
     
-    public PrioridadEntity()
-    {
+    public PrioridadEntity(){
         
     }
     
-
     /**
-     * @return the tipoPrioridad
+     * @return tipo prioridad
      */
     public String getTipoPrioridad() {
         return tipoPrioridad;
     }
 
     /**
-     * @param tipoPrioridad the tipoPrioridad to set
+     * @param tipoPrioridad nuevo tipo prioridad
      */
     public void setTipoPrioridad(String tipoPrioridad) {
         this.tipoPrioridad = tipoPrioridad;
     }
-
-    /**
-     * @return the sla
-     */
-    public SlaEntity getSla() {
-        return sla;
-    }
-
-    /**
-     * @param sla the sla to set
-     */
-    public void setSla(SlaEntity sla) {
-        this.sla = sla;
-    }
+    
+    
     
 }

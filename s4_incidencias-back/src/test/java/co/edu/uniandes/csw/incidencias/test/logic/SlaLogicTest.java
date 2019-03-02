@@ -27,27 +27,28 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- *
- * @author Daniel Santamaría Álvarez
+  * @author Valerie Parra Cortés
  */
+
 @RunWith(Arquillian.class)
 public class SlaLogicTest {
     
-    private PodamFactory factory = new PodamFactoryImpl();
+    private List<SlaEntity> data= new ArrayList<SlaEntity>();
     
     @Inject
-    private SlaLogic slaLogic;
+    private SlaLogic el;
+    
+    @Inject 
+    private UserTransaction utx;
+    
+    private PodamFactory factory = new PodamFactoryImpl();
     
     @PersistenceContext
     private EntityManager em;
+   
     
-    @Inject
-    private UserTransaction utx;
-    
-    private List<SlaEntity> data = new ArrayList<SlaEntity>();
-    
-    @Deployment
-    public static JavaArchive createDeployment() {   
+    @Deployment    
+    public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(SlaEntity.class.getPackage())
                 .addPackage(SlaLogic.class.getPackage())
@@ -55,11 +56,12 @@ public class SlaLogicTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+ 
     @Before
     public void configTest() {
         try {
             utx.begin();
+            em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
@@ -76,8 +78,9 @@ public class SlaLogicTest {
     private void clearData() {
         em.createQuery("delete from SlaEntity").executeUpdate();
     }
-    
+
     private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             SlaEntity entity = factory.manufacturePojo(SlaEntity.class);
             em.persist(entity);
@@ -85,10 +88,10 @@ public class SlaLogicTest {
         }
     }
     
-    @Test
+    @Test    
     public void createSlaTest() throws BusinessLogicException {
         SlaEntity newEntity = factory.manufacturePojo(SlaEntity.class);
-        SlaEntity result = slaLogic.createSla(newEntity);
+        SlaEntity result = el.createSlaEntity(newEntity);
         Assert.assertNotNull(result);
         SlaEntity entity = em.find(SlaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -96,15 +99,15 @@ public class SlaLogicTest {
     }
     
     @Test(expected = BusinessLogicException.class)
-    public void createSlaConMismoIdTest() throws BusinessLogicException {
+    public void createSlaMismoIda() throws BusinessLogicException {
         SlaEntity newEntity = factory.manufacturePojo(SlaEntity.class);
         newEntity.setId(data.get(0).getId());
-        slaLogic.createSla(newEntity);
+        el.createSlaEntity(newEntity);
     }
     
     @Test
-    public void getSlasTest() {
-        List<SlaEntity> list = slaLogic.getSlas();
+    public void getDepartamentosTest() {
+        List<SlaEntity> list = el.getSlas();
         Assert.assertEquals(data.size(), list.size());
         for (SlaEntity entity : list) {
             boolean found = false;
@@ -116,32 +119,36 @@ public class SlaLogicTest {
             Assert.assertTrue(found);
         }
     }
-
+    
     @Test
-    public void getSlaTest() {
+    public void getTecnicoTest() {
         SlaEntity entity = data.get(0);
-        SlaEntity resultEntity = slaLogic.getSla(entity.getId());
+        SlaEntity resultEntity = el.getSla(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getIdSla(), resultEntity.getIdSla());
+        Assert.assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
     }
-
+    
     @Test
-    public void updateSlaTest() {
+    public void updateTecnicoTest() {
         SlaEntity entity = data.get(0);
         SlaEntity pojoEntity = factory.manufacturePojo(SlaEntity.class);
         pojoEntity.setId(entity.getId());
-        slaLogic.updateSla(pojoEntity.getId(), pojoEntity);
+        el.updateSla(pojoEntity);
         SlaEntity resp = em.find(SlaEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getIdSla(), resp.getIdSla());
+        Assert.assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
     }
 
     @Test
-    public void deleteSlaTest() throws BusinessLogicException {
+    public void deleteDepartamentoTest() throws BusinessLogicException {
         SlaEntity entity = data.get(1);
-        slaLogic.deleteSla(entity.getId());
+        el.deleteSla(entity.getId());
         SlaEntity deleted = em.find(SlaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+            
+    
+    
+    
 }

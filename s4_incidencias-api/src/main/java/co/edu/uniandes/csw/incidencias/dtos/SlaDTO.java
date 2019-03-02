@@ -6,59 +6,46 @@
 package co.edu.uniandes.csw.incidencias.dtos;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 /**
  *
  * @author estudiante
  */
-public class SlaDTO implements Serializable {
-    
-    private String idSLA;
+public class SlaDTO extends UsuarioDTO implements Serializable{     
+
+    private static final Logger LOG = Logger.getLogger(SlaDTO.class.getName());
+
+    private int id;
     private String descripcion;
     
-    public SlaDTO()
-    {
-        
+    /**
+     * @return la id
+     */
+    public Integer getId() {
+        return id;
     }
-    
 
     /**
-     * @return the descripcion
+     * @param id la id nueva
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return la descripcion
      */
     public String getDescripcion() {
         return descripcion;
     }
 
     /**
-     * @param descripcion the descripcion to set
+     * @param descripcion la descripcion nueva
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    /**
-     * @return the idSLA
-     */
-    public String getIdSLA() {
-        return idSLA;
-    }
-
-    /**
-     * @param idSLA the idSLA to set
-     */
-    public void setIdSLA(String idSLA) {
-        this.idSLA = idSLA;
-    }
     
-    public void toEntity(){
-        
-    }
-    
-    
-    public String toString(){
-        return "SLA {'id':"+idSLA+",'descripcion':"+descripcion+"}";
-    }
-    
-            
     
 }
