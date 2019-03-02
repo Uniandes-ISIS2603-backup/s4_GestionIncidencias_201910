@@ -27,7 +27,7 @@ public class PrioridadLogic {
     public PrioridadEntity createPrioridad(PrioridadEntity prioridad)throws BusinessLogicException
     {
         //Solo debe existir una prioridad
-        if( persistence.findAll() != null)
+        if( persistence.find(prioridad.getId()) != null)
         {
             throw new BusinessLogicException("Ya existe una prioridad Con el nombre \""+ prioridad.getTipoPrioridad()+"\"" );
         }

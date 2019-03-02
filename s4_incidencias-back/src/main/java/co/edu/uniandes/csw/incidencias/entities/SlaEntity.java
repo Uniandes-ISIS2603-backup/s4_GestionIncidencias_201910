@@ -6,46 +6,37 @@
 package co.edu.uniandes.csw.incidencias.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author estudiante
  */
-public class SlaEntity extends BaseEntity implements Serializable{
+
+@Entity
+public class SlaEntity extends BaseEntity  implements Serializable{
     
-    private String idSla;
-    private String descripcion;
+    private String descripcion;    
+
     
-    public SlaEntity()
-    {
+    public SlaEntity(){
         
     }
-
+    
     /**
-     * @return the idSla
-     */
-    public String getIdSla() {
-        return idSla;
-    }
-
-    /**
-     * @param idSla the idSla to set
-     */
-    public void setIdSla(String idSla) {
-        this.idSla = idSla;
-    }
-
-    /**
-     * @return the descripcion
+     * @return la descripcion
      */
     public String getDescripcion() {
         return descripcion;
     }
 
     /**
-     * @param descripcion the descripcion to set
+     * @param descripcion la descripcion nueva
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    
+    
 }

@@ -95,7 +95,7 @@ public class PrioridadLogicTest {
         Assert.assertNotNull(result);
         PrioridadEntity entity = em.find(PrioridadEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getTipoPrioridad(), entity.getTipoPrioridad());
     }
     
     @Test(expected = BusinessLogicException.class)

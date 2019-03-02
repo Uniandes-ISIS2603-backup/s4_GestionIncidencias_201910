@@ -27,7 +27,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Daniel Santamaría Álvarez
+ * @author estudiante
  */
 
 
@@ -92,7 +92,7 @@ public class SlaPersistenceTest {
         SlaEntity te = ep.create(newEntity);
         Assert.assertNotNull(te);
         SlaEntity entity = em.find(SlaEntity.class, te.getId());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
     }
 
     
@@ -101,7 +101,7 @@ public class SlaPersistenceTest {
         SlaEntity entity = data.get(0);
         SlaEntity newEntity = ep.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getId(), newEntity.getId());  
+        Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());  
     }
     @Test
     public void findAlSlaTest() {
@@ -134,8 +134,7 @@ public class SlaPersistenceTest {
         newEntity.setId(entity.getId());
         ep.update(newEntity);
         SlaEntity resp = em.find(SlaEntity.class, entity.getId());
-        Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
     }
     
 }
-
