@@ -5,15 +5,25 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 
+import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
+import java.io.Serializable;
+
 /**
  *
  * @author estudiante
  */
-public class IncidenciaDetailDTO {
+public class IncidenciaDetailDTO implements Serializable
+{
     
     //private ArrayList<ActuacionDTO> actuaciones;
     
     public IncidenciaDetailDTO(){
-        
-    }
+               
+    }    
+    
+    public IncidenciaDetailDTO(IncidenciaEntity incidencia){
+               
+         
+    }  
+ 
 }
