@@ -34,13 +34,12 @@ public class EmpleadoLogic {
     }
     
     public  List<EmpleadoEntity> getEmpleados(){
-        List<EmpleadoEntity> empleados = persistence.findAll();
-        return empleados;
+        return persistence.findAll();
+        
      }
      
      public EmpleadoEntity getEmpleado(Long empleadoID) {
-        EmpleadoEntity departamentoEntity = persistence.find(empleadoID);
-        return departamentoEntity;
+        return persistence.find(empleadoID);        
     }
      
      public EmpleadoEntity updateEmpleado( UsuarioEntity entity) {
