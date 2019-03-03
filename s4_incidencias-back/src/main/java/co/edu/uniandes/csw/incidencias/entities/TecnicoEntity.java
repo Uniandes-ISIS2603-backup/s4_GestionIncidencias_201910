@@ -5,8 +5,6 @@
  */
 package co.edu.uniandes.csw.incidencias.entities;
 
-import java.io.Serializable;
-import java.util.logging.Logger;
 import javax.persistence.Entity;
 
 /**
@@ -15,9 +13,7 @@ import javax.persistence.Entity;
  */
 
 @Entity
-public class TecnicoEntity extends UsuarioEntity implements Serializable{
-    private static final Logger LOG = Logger.getLogger(TecnicoEntity.class.getName());
-
+public class TecnicoEntity extends UsuarioEntity {
     public TecnicoEntity() {
         super();
     }   

@@ -64,9 +64,8 @@ public class TecnicoLogic {
       * @param tecnicoEntity entidad a persistir
       * @return entidad persistida
       */
-     public TecnicoEntity updateTecnico(TecnicoEntity tecnicoEntity) {
-        TecnicoEntity newEntity = (TecnicoEntity) persistence.update(tecnicoEntity);
-        return newEntity;
+     public TecnicoEntity updateTecnico(TecnicoEntity tecnicoEntity) {        
+        return (TecnicoEntity) persistence.update(tecnicoEntity);
     }
     /**
      * Método que elimina el técnico del id entrado pro parámetro
