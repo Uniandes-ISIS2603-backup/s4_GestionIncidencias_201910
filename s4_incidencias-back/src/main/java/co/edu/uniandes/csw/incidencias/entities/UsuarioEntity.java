@@ -57,57 +57,49 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     private String name; 
     
     public UsuarioEntity(){        
-    }
-    
+    }    
     /**
      * @return the user
      */
     public String getUsuario() {
         return usuario;
     }
-
     /**
      * @param usuario the user to set
      */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-
     /**
      * @return the password
      */
     public String getPassword() {
         return password;
     }
-
     /**
      * @param password the password to set
      */
     public void setPassword(String password) {
         this.password = password;
     }
-
     /**
      * @return the cedula
      */
     public String getCedula() {
         return cedula;
     }
-
     /**
      * @param cedula the cedula to set
      */
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
-
     /**
      * @return the name
      */
     public String getName() {
         return name;
     }
-
     /**
      * @param name the name to set
      */

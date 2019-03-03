@@ -19,8 +19,7 @@ import javax.inject.Inject;
 @Stateless
 public class TecnicoLogic {
      @Inject
-    private TecnicoPersistence persistence;
-     
+    private TecnicoPersistence persistence;   
      
      public TecnicoEntity createTecnico(TecnicoEntity tecnico) throws BusinessLogicException{
          //No debería existir un técnico con la misma cedula o el mismo  usuario
