@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.incidencias.dtos;
-import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
-import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
 import co.edu.uniandes.csw.incidencias.entities.UsuarioEntity;
 import java.io.Serializable;
 import java.util.logging.Logger;
@@ -56,13 +54,12 @@ public class UsuarioDTO implements Serializable{
      */
     protected String password;
 
-        /**
+    /**
      * @return the name
      */
     public String getName() {
         return name;
     }
-
     /**
      * @param name the name to set
      */

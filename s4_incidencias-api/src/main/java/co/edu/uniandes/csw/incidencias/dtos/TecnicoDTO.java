@@ -30,14 +30,5 @@ public class TecnicoDTO extends UsuarioDTO implements Serializable{
     public TecnicoDTO (UsuarioEntity uE){
         super(uE);
     }
-   
-    /**
-     * Método que convierte la clase a entidad
-     * @return La entidad
-     */
-    @Override
-    public UsuarioEntity toEntity(){
-     return super.toEntity();   
-    }
-    
+      
 }
