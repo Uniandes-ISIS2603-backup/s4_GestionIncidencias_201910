@@ -42,14 +42,14 @@ public class ActuacionLogic {
 
 
 
-    public ActuacionEntity getPrioridad(Long prioridadId) {
+    public ActuacionEntity getActuacion(Long prioridadId) {
         ActuacionEntity prioridadEntity = persistence.find(prioridadId);
         return prioridadEntity;
     }
 
   
 
-    public void deletePrioridad(Long ActuacionId) {
+    public void deleteActuacion(Long ActuacionId) {
         persistence.delete(ActuacionId);
     }
     

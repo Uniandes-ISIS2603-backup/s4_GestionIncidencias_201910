@@ -34,7 +34,7 @@ public class IncidenciaLogic {
        actLogic.createActuacion(act);
     }
     
-    public IncidenciaEntity createPrioridad(IncidenciaEntity incidencia)throws BusinessLogicException
+    public IncidenciaEntity createIncidencia(IncidenciaEntity incidencia)throws BusinessLogicException
     {
         //Solo debe existir una prioridad
         if( persistence.find(incidencia.getId()) != null)
@@ -47,7 +47,7 @@ public class IncidenciaLogic {
     
     
     
-    public List<IncidenciaEntity> getIncidencia() {
+    public List<IncidenciaEntity> getIncidencias() {
         List<IncidenciaEntity> prioridades = persistence.findAll();
         return prioridades;
     }
