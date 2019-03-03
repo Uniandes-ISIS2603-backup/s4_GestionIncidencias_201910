@@ -39,6 +39,8 @@ public class ActuacionEntity extends BaseEntity  implements Serializable {
 
    
 
+    
+
  
     /**
      * @return the descripcion

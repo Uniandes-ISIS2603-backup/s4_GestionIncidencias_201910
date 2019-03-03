@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.incidencias.persistence;
 
 import co.edu.uniandes.csw.incidencias.entities.ActuacionEntity;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -36,6 +37,12 @@ public class ActuacionPersistence {
         TypedQuery <ActuacionEntity> query = em.createQuery("select u from ActuacionEntity u", ActuacionEntity.class);
         return query.getResultList();
     }
+    
+     public ActuacionEntity delete(long ActuacionId){
+         ActuacionEntity a = em.find(ActuacionEntity.class, ActuacionId );
+         em.remove(a);
+         return a;
+     }
 
 
 
