@@ -16,20 +16,20 @@ public class SlaDTO extends UsuarioDTO implements Serializable{
 
     private static final Logger LOG = Logger.getLogger(SlaDTO.class.getName());
 
-    private int id;
+    private Long id;
     private String descripcion;
     
     /**
      * @return la id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id la id nueva
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

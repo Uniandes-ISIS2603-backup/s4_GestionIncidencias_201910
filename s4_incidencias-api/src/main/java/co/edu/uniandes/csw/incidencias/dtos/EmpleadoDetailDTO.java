@@ -4,24 +4,28 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.incidencias.dtos;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
 /**
- *
- * @author estudiante
+ * Clase que representa la clase Detail DTO
+ * @author Valerie Parra Cortés
  */
 public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(EmpleadoDetailDTO.class.getName());
 
+    /**
+     * Lista de incidencias del empleado
+     */
     private List<IncidenciaDTO> incidencias;
-    
-    public EmpleadoDetailDTO() {
-    }
 
+    public EmpleadoDetailDTO() {
+        super();
+    }
+    
+ 
     /**
      * @return the incidencias
      */

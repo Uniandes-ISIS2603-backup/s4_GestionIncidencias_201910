@@ -23,9 +23,10 @@ import javax.persistence.TemporalType;
 @Entity
 public class IncidenciaEntity extends BaseEntity implements  Serializable{
 
-     @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     private String descripcion; 
+    private EmpleadoEntity empleado;
 
     /**
      * @return the fecha
@@ -53,5 +54,12 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    
+    public EmpleadoEntity getEmpleado(){
+        return empleado;
+    }
+    public void settEmpleado(EmpleadoEntity empleado){
+        this.empleado=empleado;
     }
 }

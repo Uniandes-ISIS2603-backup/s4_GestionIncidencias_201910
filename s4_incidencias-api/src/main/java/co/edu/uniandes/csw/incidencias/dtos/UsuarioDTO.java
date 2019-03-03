@@ -16,11 +16,11 @@ public class UsuarioDTO implements Serializable{
     private static Logger LOG = Logger.getLogger(UsuarioDTO.class.getName());
     
     
-    private String name;
-    private String cedula;
-    private Integer id;
-    private String user;
-    private String password;
+    protected String name;
+    protected String cedula;
+    protected Long id;
+    protected String usuario;
+    protected String password;
 
     /**
      * @return the LOG
@@ -67,29 +67,29 @@ public class UsuarioDTO implements Serializable{
     /**
      * @return the id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     /**
      * @return the user
      */
-    public String getUser() {
-        return user;
+    public String getUsuario() {
+        return usuario;
     }
 
     /**
      * @param user the user to set
      */
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsuario(String user) {
+        this.usuario = user;
     }
 
     /**
