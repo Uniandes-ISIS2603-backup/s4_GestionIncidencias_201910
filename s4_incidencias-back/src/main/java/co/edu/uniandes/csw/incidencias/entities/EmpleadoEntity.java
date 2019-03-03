@@ -17,13 +17,31 @@ import uk.co.jemos.podam.common.PodamExclude;
  * Clase que representa un empleado
  * @author estudiante Valerie Parra Cortés
  */
-
 @Entity
 public class EmpleadoEntity extends UsuarioEntity  implements Serializable{
+    
     private static final Logger LOG = Logger.getLogger(EmpleadoEntity.class.getName());
     
+    /**
+     * Atributo que representa la lista de incidencias del empleado
+     */
     @PodamExclude
     @OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<IncidenciaEntity> incidencias;
+
+    /**
+     * Método que retorna la lista de incidencias del empleado
+     * @return Lista de incidencias del empleado
+     */
+    public List<IncidenciaEntity> getIncidencias() {
+        return incidencias;
+    }
+    /**
+     * Método que cambia la lista de incidencias del empleado
+     * @param incidencias la nueva lista de incidencias
+     */
+    public void setIncidencias(List<IncidenciaEntity> incidencias) {
+        this.incidencias = incidencias;
+    }  
     
 }

@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.incidencias.entities;
 
 import java.io.Serializable;
-import java.util.logging.Logger;
 import javax.persistence.Entity;
 
 /**
@@ -15,8 +14,7 @@ import javax.persistence.Entity;
  */
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable{
-
-    
+   
     
     /**
      * Atributo para el usuario que tendrá el usuario

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.incidencias.dtos;
-
 import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
 import java.io.Serializable;
 import java.util.logging.Logger;
@@ -36,5 +35,20 @@ public class EmpleadoDTO extends UsuarioDTO implements Serializable{
      */
     public EmpleadoDTO (){
         
+    }
+    
+     /**
+     * Método para transformar el DTO a una entidad.
+     * @return la entidad del empleado 
+     */
+    
+    public EmpleadoEntity toEntity(){
+        EmpleadoEntity empleadoEntity= new EmpleadoEntity();
+        empleadoEntity.setCedula(cedula);
+        empleadoEntity.setId(id);
+        empleadoEntity.setName(name);
+        empleadoEntity.setPassword(password);
+        empleadoEntity.setUsuario(usuario);
+        return empleadoEntity; 
     }
 }

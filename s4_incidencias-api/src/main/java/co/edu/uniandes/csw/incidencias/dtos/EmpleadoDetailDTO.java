@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.incidencias.dtos;
+import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
@@ -25,9 +26,9 @@ public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable {
         super();
     }
     
- 
-    /**
-     * @return the incidencias
+     /**
+      * Método que retorna la lista de incidencias del empleado
+     * @return Las incidencias del empleado
      */
     public List<IncidenciaDTO> getIncidencias() {
         return incidencias;
@@ -41,5 +42,5 @@ public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable {
     }
  
     
-    
+            
 }
