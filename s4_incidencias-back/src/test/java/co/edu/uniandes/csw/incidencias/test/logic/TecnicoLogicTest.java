@@ -139,7 +139,7 @@ public class TecnicoLogicTest {
         TecnicoEntity entity = data.get(0);
         TecnicoEntity pojoEntity = factory.manufacturePojo(TecnicoEntity.class);
         pojoEntity.setId(entity.getId());
-        tecnicoLogic.updateTecnico(pojoEntity.getId(), pojoEntity);
+        tecnicoLogic.updateTecnico(pojoEntity);
         TecnicoEntity resp = em.find(TecnicoEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
