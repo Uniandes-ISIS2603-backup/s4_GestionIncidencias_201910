@@ -10,23 +10,16 @@ import java.io.Serializable;
 import java.util.logging.Logger;
 
 /**
- *
- * @author v.parrac
+ * Clase que representa un técnico base
+ * @author Valerie Parra Cortés
  */
 public class TecnicoDTO extends UsuarioDTO implements Serializable{     
 
     private static final Logger LOG = Logger.getLogger(TecnicoDTO.class.getName());
     
-    /**
-     * Constructor vacio de la clase
-     */
     public TecnicoDTO() {
     }
     
-    /**
-     * Constructor que crea un empleado con base a un Entity
-     * @param uE UsuarioEntity
-     */
     public TecnicoDTO (UsuarioEntity uE){
         super(uE);
     }

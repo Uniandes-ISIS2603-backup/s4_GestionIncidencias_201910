@@ -5,10 +5,7 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
-import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
