@@ -5,11 +5,9 @@
  */
 package co.edu.uniandes.csw.incidencias.resources;
 
-import co.edu.uniandes.csw.incidencias.dtos.EmpleadoDetailDTO;
 import co.edu.uniandes.csw.incidencias.dtos.TecnicoDTO;
 import co.edu.uniandes.csw.incidencias.dtos.TecnicoDetailDTO;
 import co.edu.uniandes.csw.incidencias.ejb.TecnicoLogic;
-import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
 import java.util.ArrayList;
 import java.util.List;
