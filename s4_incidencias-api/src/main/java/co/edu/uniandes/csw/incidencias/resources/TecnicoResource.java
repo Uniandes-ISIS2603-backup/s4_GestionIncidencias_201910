@@ -12,9 +12,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-
 /**
- *
+ * Clase que representa un recurso ténico
  * @author estudiante
  */
 @Path("tecnicos")
@@ -22,10 +21,10 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped 
 public class TecnicoResource {
-     private static final Logger LOG = Logger.getLogger(TecnicoResource.class.getName());
-     
+     private static final Logger LOG = Logger.getLogger(TecnicoResource.class.getName());     
      @POST
      public TecnicoDTO createTecnico(TecnicoDTO tecnico){
          return tecnico;
      }
+     
 }

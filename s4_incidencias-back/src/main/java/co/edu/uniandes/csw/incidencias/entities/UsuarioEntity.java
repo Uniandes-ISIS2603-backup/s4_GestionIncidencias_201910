@@ -17,9 +17,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * Esta clase representará un Usuario (Ya sea técnico, administrador o empleado)
  */
 @Entity
-public class UsuarioEntity extends BaseEntity implements Serializable{
-   
-    
+public class UsuarioEntity extends BaseEntity implements Serializable{   
     /**
      * Atributo que representa la lista de incidencias del empleado
      */
@@ -41,8 +39,6 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     public void setIncidencias(List<IncidenciaEntity> incidencias) {
         this.incidencias = incidencias;
     }  
-    
-    
     /**
      * Atributo para el usuario que tendrá el usuario
      */
@@ -117,7 +113,5 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
      */
     public void setName(String name) {
         this.name = name;
-    }
- 
-    
+    }   
 }

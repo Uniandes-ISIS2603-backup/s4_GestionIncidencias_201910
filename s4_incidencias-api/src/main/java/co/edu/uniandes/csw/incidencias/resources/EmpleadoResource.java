@@ -29,8 +29,6 @@ import javax.ws.rs.Produces;
  * Clase que representa un recurso empleado
  * @author Valerie Parra Cortés
  */
-
-
 public class EmpleadoResource {
     
     private static final Logger LOG = Logger.getLogger(EmpleadoResource.class.getName());    
