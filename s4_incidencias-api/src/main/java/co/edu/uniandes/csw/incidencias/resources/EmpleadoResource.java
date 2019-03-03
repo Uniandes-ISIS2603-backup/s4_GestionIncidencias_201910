@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.incidencias.resources;
 
-
 import co.edu.uniandes.csw.incidencias.dtos.EmpleadoDTO;
 import co.edu.uniandes.csw.incidencias.dtos.EmpleadoDetailDTO;
 import co.edu.uniandes.csw.incidencias.ejb.EmpleadoLogic;
@@ -29,25 +28,21 @@ import javax.ws.rs.Produces;
  * Clase que representa un recurso empleado
  * @author Valerie Parra Cortés
  */
-public class EmpleadoResource {
-    
+public class EmpleadoResource {    
     private static final Logger LOG = Logger.getLogger(EmpleadoResource.class.getName());    
     
     @Inject
     private EmpleadoLogic empleadoLogic;
     
     @POST
-     public EmpleadoDTO createEmpleado(EmpleadoDTO tecnico){
-         return tecnico;
+     public EmpleadoDTO createEmpleado(EmpleadoDTO empleado){
+         return empleado;
      }    
-     
-     
-     /**
-     * Busca y devuelve todos los empleados que existen en la aplicacion.
-     *
+    /**
+     * Busca y devuelve todos los empleados que existen en la aplicacion.    
      * @return JSONArray {@link EmpleadosDetailDTO} - Los Empleados encontrados en la
      * aplicación. Si no hay ninguno retorna una lista vacía.
-     */
+    */
     @GET
     public List<EmpleadoDetailDTO> getEmpleados() {
         List<EmpleadoDetailDTO> listaBooks = listEntity2DetailDTO(empleadoLogic.getEmpleados());        

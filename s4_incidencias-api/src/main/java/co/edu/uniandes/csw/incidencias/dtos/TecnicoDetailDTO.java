@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * Clase que representará un TecnicoDetailDTO 
  * @author Valerie Parra Cortés
  */
-public class TecnicoDetailDTO extends UsuarioDetailDTO implements Serializable{    
+public class TecnicoDetailDTO extends TecnicoDTO implements Serializable{    
     private static final Logger LOG = Logger.getLogger(TecnicoDetailDTO.class.getName());
     public TecnicoDetailDTO() {
         super();
@@ -19,4 +19,6 @@ public class TecnicoDetailDTO extends UsuarioDetailDTO implements Serializable{
      public TecnicoDetailDTO(TecnicoEntity tecnicoEntity){
         super(tecnicoEntity);
     }
+
+    
 }
