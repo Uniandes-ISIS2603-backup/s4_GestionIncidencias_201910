@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.incidencias.entities;
 import java.io.Serializable;
 import java.util.logging.Logger;
 import javax.persistence.Entity;
-
 /**
  * Clase que representa un administrador
  * @author Valerie Parra Cortés
@@ -19,6 +18,5 @@ public class AdministradorEntity extends UsuarioEntity implements Serializable {
 
     public AdministradorEntity() {
         super();
-    }    
-    
+    }     
 }
