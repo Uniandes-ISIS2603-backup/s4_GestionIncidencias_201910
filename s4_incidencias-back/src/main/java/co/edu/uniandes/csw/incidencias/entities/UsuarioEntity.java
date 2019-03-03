@@ -23,7 +23,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
      */
     @PodamExclude
     @OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    protected List<IncidenciaEntity> incidencias;
+    private List<IncidenciaEntity> incidencias;
 
     /**
      * Método que retorna la lista de incidencias del empleado
