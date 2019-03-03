@@ -23,7 +23,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
      * Atributo que representa la lista de incidencias del empleado
      */
     @PodamExclude
-    @OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private List<IncidenciaEntity> incidencias;
 
     /**
@@ -134,6 +134,17 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.incidencias);
+        hash = 67 * hash + Objects.hashCode(this.usuario);
+        hash = 67 * hash + Objects.hashCode(this.password);
+        hash = 67 * hash + Objects.hashCode(this.cedula);
+        hash = 67 * hash + Objects.hashCode(this.name);
+        return hash;
     }
     
     

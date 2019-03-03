@@ -15,6 +15,7 @@ import java.util.List;
  * Clase que representa un usuario de la aplicación
  * @author Valerie Parra Cortés
  */
+
 public class UsuarioDetailDTO extends UsuarioDTO {
 
     /**
