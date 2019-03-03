@@ -29,8 +29,7 @@ import javax.ws.rs.Produces;
  * @author Valerie Parra Cortés
  */
 public class EmpleadoResource {    
-    private static final Logger LOG = Logger.getLogger(EmpleadoResource.class.getName());    
-    
+       
     @Inject
     private EmpleadoLogic empleadoLogic;
     
@@ -45,8 +44,7 @@ public class EmpleadoResource {
     */
     @GET
     public List<EmpleadoDetailDTO> getEmpleados() {
-        List<EmpleadoDetailDTO> listaBooks = listEntity2DetailDTO(empleadoLogic.getEmpleados());        
-        return listaBooks;
+        return listEntity2DetailDTO(empleadoLogic.getEmpleados());                
     }    
     /**
      * Convierte una lista de entidades a DTO.

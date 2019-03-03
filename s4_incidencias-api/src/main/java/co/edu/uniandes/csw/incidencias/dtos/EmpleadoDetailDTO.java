@@ -5,16 +5,11 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
-import java.io.Serializable;
-import java.util.logging.Logger;
-
 /**
  * Clase que representa la clase Detail DTO
  * @author Valerie Parra Cortés
  */
-public class EmpleadoDetailDTO extends UsuarioDetailDTO implements Serializable {
-
-    private static final Logger LOG = Logger.getLogger(EmpleadoDetailDTO.class.getName());
+public class EmpleadoDetailDTO extends UsuarioDetailDTO  {
 
     public EmpleadoDetailDTO(EmpleadoEntity empleadoEntity){
         super(empleadoEntity);        

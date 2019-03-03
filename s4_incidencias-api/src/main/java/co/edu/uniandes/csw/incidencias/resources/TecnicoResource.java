@@ -31,7 +31,7 @@ public class TecnicoResource {
     
     @Inject
     private TecnicoLogic tecnicoLogic;
-     private static final Logger LOG = Logger.getLogger(TecnicoResource.class.getName());     
+     
      @POST
      public TecnicoDTO createTecnico(TecnicoDTO tecnico){
          return tecnico;
@@ -39,8 +39,7 @@ public class TecnicoResource {
      
      @GET
      public List<TecnicoDetailDTO> getTecnicos(){
-         List<TecnicoDetailDTO> listaBooks = listEntity2DetailDTO(tecnicoLogic.getTecnicos());        
-        return listaBooks;
+         return listEntity2DetailDTO(tecnicoLogic.getTecnicos());                
      }
      
      /**
