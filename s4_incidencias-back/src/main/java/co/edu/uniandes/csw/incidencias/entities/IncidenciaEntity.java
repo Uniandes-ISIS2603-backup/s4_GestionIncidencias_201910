@@ -28,6 +28,10 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
     private String descripcion; 
     private EmpleadoEntity empleado;
 
+    
+    
+    
+    
     /**
      * @return the fecha
      */

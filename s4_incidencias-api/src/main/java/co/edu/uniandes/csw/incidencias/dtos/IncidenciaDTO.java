@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 
+import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -27,9 +28,21 @@ public class IncidenciaDTO implements Serializable{
 
     
     //Constructor
+    //TODO: Implementar
+    public IncidenciaDTO(IncidenciaEntity entity){
+        
+    }
+    
+    //Constructor
     public IncidenciaDTO(){
         
     }
+    
+    //TODO: Implementar
+    public IncidenciaEntity toEntity(){
+        return null;
+    }
+    
     /**
      * @return the fecha
      */

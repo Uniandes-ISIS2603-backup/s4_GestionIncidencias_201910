@@ -7,19 +7,18 @@ package co.edu.uniandes.csw.incidencias.dtos;
 import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
 import java.io.Serializable;
 import java.util.logging.Logger;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * Clase que representa un empleado
  * @author Valerie Parra Cortés
  */
 public class EmpleadoDTO extends UsuarioDTO implements Serializable{     
-
-    private static final Logger LOG = Logger.getLogger(EmpleadoDTO.class.getName());
-  
+    private static final Logger LOG = Logger.getLogger(EmpleadoDTO.class.getName());  
     /**
      * Constructor de la clase de EmpleadoDTO
      * @param eEntity entity a parsear
-     * //TODO: Colocar las relaciones de muchos
      */
     public EmpleadoDTO(EmpleadoEntity eEntity) {
         if(!(eEntity==null)){
@@ -50,5 +49,14 @@ public class EmpleadoDTO extends UsuarioDTO implements Serializable{
         empleadoEntity.setPassword(password);
         empleadoEntity.setUsuario(usuario);
         return empleadoEntity; 
+    }
+    
+    /**
+     * Método toString de la clase
+     * @return Cadena con objeto
+     */
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
