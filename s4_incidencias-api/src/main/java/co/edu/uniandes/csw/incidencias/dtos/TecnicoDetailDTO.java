@@ -6,13 +6,12 @@
 package co.edu.uniandes.csw.incidencias.dtos;
 import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
 import java.io.Serializable;
-import java.util.logging.Logger;
+
 /**
  * Clase que representará un TecnicoDetailDTO 
  * @author Valerie Parra Cortés
  */
-public class TecnicoDetailDTO extends TecnicoDTO implements Serializable{    
-    private static final Logger LOG = Logger.getLogger(TecnicoDetailDTO.class.getName());
+public class TecnicoDetailDTO extends TecnicoDTO implements Serializable{        
     public TecnicoDetailDTO() {
         super();
     }
