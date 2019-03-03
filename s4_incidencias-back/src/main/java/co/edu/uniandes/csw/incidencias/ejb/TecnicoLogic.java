@@ -13,6 +13,7 @@ import javax.inject.Inject;
 
 
 /**
+ * Clase que manejará la capa de lógica del recurso técnico
  * @author Valerie Parra Cortés
  */
 

@@ -17,6 +17,8 @@ import javax.persistence.Entity;
 public class EmpleadoEntity extends UsuarioEntity  implements Serializable{
     
     private static final Logger LOG = Logger.getLogger(EmpleadoEntity.class.getName());
-    
-    
+
+    public EmpleadoEntity() {
+        super();
+    }    
 }

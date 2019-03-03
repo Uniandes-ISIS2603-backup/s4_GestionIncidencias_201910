@@ -14,8 +14,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- *
- * @author estudiante
+ * Clase que manejará la capa de la lógica del recurso empleado
+ * @author Valerie Parra Cortés
  */
 @Stateless
 public class EmpleadoLogic {
