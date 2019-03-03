@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,8 +6,10 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 
+import co.edu.uniandes.csw.incidencias.entities.ActuacionEntity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *
@@ -14,11 +17,15 @@ import java.time.LocalDateTime;
  */
 public class ActuacionDTO implements Serializable {
     
-    private LocalDateTime fecha;
+    private Date fecha;
     private String descripcion;
     private String Tipo;
     
-    
+    public ActuacionDTO(ActuacionEntity actuacion){
+       this.fecha = actuacion.getFecha();
+       this.descripcion = actuacion.getDescripcion();
+       Tipo = null;
+    }
     public ActuacionDTO(){
         
     }
@@ -26,14 +33,14 @@ public class ActuacionDTO implements Serializable {
     /**
      * @return the fecha
      */
-    public LocalDateTime getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
     /**
      * @param fecha the fecha to set
      */
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -63,6 +70,14 @@ public class ActuacionDTO implements Serializable {
      */
     public void setTipo(String Tipo) {
         this.Tipo = Tipo;
+    }
+    
+    public ActuacionEntity toEntity(){
+        ActuacionEntity actuacion1 = new ActuacionEntity();
+        actuacion1.setDescripcion(descripcion);
+        actuacion1.setFecha(fecha);
+        
+        return actuacion1;
     }
 
 }
