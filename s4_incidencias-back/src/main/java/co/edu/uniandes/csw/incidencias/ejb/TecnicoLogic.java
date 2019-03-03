@@ -37,16 +37,14 @@ public class TecnicoLogic {
      }
      
      public  List<TecnicoEntity> getTecnicos(){
-        List<TecnicoEntity> tecnicos = persistence.findAll();
-        return tecnicos;
+        return persistence.findAll();        
      }
      
      public TecnicoEntity getTecnico(Long tecnicoId) {
-        TecnicoEntity departamentoEntity = persistence.find(tecnicoId);
-        return departamentoEntity;
+        return persistence.find(tecnicoId);        
     }
      
-     public TecnicoEntity updateTecnico(Long tecnicoId, TecnicoEntity tecnicoEntity) {
+     public TecnicoEntity updateTecnico(TecnicoEntity tecnicoEntity) {
         TecnicoEntity newEntity = (TecnicoEntity) persistence.update(tecnicoEntity);
         return newEntity;
     }

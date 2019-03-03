@@ -42,7 +42,7 @@ public class EmpleadoLogic {
         return persistence.find(empleadoID);        
     }
      
-     public EmpleadoEntity updateEmpleado( UsuarioEntity entity) {
+     public EmpleadoEntity updateEmpleado(UsuarioEntity entity) {
         UsuarioEntity newEntity = persistence.update(entity);
         return (EmpleadoEntity) newEntity;
     }
