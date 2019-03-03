@@ -55,10 +55,8 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     /**
      * Atributo donde se guardará el nombre del usuario
      */
-    private String name; 
-    
-    public UsuarioEntity(){        
-    }    
+    private String name;     
+     
     /**
      * @return the user
      */

@@ -13,8 +13,5 @@ import javax.persistence.Entity;
  */
 @Entity
 public class EmpleadoEntity extends UsuarioEntity {
-    
-    public EmpleadoEntity() {
-        super();
-    }    
+         
 }

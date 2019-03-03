@@ -19,6 +19,7 @@ public class UsuarioDTO implements Serializable{
     private static Logger LOG = Logger.getLogger(UsuarioDTO.class.getName());
     
     
+    
     public UsuarioDTO(UsuarioEntity eEntity) {
         if(eEntity!=null){
             name=eEntity.getName();
