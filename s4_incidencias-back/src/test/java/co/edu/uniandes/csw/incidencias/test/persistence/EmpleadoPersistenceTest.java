@@ -89,7 +89,7 @@ public class EmpleadoPersistenceTest {
     public void createEmpleadoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         EmpleadoEntity newEntity = factory.manufacturePojo(EmpleadoEntity.class);
-        EmpleadoEntity te = ep.create(newEntity);
+        EmpleadoEntity te = (EmpleadoEntity) ep.create(newEntity);
         Assert.assertNotNull(te);
         EmpleadoEntity entity = em.find(EmpleadoEntity.class, te.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());

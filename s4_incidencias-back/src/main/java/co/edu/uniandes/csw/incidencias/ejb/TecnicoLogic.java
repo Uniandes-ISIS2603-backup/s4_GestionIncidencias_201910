@@ -32,7 +32,7 @@ public class TecnicoLogic {
              throw new BusinessLogicException("Ya existe un Técnico con el usuario \"" + tecnico.getUsuario() + "\"");
          }    
          
-         tecnico=persistence.create(tecnico);
+         tecnico=(TecnicoEntity) persistence.create(tecnico);
          return tecnico;
      }
      
@@ -47,7 +47,7 @@ public class TecnicoLogic {
     }
      
      public TecnicoEntity updateTecnico(Long tecnicoId, TecnicoEntity tecnicoEntity) {
-        TecnicoEntity newEntity = persistence.update(tecnicoEntity);
+        TecnicoEntity newEntity = (TecnicoEntity) persistence.update(tecnicoEntity);
         return newEntity;
     }
     

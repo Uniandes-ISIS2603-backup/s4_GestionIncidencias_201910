@@ -10,13 +10,10 @@ import java.util.logging.Logger;
 import javax.persistence.Entity;
 
 /**
- * Clase para representar un técnico
+ * Clase que rpresenta un administrador
  * @author Valerie Parra Cortés
  */
-
 @Entity
-public class TecnicoEntity extends UsuarioEntity implements Serializable{
-
-    private static final Logger LOG = Logger.getLogger(TecnicoEntity.class.getName());
-        
+public class AdministradorEntity extends UsuarioEntity implements Serializable {
+    private static final Logger LOG = Logger.getLogger(AdministradorEntity.class.getName());
 }

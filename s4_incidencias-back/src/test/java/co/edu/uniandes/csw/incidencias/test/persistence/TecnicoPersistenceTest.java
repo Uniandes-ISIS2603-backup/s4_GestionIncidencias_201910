@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.incidencias.test.persistence;
-
-
 import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
 import org.junit.Assert;
 import co.edu.uniandes.csw.incidencias.persistence.TecnicoPersistence;
@@ -79,16 +77,17 @@ public class TecnicoPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             TecnicoEntity entity = factory.manufacturePojo(TecnicoEntity.class);
+            System.out.println(entity.getId());
             em.persist(entity);
             data.add(entity);
-        }
+        }        
     }
 
     @Test
     public void createTecnicoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         TecnicoEntity newEntity = factory.manufacturePojo(TecnicoEntity.class);
-        TecnicoEntity te = tp.create(newEntity);
+        TecnicoEntity te = (TecnicoEntity) tp.create(newEntity);
         Assert.assertNotNull(te);
         TecnicoEntity entity = em.find(TecnicoEntity.class, te.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());

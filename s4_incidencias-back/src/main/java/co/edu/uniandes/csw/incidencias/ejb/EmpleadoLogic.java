@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.incidencias.ejb;
 
 import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.incidencias.entities.UsuarioEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.incidencias.persistence.EmpleadoPersistence;
 import javax.ejb.Stateless;
@@ -21,7 +22,7 @@ public class EmpleadoLogic {
     @Inject
     private EmpleadoPersistence persistence;
     
-    public EmpleadoEntity createEmpleadoEntity(EmpleadoEntity empleado) throws BusinessLogicException{
+    public EmpleadoEntity createEmpleadoEntity(UsuarioEntity empleado) throws BusinessLogicException{
         if(persistence.findByCedula(empleado.getCedula())!=null){
              throw new BusinessLogicException("Ya existe un Técnico con la cédula \"" + empleado.getCedula() + "\"");
          }
@@ -29,7 +30,7 @@ public class EmpleadoLogic {
              throw new BusinessLogicException("Ya existe un Técnico con el usuario \"" + empleado.getUsuario() + "\"");
          }             
          empleado=persistence.create(empleado);
-         return empleado;
+         return (EmpleadoEntity) empleado;
     }
     
     public  List<EmpleadoEntity> getEmpleados(){
@@ -42,9 +43,9 @@ public class EmpleadoLogic {
         return departamentoEntity;
     }
      
-     public EmpleadoEntity updateEmpleado( EmpleadoEntity entity) {
-        EmpleadoEntity newEntity = persistence.update(entity);
-        return newEntity;
+     public EmpleadoEntity updateEmpleado( UsuarioEntity entity) {
+        UsuarioEntity newEntity = persistence.update(entity);
+        return (EmpleadoEntity) newEntity;
     }
     
       public void deleteEmpleado(Long empleadoId) {

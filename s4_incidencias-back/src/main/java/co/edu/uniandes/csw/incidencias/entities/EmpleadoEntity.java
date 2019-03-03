@@ -6,82 +6,15 @@
 package co.edu.uniandes.csw.incidencias.entities;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 import javax.persistence.Entity;
 
 /**
- *
- * @author estudiante
+ * Clase que representa un empleado
+ * @author estudiante Valerie Parra Cortés
  */
 
 @Entity
-public class EmpleadoEntity extends BaseEntity  implements Serializable{
-     private String usuario;
-    private String password;
-    private String cedula;
-    private String name;
-
-    
-    public EmpleadoEntity(){
-        
-    }
-    
-    /**
-     * @return the user
-     */
-    public String getUsuario() {
-        return usuario;
-    }
-
-    /**
-     * @param useruario the user to set
-     */
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * @return the cedula
-     */
-    public String getCedula() {
-        return cedula;
-    }
-
-    /**
-     * @param cedula the cedula to set
-     */
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    
-    
-    
+public class EmpleadoEntity extends UsuarioEntity  implements Serializable{
+    private static final Logger LOG = Logger.getLogger(EmpleadoEntity.class.getName());
 }
