@@ -23,7 +23,24 @@ public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable {
      * Lista de incidencias del empleado
      */
     private List<IncidenciaDTO> incidencias;
-
+    
+     /**
+     * Constructor para transformar un Entity a un DTO
+     * @param empleadoEntity La entidad de la cual se construye el DTO
+     */
+     public EmpleadoDetailDTO(EmpleadoEntity empleadoEntity){
+        super(empleadoEntity);
+        if(empleadoEntity.getIncidencias()!=null){
+            incidencias= new ArrayList<>();
+            for(IncidenciaEntity entityIncidencia: empleadoEntity.getIncidencias()){
+                incidencias.add(new IncidenciaDTO(entityIncidencia));
+            }
+        }
+    }
+    
+    /**
+     * Construye un empleado
+     */
     public EmpleadoDetailDTO() {
         super();
     }
@@ -43,15 +60,6 @@ public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable {
         this.incidencias = incidencias;
     }
  
-    public EmpleadoDetailDTO(EmpleadoEntity eEntity){
-        super(eEntity);
-        if(eEntity.getIncidencias()!=null){
-            incidencias= new ArrayList<>();
-            for (IncidenciaEntity incidencia : eEntity.getIncidencias()) {
-                incidencias.add(new IncidenciaDTO(incidencia));
-            }
-        }
-    }
     
     /**
      * Transformar el DTO a una entidad
