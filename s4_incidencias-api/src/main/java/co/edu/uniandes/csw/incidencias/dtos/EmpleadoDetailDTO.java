@@ -69,7 +69,7 @@ public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable {
     
     @Override
     public EmpleadoEntity toEntity(){
-        EmpleadoEntity eEntity= super.toEntity();
+        EmpleadoEntity eEntity= (EmpleadoEntity) super.toEntity();
         if(incidencias!=null){
             List<IncidenciaEntity> incidenciasEntity=new ArrayList<>();
             for (IncidenciaDTO incidenciaDTO : getIncidencias()) {

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 
+import co.edu.uniandes.csw.incidencias.entities.UsuarioEntity;
 import java.io.Serializable;
 import java.util.logging.Logger;
 
@@ -15,9 +16,28 @@ import java.util.logging.Logger;
 public class TecnicoDTO extends UsuarioDTO implements Serializable{     
 
     private static final Logger LOG = Logger.getLogger(TecnicoDTO.class.getName());
-  
     
+    /**
+     * Constructor vacio de la clase
+     */
     public TecnicoDTO() {
+    }
+    
+    /**
+     * Constructor que crea un empleado con base a un Entity
+     * @param uE UsuarioEntity
+     */
+    public TecnicoDTO (UsuarioEntity uE){
+        super(uE);
+    }
+   
+    /**
+     * Método que convierte la clase a entidad
+     * @return La entidad
+     */
+    @Override
+    public UsuarioEntity toEntity(){
+     return super.toEntity();   
     }
     
 }

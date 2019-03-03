@@ -4,39 +4,59 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.incidencias.dtos;
+import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
+import co.edu.uniandes.csw.incidencias.entities.UsuarioEntity;
 import java.io.Serializable;
 import java.util.logging.Logger;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *
- * @author estudiante
+ * Clase que representa el UsuarioDTO
+ * @author Valerie Parra Cortés
  */
 public class UsuarioDTO implements Serializable{
     
     private static Logger LOG = Logger.getLogger(UsuarioDTO.class.getName());
     
     
+    public UsuarioDTO(UsuarioEntity eEntity) {
+        if(!(eEntity==null)){
+            name=eEntity.getName();
+            cedula=eEntity.getCedula();
+            id=eEntity.getId();
+            usuario=eEntity.getUsuario();
+            password=eEntity.getPassword();
+        }
+    }
+    
+    public UsuarioDTO() {
+        
+    }
+    
+    /**
+     * El nombre del usuario
+     */
     protected String name;
+    /**
+     * La cédula del usuario
+     */
     protected String cedula;
+    /**
+     * ID del usuario
+     */
     protected Long id;
+    /**
+     * Usuario del user
+     */
     protected String usuario;
+    /**
+     * Contraseña del usuario
+     */
     protected String password;
 
-    /**
-     * @return the LOG
-     */
-    public static Logger getLOG() {
-        return LOG;
-    }
-
-    /**
-     * @param aLOG the LOG to set
-     */
-    public static void setLOG(Logger aLOG) {
-        LOG = aLOG;
-    }
-
-    /**
+        /**
      * @return the name
      */
     public String getName() {
@@ -106,6 +126,25 @@ public class UsuarioDTO implements Serializable{
         this.password = password;
     }
     
+    /**
+     * Método para transformar el DTO a una entidad.
+     * @return la entidad del empleado 
+     */
     
+
+     public UsuarioEntity toEntity(){
+        UsuarioEntity ue= new UsuarioEntity();
+        ue.setCedula(cedula);
+        ue.setId(id);
+        ue.setName(name);
+        ue.setPassword(password);
+        ue.setUsuario(usuario);
+        return ue; 
+    }
+     
+     @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
     
 }

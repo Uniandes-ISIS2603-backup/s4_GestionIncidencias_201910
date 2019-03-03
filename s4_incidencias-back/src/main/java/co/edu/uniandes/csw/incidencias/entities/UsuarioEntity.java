@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.incidencias.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * @author Valerie Parra Cortés
@@ -15,6 +19,29 @@ import javax.persistence.Entity;
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable{
    
+    
+    /**
+     * Atributo que representa la lista de incidencias del empleado
+     */
+    @PodamExclude
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    protected List<IncidenciaEntity> incidencias;
+
+    /**
+     * Método que retorna la lista de incidencias del empleado
+     * @return Lista de incidencias del empleado
+     */
+    public List<IncidenciaEntity> getIncidencias() {
+        return incidencias;
+    }
+    /**
+     * Método que cambia la lista de incidencias del empleado
+     * @param incidencias la nueva lista de incidencias
+     */
+    public void setIncidencias(List<IncidenciaEntity> incidencias) {
+        this.incidencias = incidencias;
+    }  
+    
     
     /**
      * Atributo para el usuario que tendrá el usuario
@@ -91,5 +118,6 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-  
+ 
+    
 }
