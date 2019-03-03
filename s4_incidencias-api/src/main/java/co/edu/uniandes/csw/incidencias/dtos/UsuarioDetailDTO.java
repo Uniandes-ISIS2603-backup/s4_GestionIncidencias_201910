@@ -9,7 +9,7 @@ import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
 import co.edu.uniandes.csw.incidencias.entities.UsuarioEntity;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 /**
  * Clase que representa un usuario de la aplicación
@@ -17,7 +17,10 @@ import java.util.logging.Logger;
  */
 public class UsuarioDetailDTO extends UsuarioDTO {
 
-    private static final Logger LOG = Logger.getLogger(UsuarioDetailDTO.class.getName());
+    /**
+     * Lista de incidencias del empleado
+     */
+    private List<IncidenciaDTO> incidencias;
    
     /**
      * Constructor que dado en Entity construye un DTO
@@ -42,13 +45,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     public UsuarioDetailDTO(){
         super();
     }    
-    
-    
-    /**
-     * Lista de incidencias del empleado
-     */
-    protected List<IncidenciaDTO> incidencias;
-    
+        
     /**
       * Método que retorna la lista de incidencias del empleado
      * @return Las incidencias del empleado

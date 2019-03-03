@@ -20,7 +20,7 @@ public class UsuarioDTO implements Serializable{
     
     
     public UsuarioDTO(UsuarioEntity eEntity) {
-        if(!(eEntity==null)){
+        if(eEntity!=null){
             name=eEntity.getName();
             cedula=eEntity.getCedula();
             id=eEntity.getId();

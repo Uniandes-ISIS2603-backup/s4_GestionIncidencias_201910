@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.incidencias.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -106,4 +107,36 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     public void setName(String name) {
         this.name = name;
     }   
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UsuarioEntity other = (UsuarioEntity) obj;
+        if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.cedula, other.cedula)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.incidencias, other.incidencias)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
