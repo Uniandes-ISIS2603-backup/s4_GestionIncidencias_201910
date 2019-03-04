@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.incidencias.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,6 +36,8 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
     private TecnicoEntity  tecnico;
  
     private PrioridadEntity  prioridad;
+    
+    private ArrayList<ActuacionEntity> actuaciones;
     
 
 
@@ -159,5 +162,19 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
      */
     public void setPrioridad(PrioridadEntity prioridad) {
         this.prioridad = prioridad;
+    }
+
+    /**
+     * @return the actuaciones
+     */
+    public ArrayList<ActuacionEntity> getActuaciones() {
+        return actuaciones;
+    }
+
+    /**
+     * @param actuaciones the actuaciones to set
+     */
+    public void setActuaciones(ArrayList<ActuacionEntity> actuaciones) {
+        this.actuaciones = actuaciones;
     }
 }

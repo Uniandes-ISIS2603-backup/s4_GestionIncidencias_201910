@@ -19,7 +19,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class IncidenciaPersistence {
-        @PersistenceContext(unitName =  "incidenciasPU")
+    @PersistenceContext(unitName =  "incidenciasPU")
     protected EntityManager em;
     
     public IncidenciaEntity create(IncidenciaEntity incidenciaEntity){
