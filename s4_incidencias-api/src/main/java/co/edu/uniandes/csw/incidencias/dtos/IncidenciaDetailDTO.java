@@ -7,15 +7,17 @@ package co.edu.uniandes.csw.incidencias.dtos;
 
 import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
 import java.io.Serializable;
+import java.util.Hashtable;
 
 /**
  *
  * @author estudiante
  */
-public class IncidenciaDetailDTO implements Serializable
+public class IncidenciaDetailDTO extends IncidenciaDTO implements Serializable
 {
     
     //private ArrayList<ActuacionDTO> actuaciones;
+    private Hashtable <String, ActuacionDTO> actuaciones = new Hashtable<String, ActuacionDTO>();
     
     public IncidenciaDetailDTO(){
                
@@ -25,5 +27,11 @@ public class IncidenciaDetailDTO implements Serializable
                
          
     }  
+     public void addIncidencencia(ActuacionDTO actuacion){
+       actuaciones.put(actuacion.toString(),actuacion);
+    }
+      public void deleteIncidencencia(ActuacionDTO actuacion){
+       actuaciones.remove(actuacion.toString());
+    }
  
 }

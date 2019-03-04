@@ -36,7 +36,7 @@ public class IncidenciaDTO implements Serializable{
     private EmpleadoDTO empleado;
     private PrioridadDTO prioridad;
     
-    private Hashtable <String, ActuacionDTO> actuaciones;
+    
             
             
 
@@ -45,7 +45,7 @@ public class IncidenciaDTO implements Serializable{
     //TODO: Implementar
     public IncidenciaDTO(IncidenciaEntity entity){
         
-        actuaciones = new Hashtable<String,ActuacionDTO>();
+        
         this.fecha = entity.getFecha();
         this.descripcion = entity.getDescripcion();
         this.estado = entity.getEstado();
@@ -259,8 +259,6 @@ public class IncidenciaDTO implements Serializable{
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
     
-    public void agregarIncidencencia(ActuacionDTO actuacion){
-       actuaciones.put(actuacion.toString(),actuacion);
-    }
+   
     
 }
