@@ -12,8 +12,10 @@ import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
 import co.edu.uniandes.csw.incidencias.entities.PrioridadEntity;
 import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -33,11 +35,17 @@ public class IncidenciaDTO implements Serializable{
     private TecnicoDTO tecnico;
     private EmpleadoDTO empleado;
     private PrioridadDTO prioridad;
+    
+    private Hashtable <String, ActuacionDTO> actuaciones;
+            
+            
 
     
     //Constructor
     //TODO: Implementar
     public IncidenciaDTO(IncidenciaEntity entity){
+        
+        actuaciones = new Hashtable<String,ActuacionDTO>();
         this.fecha = entity.getFecha();
         this.descripcion = entity.getDescripcion();
         this.estado = entity.getEstado();
@@ -249,6 +257,10 @@ public class IncidenciaDTO implements Serializable{
      @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+    
+    public void agregarIncidencencia(ActuacionDTO actuacion){
+       actuaciones.put(actuacion.toString(),actuacion);
     }
     
 }
