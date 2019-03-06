@@ -19,7 +19,7 @@ public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable {
      /**
      * Lista de incidencias del empleado
      */
-    protected List<IncidenciaDTO> incidencias;
+    private List<IncidenciaDTO> incidencias;
     
     public EmpleadoDetailDTO(EmpleadoEntity empleadoEntity){
         super(empleadoEntity);

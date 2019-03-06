@@ -18,7 +18,7 @@ public class TecnicoDetailDTO extends TecnicoDTO implements Serializable{
        /**
      * Lista de incidencias del empleado
      */
-    protected List<IncidenciaDTO> incidencias;
+    private List<IncidenciaDTO> incidencias;
     
     public TecnicoDetailDTO() {
         super();
