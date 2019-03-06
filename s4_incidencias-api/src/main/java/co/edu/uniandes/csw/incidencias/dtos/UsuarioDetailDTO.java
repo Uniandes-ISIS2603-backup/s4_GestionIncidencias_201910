@@ -21,7 +21,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     /**
      * Lista de incidencias del empleado
      */
-    private List<IncidenciaDTO> incidencias;
+    protected List<IncidenciaDTO> incidencias;
    
     /**
      * Constructor que dado en Entity construye un DTO

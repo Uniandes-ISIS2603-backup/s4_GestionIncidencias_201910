@@ -5,18 +5,59 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Clase que representa la clase Detail DTO
  * @author Valerie Parra Cortés
  */
-public class EmpleadoDetailDTO extends UsuarioDetailDTO  {
+public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable {
 
-    public EmpleadoDetailDTO(EmpleadoEntity empleadoEntity){
-        super(empleadoEntity);        
-    }    
+     /**
+     * Lista de incidencias del empleado
+     */
+    protected List<IncidenciaDTO> incidencias;
     
+    public EmpleadoDetailDTO(EmpleadoEntity empleadoEntity){
+        super(empleadoEntity);
+        List<IncidenciaDTO> incidenciasDTO=new ArrayList<>();
+            for (IncidenciaEntity ie : empleadoEntity.getIncidencias()) {
+                incidenciasDTO.add(new IncidenciaDTO(ie));
+            }            
+        }   
+        
     public EmpleadoDetailDTO() {
         super();
-    }    
-            
+    }  
+    
+    @Override
+    public EmpleadoEntity toEntity(){
+        EmpleadoEntity eEntity= (EmpleadoEntity) super.toEntity();
+           if(incidencias!=null){
+            List<IncidenciaEntity> incidenciasEntity=new ArrayList<>();
+            for (IncidenciaDTO incidenciaDTO : getIncidencias()) {
+                incidenciasEntity.add(incidenciaDTO.toEntity());
+            }
+            eEntity.setIncidencias(incidenciasEntity);
+        }
+        return eEntity;
+    }
+               
+    /**
+      * Método que retorna la lista de incidencias del empleado
+     * @return Las incidencias del empleado
+     */
+    public List<IncidenciaDTO> getIncidencias() {
+        return incidencias;
+    }
+
+    /**
+     * @param incidencias the incidencias to set
+     */
+    public void setIncidencias(List<IncidenciaDTO> incidencias) {
+        this.incidencias = incidencias;
+    }           
 }
