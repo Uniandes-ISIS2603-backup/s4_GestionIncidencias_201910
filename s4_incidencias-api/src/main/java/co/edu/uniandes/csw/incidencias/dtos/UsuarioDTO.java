@@ -17,23 +17,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class UsuarioDTO implements Serializable{
     
     private static Logger LOG = Logger.getLogger(UsuarioDTO.class.getName());
-    
-    
-    
-    public UsuarioDTO(UsuarioEntity eEntity) {
-        if(eEntity!=null){
-            name=eEntity.getName();
-            cedula=eEntity.getCedula();
-            id=eEntity.getId();
-            usuario=eEntity.getUsuario();
-            password=eEntity.getPassword();
-        }
-    }
-    
-    public UsuarioDTO() {
-        
-    }
-    
+       
+  
     /**
      * El nombre del usuario
      */
@@ -144,5 +129,20 @@ public class UsuarioDTO implements Serializable{
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
+    
+      public UsuarioDTO(UsuarioEntity eEntity) {
+        if(eEntity!=null){
+            name=eEntity.getName();
+            cedula=eEntity.getCedula();
+            id=eEntity.getId();
+            usuario=eEntity.getUsuario();
+            password=eEntity.getPassword();
+        }
+    }
+    
+    public UsuarioDTO() {
+        
+    }
+    
     
 }

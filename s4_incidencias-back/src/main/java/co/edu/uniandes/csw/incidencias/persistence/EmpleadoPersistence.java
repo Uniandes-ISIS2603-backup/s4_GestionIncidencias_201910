@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.incidencias.persistence;
 import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.incidencias.entities.UsuarioEntity;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
@@ -15,6 +16,13 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class EmpleadoPersistence extends UsuarioPersistence{
+    
+        public EmpleadoEntity create(EmpleadoEntity usuarioEntity) {
+        em.persist(usuarioEntity);
+        return usuarioEntity;
+    }
+
+        
     
     /**
      * Método que retorna el empleado del id dado por parámetro

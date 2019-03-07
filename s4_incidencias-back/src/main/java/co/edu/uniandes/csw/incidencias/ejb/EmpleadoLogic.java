@@ -22,7 +22,7 @@ public class EmpleadoLogic {
     @Inject
     private EmpleadoPersistence persistence;
     
-    public EmpleadoEntity createEmpleadoEntity(UsuarioEntity empleado) throws BusinessLogicException{
+    public EmpleadoEntity createEmpleadoEntity(EmpleadoEntity empleado) throws BusinessLogicException{
         if(persistence.findByCedula(empleado.getCedula())!=null){
              throw new BusinessLogicException("Ya existe un Técnico con la cédula \"" + empleado.getCedula() + "\"");
          }
@@ -30,8 +30,11 @@ public class EmpleadoLogic {
              throw new BusinessLogicException("Ya existe un Técnico con el usuario \"" + empleado.getUsuario() + "\"");
          }             
          empleado=persistence.create(empleado);
-         return (EmpleadoEntity) empleado;
+         return empleado;
     }
+    
+     
+
     
     public  List<EmpleadoEntity> getEmpleados(){
         return persistence.findAll();
