@@ -9,15 +9,20 @@ import co.edu.uniandes.csw.incidencias.dtos.TecnicoDTO;
 import co.edu.uniandes.csw.incidencias.dtos.TecnicoDetailDTO;
 import co.edu.uniandes.csw.incidencias.ejb.TecnicoLogic;
 import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
+import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 /**
  * Clase que representa un recurso ténico
  * @author estudiante
@@ -31,26 +36,62 @@ public class TecnicoResource {
     @Inject
     private TecnicoLogic tecnicoLogic;
      
+
      @POST
-     public TecnicoDTO createTecnico(TecnicoDTO tecnico){
-         return tecnico;
+     public TecnicoDTO createTecnico(TecnicoDTO tecnico) throws BusinessLogicException{
+        TecnicoEntity nuevo= tecnico.toEntity();
+        TecnicoEntity eet=tecnicoLogic.createTecnico(nuevo);
+        TecnicoDTO nuevoTecnico = new TecnicoDTO(eet);
+        return nuevoTecnico;
      }
-     
+    
      @GET
      public List<TecnicoDetailDTO> getTecnicos(){
          return listEntity2DetailDTO(tecnicoLogic.getTecnicos());                
      }
      
-     /**
-     * Convierte una lista de entidades a DTO.
-     *
-     * Este método convierte una lista de objetos EmpleadosEntity a una lista de
-     * objetos EmpleadosDTO (json)
-     *
-     * @param entityList corresponde a la lista de libros de tipo Entity que
-     * vamos a convertir a DTO.
-     * @return la lista de libros en forma DTO (json)
-     */
+     
+     
+     
+     @GET
+    @Path("{id: \\d+}")
+    public TecnicoDetailDTO getTecnico(@PathParam("id") Long id){
+        TecnicoEntity tecnico= tecnicoLogic.getTecnico(id);
+         if (tecnico == null) {
+            throw new WebApplicationException("El recurso /tecnicos/" + id + " no existe.", 404);
+        }
+        TecnicoDetailDTO nuevo = new TecnicoDetailDTO(tecnico);
+        return nuevo;                  
+    }
+    
+    
+    @PUT
+    @Path("{id: \\d+}")
+    public TecnicoDetailDTO updateTecnico(@PathParam("id") Long id, TecnicoDetailDTO tecnico) throws BusinessLogicException {
+        tecnico.setId(id);
+        if (tecnicoLogic.getTecnico(id) == null) {
+            throw new WebApplicationException("El recurso /tecnicos/" + id + " no existe.", 404);
+        }
+        TecnicoDetailDTO detailDTO = new TecnicoDetailDTO(tecnicoLogic.updateTecnico(tecnico.toEntity()));        
+        return detailDTO;
+    }
+    
+    
+    @DELETE
+    @Path("{id: \\d+}")
+    public void deleteTecnico(@PathParam("id") Long id) throws BusinessLogicException {
+
+        TecnicoEntity entity = tecnicoLogic.getTecnico(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /tecnicos/" + id + " no existe.", 404);
+        }        
+        tecnicoLogic.deleteTecnico(id);        
+    }
+     
+     
+     
+     
+   
     private List<TecnicoDetailDTO> listEntity2DetailDTO(List<TecnicoEntity> entityList) {
         List<TecnicoDetailDTO> list = new ArrayList<>();
         for (TecnicoEntity entity : entityList) {

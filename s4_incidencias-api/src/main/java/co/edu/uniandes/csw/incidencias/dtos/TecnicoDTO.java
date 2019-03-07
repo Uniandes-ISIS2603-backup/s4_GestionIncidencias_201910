@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 
+import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
 import co.edu.uniandes.csw.incidencias.entities.UsuarioEntity;
 import java.io.Serializable;
 
@@ -19,6 +20,17 @@ public class TecnicoDTO extends UsuarioDTO implements Serializable{
     
     public TecnicoDTO (UsuarioEntity uE){
         super(uE);
+    }
+    
+    @Override
+    public TecnicoEntity toEntity(){
+        TecnicoEntity ue= new TecnicoEntity();
+        ue.setCedula(cedula);
+        ue.setId(id);
+        ue.setName(name);
+        ue.setPassword(password);
+        ue.setUsuario(usuario);
+        return ue; 
     }
       
 }

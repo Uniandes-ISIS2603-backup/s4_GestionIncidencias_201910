@@ -14,5 +14,6 @@ import javax.persistence.Entity;
 
 @Entity
 public class TecnicoEntity extends UsuarioEntity {
+    
   
 }

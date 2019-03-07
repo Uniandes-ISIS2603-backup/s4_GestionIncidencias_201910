@@ -81,7 +81,7 @@ public class EmpleadoResource {
     
     @DELETE
     @Path("{id: \\d+}")
-    public void delteEmpleado(@PathParam("id") Long id) throws BusinessLogicException {
+    public void deleteEmpleado(@PathParam("id") Long id) throws BusinessLogicException {
 
         EmpleadoEntity entity = empleadoLogic.getEmpleado(id);
         if (entity == null) {
