@@ -24,10 +24,10 @@ public class EmpleadoLogic {
     
     public EmpleadoEntity createEmpleadoEntity(EmpleadoEntity empleado) throws BusinessLogicException{
         if(persistence.findByCedula(empleado.getCedula())!=null){
-             throw new BusinessLogicException("Ya existe un Técnico con la cédula \"" + empleado.getCedula() + "\"");
+             throw new BusinessLogicException("Ya existe un Empleado con la cédula \"" + empleado.getCedula() + "\"");
          }
          if(persistence.findByUsuario(empleado.getUsuario())!=null){
-             throw new BusinessLogicException("Ya existe un Técnico con el usuario \"" + empleado.getUsuario() + "\"");
+             throw new BusinessLogicException("Ya existe un Empleado con el usuario \"" + empleado.getUsuario() + "\"");
          }             
          empleado=persistence.create(empleado);
          return empleado;

@@ -85,7 +85,7 @@ public class EmpleadoResource {
 
         EmpleadoEntity entity = empleadoLogic.getEmpleado(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /empleado/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /empleados/" + id + " no existe.", 404);
         }        
         empleadoLogic.deleteEmpleado(id);
         
