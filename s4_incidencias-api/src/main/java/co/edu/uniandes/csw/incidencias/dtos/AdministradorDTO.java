@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.incidencias.dtos;
+import co.edu.uniandes.csw.incidencias.entities.AdministradorEntity;
 import co.edu.uniandes.csw.incidencias.entities.UsuarioEntity;
 import java.io.Serializable;
 import java.util.logging.Logger;
@@ -23,4 +24,15 @@ public class AdministradorDTO extends UsuarioDetailDTO implements Serializable{
         super(ett);
     }
      
+    @Override
+    public AdministradorEntity toEntity(){
+        AdministradorEntity entity = new AdministradorEntity();
+        entity.setCedula(cedula);
+        entity.setId(id);
+        entity.setName(name);
+        entity.setPassword(password);
+        entity.setUsuario(usuario);
+        
+        return entity; 
+    }
 }

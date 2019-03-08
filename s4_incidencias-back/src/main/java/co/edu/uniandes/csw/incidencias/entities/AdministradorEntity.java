@@ -11,5 +11,7 @@ import javax.persistence.Entity;
  * @author Valerie Parra Cortés
  */
 @Entity
-public class AdministradorEntity extends UsuarioEntity {    
+public class AdministradorEntity extends UsuarioEntity
+{    
+    
 }
