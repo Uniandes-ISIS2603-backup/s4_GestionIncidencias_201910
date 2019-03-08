@@ -19,7 +19,7 @@ public class AdministradorLogic
     @Inject
     private AdministradorPersistence persistencia;  
     
-    public AdministradorEntity createAdministradorEntity( AdministradorEntity admin ) throws BusinessLogicException
+    public AdministradorEntity createAdministrador( AdministradorEntity admin ) throws BusinessLogicException
     {
         if(persistencia.findByCedula(admin.getCedula())!=null)
             throw new BusinessLogicException("La cédula " + admin.getCedula() + " ya está siendo usada por un administrador.");
@@ -29,5 +29,4 @@ public class AdministradorLogic
                 
         return persistencia.create(admin);
     }
-    
 }

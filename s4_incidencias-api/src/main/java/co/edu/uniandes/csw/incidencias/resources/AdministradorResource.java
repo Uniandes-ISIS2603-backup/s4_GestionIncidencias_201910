@@ -8,6 +8,9 @@ package co.edu.uniandes.csw.incidencias.resources;
 import co.edu.uniandes.csw.incidencias.dtos.AdministradorDTO;
 import co.edu.uniandes.csw.incidencias.ejb.AdministradorLogic;
 import co.edu.uniandes.csw.incidencias.entities.AdministradorEntity;
+import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
+import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -16,21 +19,23 @@ import javax.ws.rs.Produces;
 
 /**
  *
- * @author Juan Pablo Correa Puerta
+ * @author estudiante
  */
-@Path("administradores")
+@Path("aministrador")
 @Produces("application/json")
 @Consumes("application/json")
+@RequestScoped 
 public class AdministradorResource
 {
-    @Inject
-    private AdministradorLogic logica;
-
-    @POST
-    public AdministradorDTO createAdministrador( AdministradorDTO admin )
-    {
-        AdministradorEntity nuevoAdmin = admin.toEntity();
-        return null;
-    }
-    
+     private static final Logger LOG = Logger.getLogger(AdministradorResource.class.getName());
+ 
+     @Inject
+     private AdministradorLogic logica;
+     
+     @POST
+     public AdministradorDTO crearAdministrador(AdministradorDTO administrador) throws BusinessLogicException
+     {
+         AdministradorEntity administradorEntity = logica.createAdministrador( administrador.toEntity() );
+         return new AdministradorDTO( administradorEntity );
+     }
 }
