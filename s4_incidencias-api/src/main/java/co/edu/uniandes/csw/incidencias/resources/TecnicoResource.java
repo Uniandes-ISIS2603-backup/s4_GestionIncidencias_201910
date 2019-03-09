@@ -39,7 +39,7 @@ public class TecnicoResource {
     @Inject
     private TecnicoLogic tecnicoLogic;
      
-
+        public final static String NO_EXISTE=" no existe.";
     /**
      * Crea un tècnico con el JSON entrado por parametro
      * @param tecnico (JSON) con la informaciòn del objeto a crear
@@ -49,9 +49,8 @@ public class TecnicoResource {
      @POST
      public TecnicoDTO createTecnico(TecnicoDTO tecnico) throws BusinessLogicException{
         TecnicoEntity nuevo= tecnico.toEntity();
-        TecnicoEntity eet=tecnicoLogic.createTecnico(nuevo);
-        TecnicoDTO nuevoTecnico = new TecnicoDTO(eet);
-        return nuevoTecnico;
+        TecnicoEntity eet=tecnicoLogic.createTecnico(nuevo);         
+        return new TecnicoDTO(eet);
      }
     /**
      * Retorna todos los tecnicos de la base de datos
@@ -74,10 +73,10 @@ public class TecnicoResource {
     public TecnicoDetailDTO getTecnico(@PathParam("id") Long id){
         TecnicoEntity tecnico= tecnicoLogic.getTecnico(id);
          if (tecnico == null) {
-            throw new WebApplicationException("El recurso /tecnicos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /tecnicos/" + id + NO_EXISTE, 404);
         }
-        TecnicoDetailDTO nuevo = new TecnicoDetailDTO(tecnico);
-        return nuevo;                  
+         
+        return new TecnicoDetailDTO(tecnico);                  
     }
     
     /**
@@ -92,10 +91,9 @@ public class TecnicoResource {
     public TecnicoDetailDTO updateTecnico(@PathParam("id") Long id, TecnicoDetailDTO tecnico) throws BusinessLogicException {
         tecnico.setId(id);
         if (tecnicoLogic.getTecnico(id) == null) {
-            throw new WebApplicationException("El recurso /tecnicos/" + id + " no existe.", 404);
-        }
-        TecnicoDetailDTO detailDTO = new TecnicoDetailDTO(tecnicoLogic.updateTecnico(tecnico.toEntity()));        
-        return detailDTO;
+            throw new WebApplicationException("El recurso /tecnicos/" + id + NO_EXISTE, 404);
+        }        
+        return  new TecnicoDetailDTO(tecnicoLogic.updateTecnico(tecnico.toEntity()));        
     }
     
     /**
@@ -110,15 +108,18 @@ public class TecnicoResource {
 
         TecnicoEntity entity = tecnicoLogic.getTecnico(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /tecnicos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /tecnicos/" + id + NO_EXISTE, 404);
         }        
         tecnicoLogic.deleteTecnico(id);        
     }
      
      
-     
-     
-   
+         
+   /**
+    * Transforma una lista de entidades a DTO
+    * @param entityList li
+    * @return 
+    */
     private List<TecnicoDetailDTO> listEntity2DetailDTO(List<TecnicoEntity> entityList) {
         List<TecnicoDetailDTO> list = new ArrayList<>();
         for (TecnicoEntity entity : entityList) {
