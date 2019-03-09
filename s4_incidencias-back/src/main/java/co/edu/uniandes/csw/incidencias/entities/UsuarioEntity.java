@@ -14,53 +14,61 @@ import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- * @author Valerie Parra Cortés
+ * @author Valerie Parra Cortés y Juan Pablo Correa
  * Esta clase representará un Usuario (Ya sea técnico, administrador o empleado)
  */
 @Entity
-public class UsuarioEntity extends BaseEntity implements Serializable{   
+public class UsuarioEntity extends BaseEntity implements Serializable
+{   
     /**
-     * Atributo que representa la lista de incidencias del empleado
+     * Atributo que representa la lista de incidencias del usuario
      */
     @PodamExclude
     @OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private List<IncidenciaEntity> incidencias;
 
     /**
-     * Método que retorna la lista de incidencias del empleado
-     * @return Lista de incidencias del empleado
-     */
-    public List<IncidenciaEntity> getIncidencias() {
-        return incidencias;
-    }
-    /**
-     * Método que cambia la lista de incidencias del empleado
-     * @param incidencias la nueva lista de incidencias
-     */
-    public void setIncidencias(List<IncidenciaEntity> incidencias) {
-        this.incidencias = incidencias;
-    }  
-    /**
      * Atributo para el usuario que tendrá el usuario
      */
     private String usuario;
+    
     /**
      * Atributo para la contraseña del usuario
      */
     private String password;
+    
     /**
      * Atributo donde se guardará la cédula del usuario
      */
     private String cedula;
+    
     /**
      * Atributo donde se guardará el nombre del usuario
      */
     private String name;     
-     
+    
+    /**
+     * Método que retorna la lista de incidencias del usuario
+     * @return Lista de incidencias del empleado
+     */
+    public List<IncidenciaEntity> getIncidencias()
+    {
+        return incidencias;
+    }
+    /**
+     * Método que cambia la lista de incidencias del usuario
+     * @param incidencias la nueva lista de incidencias
+     */
+    public void setIncidencias(List<IncidenciaEntity> incidencias)
+    {
+        this.incidencias = incidencias;
+    }
+    
     /**
      * @return the user
      */
-    public String getUsuario() {
+    public String getUsuario()
+    {
         return usuario;
     }
     /**

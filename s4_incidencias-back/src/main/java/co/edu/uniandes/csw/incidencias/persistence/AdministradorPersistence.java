@@ -12,44 +12,35 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- * @author Juan Pablo Correa
+ * @author Juan Pablo Correa Puerta
  */
-public class AdministradorPersistence
-{
-    @PersistenceContext(unitName = "incidenciasPU")
-    protected EntityManager administradorEntidades;
-    
-    public AdministradorEntity create(AdministradorEntity adminEntity)
-    {
-        administradorEntidades.persist(adminEntity);
-        return adminEntity;
-    }
-    
+public class AdministradorPersistence extends UsuarioPersistence
+{   
     public AdministradorEntity find(Long id)
     {   
-        return administradorEntidades.find(AdministradorEntity.class, id);
+        return em.find(AdministradorEntity.class, id);
     }
     
     public List<AdministradorEntity> findAll()
     {
-        TypedQuery<AdministradorEntity> query = administradorEntidades.createQuery("SELECT u FROM AministradorEntity u", AdministradorEntity.class);
+        TypedQuery<AdministradorEntity> query = em.createQuery("SELECT u FROM AministradorEntity u", AdministradorEntity.class);
         return query.getResultList();
     }
     
     public AdministradorEntity update(AdministradorEntity adminEntity)
     {
-        return administradorEntidades.merge(adminEntity);
+        return em.merge(adminEntity);
     }
     
     public void delete(Long id)
     {
-        AdministradorEntity entity = administradorEntidades.find(AdministradorEntity.class, id);
-        administradorEntidades.remove(entity);
+        AdministradorEntity entity = em.find(AdministradorEntity.class, id);
+        em.remove(entity);
     }
     
     public AdministradorEntity findByUsuario(String user)
     {
-        TypedQuery query = administradorEntidades.createQuery("SELECT e FROM AministradorEntity e WHERE e.usuario = :nombre", AdministradorEntity.class);
+        TypedQuery query = em.createQuery("SELECT e FROM AministradorEntity e WHERE e.usuario = :nombre", AdministradorEntity.class);
         query = query.setParameter("nombre", user);
         List<AdministradorEntity> sameName = query.getResultList();
         
@@ -63,7 +54,7 @@ public class AdministradorPersistence
     
      public AdministradorEntity findByCedula(String cedula)
      {
-        TypedQuery query = administradorEntidades.createQuery("SELECT e FROM AministradorEntity e WHERE e.cedula = :nombre", AdministradorEntity.class);
+        TypedQuery query = em.createQuery("SELECT e FROM AministradorEntity e WHERE e.cedula = :nombre", AdministradorEntity.class);
         query = query.setParameter("nombre", cedula);
         List<AdministradorEntity> sameName = query.getResultList();
         
@@ -74,5 +65,4 @@ public class AdministradorPersistence
         
         return respuesta;
     }
-     
 }

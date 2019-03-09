@@ -20,19 +20,8 @@ public class AdministradorDTO extends UsuarioDetailDTO implements Serializable{
         super();
     }
     
-    public AdministradorDTO(UsuarioEntity ett){
+    public AdministradorDTO(UsuarioEntity ett)
+    {
         super(ett);
-    }
-     
-    @Override
-    public AdministradorEntity toEntity(){
-        AdministradorEntity entity = new AdministradorEntity();
-        entity.setCedula(cedula);
-        entity.setId(id);
-        entity.setName(name);
-        entity.setPassword(password);
-        entity.setUsuario(usuario);
-        
-        return entity; 
-    }
+    }     
 }
