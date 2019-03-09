@@ -1,0 +1,431 @@
+{
+	"info": {
+		"_postman_id": "4419ce17-0e35-420c-a5c5-981235b7bf87",
+		"name": "TecnicoResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e497deb-e73c-48e3-86b8-8ce6010afb69",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_t\", data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Cristina Alejandra Gonzalez\",\n\t\"cedula\":\"1010345685\",\n\t\"password\":\"Cri123\",\n\t\"usuario\":\"ca.gozalez\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"tecnicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "563431dd-c861-4110-a81a-611a888dd591",
+						"exec": [
+							"tests[\"No crea dos técnicos con la misma cédula\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Técnico con la cédula\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Andrés Villamizar\",\n\t\"cedula\":\"1010345685\",\n\t\"id\":\"\",\n\t\"password\":\"Andri123\",\n\t\"usuario\":\"al.villamizar\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"tecnicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ff3a2089-dd09-4e3d-ae3a-e846c7358b9a",
+						"exec": [
+							"tests[\"No crea dos técnicos con el mismo usuario\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Técnico con el usuario \");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Claudia Alejandra Gonzalez\",\n\t\"cedula\":\"2641253\",\n\t\"id\":\"\",\n\t\"password\":\"Andri123\",\n\t\"usuario\":\"ca.gozalez\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"tecnicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}:8080/s4_incidencias-api/api/tecnicos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fc287ced-1bb6-496b-86cc-82778fb506e8",
+						"exec": [
+							"tests[\"No genera error en el Get\"]=responseCode.code=200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"tecnicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos/{{new_id_t}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c133d3fc-f4bb-4e0b-be58-623bc333d23b",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"tecnicos",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos/10000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "801c56c0-b6d7-4a5e-b30f-aa1e42bdc7e0",
+						"exec": [
+							"tests[\"No consulta un tecnico con un id que no existe\"] = responseCode.code === 404; ",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /tecnicos/10000 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos/10000",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"tecnicos",
+						"10000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos/1000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "626816f2-1970-4f37-b715-4b2a040036a9",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /tecnicos/1000 no existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Andrés Villamizar\",\n\t\"cedula\":\"1010345685\",\n\t\"id\":\"0\",\n\t\"password\":\"Andri123646\",\n\t\"usuario\":\"amm.villamizar\"\n\t\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos/1000",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"tecnicos",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/{{new_id_t}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3c3e27fa-d27b-4892-8cca-caf3061b44db",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Cristina Lorena Macana\",\n\t\"cedula\":\"78787877\",\n\t\"password\":\"Criso123\",\n\t\"usuario\":\"cl.macana\"\n\t\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"tecnicos",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos/{{new_id_t}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aaecefb9-bd1d-4992-a8e3-9a5fa22347fd",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos/{{new_id_t}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"tecnicos",
+						"{{new_id_t}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos/1000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7cbe20a9-afa7-4569-b6a2-79e9d8a0a48f",
+						"exec": [
+							"tests[\"No borra un empleado que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /tecnicos/1000 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/tecnicos/1000",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"tecnicos",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

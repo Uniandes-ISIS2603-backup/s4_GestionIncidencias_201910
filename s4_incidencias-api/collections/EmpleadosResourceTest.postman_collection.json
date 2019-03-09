@@ -1,0 +1,439 @@
+{
+	"info": {
+		"_postman_id": "8501422e-ce6f-4d5e-9f7d-302bd383d411",
+		"name": "EmpleadosResourceTest",
+		"description": "Empleados Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0db13d8c-ee41-42e7-9dc6-9ff7b76d501b",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_b\", data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Andres Villamizar\",\n\t\"cedula\":\"1010345685\",\n\t\"password\":\"Andri123\",\n\t\"usuario\":\"amm.villamizar\"\n\t\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"empleados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b43a7428-70d9-48d9-a57e-937255c4ed47",
+						"exec": [
+							"tests[\"No crea dos técnicos con la misma cédula\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Empleado con la cédula\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Andrés Villamizar\",\n\t\"cedula\":\"1010345685\",\n\t\"id\":\"\",\n\t\"password\":\"Andri123\",\n\t\"usuario\":\"al.villamizar\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"empleados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0080d12-3c6f-4957-913c-254c59a84842",
+						"exec": [
+							"tests[\"No crea dos empleados con el mismo usuario\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un Empleado con el usuario\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Andrea Liliana Villamizar\",\n\t\"cedula\":\"1010240778\",\n\t\"id\":\"\",\n\t\"password\":\"Andri123\",\n\t\"usuario\":\"amm.villamizar\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"empleados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c3daabf-08df-420a-a9fe-c28ae85b4b63",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"Contar empleados\"] = data.length >= 0;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"empleados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/{{new_id_e}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e46cfb86-5591-46e8-bb55-7b3d9506c31c",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"empleados",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b3fe55f-d947-4a7b-96cc-504e284f05cd",
+						"exec": [
+							"tests[\"No consulta un empleado con un id que no existe\"] = responseCode.code === 404; ",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /empleados/10000 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/10000",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"empleados",
+						"10000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dfca5641-485e-4faf-b864-2113ad70f8af",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /empleados/1000 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Andrés Villamizar\",\n\t\"cedula\":\"1010345685\",\n\t\"id\":\"0\",\n\t\"password\":\"Andri123646\",\n\t\"usuario\":\"amm.villamizar\"\n\t\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/1000",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"empleados",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/{{new_id_b}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b515814c-bfe6-48ed-a4a3-2a6d25909c04",
+						"exec": [
+							"console.log(responseBody);",
+							"pm.variables.get(\"variable_key\");var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Cristina Lorena Macana\",\n\t\"cedula\":\"3234\",\n\t\"password\":\"Criso123\",\n\t\"usuario\":\"cl.macana\"\n\t\n}\n"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"empleados",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/{{new_id_e}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6636015d-ffc2-499d-9f24-3e41d2bec39c",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/{{new_id_b}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"empleados",
+						"{{new_id_b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c6eb113c-d0c7-403a-a708-88b2c70aebe2",
+						"exec": [
+							"tests[\"No borra un empleado que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /empleados/1000 no existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/1000",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"empleados",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
