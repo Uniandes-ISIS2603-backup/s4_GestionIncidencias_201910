@@ -33,10 +33,19 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped 
 public class TecnicoResource {
     
+    /**
+     * Lògica de la aplicaciòn
+     */
     @Inject
     private TecnicoLogic tecnicoLogic;
      
 
+    /**
+     * Crea un tècnico con el JSON entrado por parametro
+     * @param tecnico (JSON) con la informaciòn del objeto a crear
+     * @return Un TecnicoDTO con el id de la tabla de datos
+     * @throws BusinessLogicException Si se rompe una regla de negocio
+     */
      @POST
      public TecnicoDTO createTecnico(TecnicoDTO tecnico) throws BusinessLogicException{
         TecnicoEntity nuevo= tecnico.toEntity();
@@ -44,14 +53,21 @@ public class TecnicoResource {
         TecnicoDTO nuevoTecnico = new TecnicoDTO(eet);
         return nuevoTecnico;
      }
-    
+    /**
+     * Retorna todos los tecnicos de la base de datos
+     * @return Lista con la lista de tecnicos de la base de datos     * 
+     */
      @GET
      public List<TecnicoDetailDTO> getTecnicos(){
          return listEntity2DetailDTO(tecnicoLogic.getTecnicos());                
      }
      
      
-     
+     /**
+      *  Devuelve el tècnico identificado con el id entrado por parametro
+      * @param id del tècnico
+      * @return TecnicoDetailDto COon el respectivo tecnico
+      */
      
      @GET
     @Path("{id: \\d+}")
@@ -64,7 +80,13 @@ public class TecnicoResource {
         return nuevo;                  
     }
     
-    
+    /**
+     * Actualiza el tècnico dado por parametro con el JSON dado por parametro
+     * @param id del tècnico a actualizar
+     * @param tecnico (JSON) con la info actualizada
+     * @return Tecnico actualizado
+     * @throws BusinessLogicException 
+     */
     @PUT
     @Path("{id: \\d+}")
     public TecnicoDetailDTO updateTecnico(@PathParam("id") Long id, TecnicoDetailDTO tecnico) throws BusinessLogicException {
@@ -76,6 +98,11 @@ public class TecnicoResource {
         return detailDTO;
     }
     
+    /**
+     * Borra el tècnico del id dado por parametro
+     * @param id del tecnico
+     * @throws BusinessLogicException  Si se romple una regla de negocio
+     */
     
     @DELETE
     @Path("{id: \\d+}")

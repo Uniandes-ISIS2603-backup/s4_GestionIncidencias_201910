@@ -129,8 +129,11 @@ public class UsuarioDTO implements Serializable{
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
-    
-      public UsuarioDTO(UsuarioEntity eEntity) {
+    /**
+     * Crea un usuario con los atributos del entity que entra por parametro
+     * @param eEntity Entity a copiar
+     */
+    public UsuarioDTO(UsuarioEntity eEntity) {
         if(eEntity!=null){
             name=eEntity.getName();
             cedula=eEntity.getCedula();
@@ -139,7 +142,9 @@ public class UsuarioDTO implements Serializable{
             password=eEntity.getPassword();
         }
     }
-    
+    /**
+     * Constructor vacio de la clase, necesario para la persistencia
+     */
     public UsuarioDTO() {
         
     }

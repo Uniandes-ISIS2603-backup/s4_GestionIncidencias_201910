@@ -37,12 +37,12 @@
 					"raw": "{\n\t\"name\":\"Andres Villamizar\",\n\t\"cedula\":\"1010345685\",\n\t\"password\":\"Andri123\",\n\t\"usuario\":\"amm.villamizar\"\n\t\n}\n"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+					"raw": "http://{{ip}}:8080/s4_incidencias-api/api/empleados",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s4_incidencias-api",
 						"api",
@@ -82,12 +82,12 @@
 					"raw": "{\n\t\"name\":\"Andrés Villamizar\",\n\t\"cedula\":\"1010345685\",\n\t\"id\":\"\",\n\t\"password\":\"Andri123\",\n\t\"usuario\":\"al.villamizar\"\n\t\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+					"raw": "http://{{ip}}:8080/s4_incidencias-api/api/empleados",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s4_incidencias-api",
 						"api",
@@ -127,12 +127,12 @@
 					"raw": "{\n\t\"name\":\"Andrea Liliana Villamizar\",\n\t\"cedula\":\"1010240778\",\n\t\"id\":\"\",\n\t\"password\":\"Andri123\",\n\t\"usuario\":\"amm.villamizar\"\n\t\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+					"raw": "http://{{ip}}:8080/s4_incidencias-api/api/empleados",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s4_incidencias-api",
 						"api",
@@ -166,12 +166,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados",
+					"raw": "http://{{ip}}:8080/s4_incidencias-api/api/empleados",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s4_incidencias-api",
 						"api",
@@ -208,12 +208,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/{{new_id_b}}",
+					"raw": "http://{{ip}}:8080/s4_incidencias-api/api/empleados/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s4_incidencias-api",
 						"api",
@@ -247,12 +247,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/10000",
+					"raw": "http://{{ip}}:8080/s4_incidencias-api/api/empleados/10000",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s4_incidencias-api",
 						"api",
@@ -293,12 +293,12 @@
 					"raw": "{\n\t\"name\":\"Andrés Villamizar\",\n\t\"cedula\":\"1010345685\",\n\t\"id\":\"0\",\n\t\"password\":\"Andri123646\",\n\t\"usuario\":\"amm.villamizar\"\n\t\n}\n"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/1000",
+					"raw": "http://{{ip}}:8080/s4_incidencias-api/api/empleados/1000",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s4_incidencias-api",
 						"api",
@@ -341,12 +341,12 @@
 					"raw": "{\n\t\"name\":\"Cristina Lorena Macana\",\n\t\"cedula\":\"3234\",\n\t\"password\":\"Criso123\",\n\t\"usuario\":\"cl.macana\"\n\t\n}\n"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/{{new_id_b}}",
+					"raw": "http://{{ip}}:8080/s4_incidencias-api/api/empleados/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s4_incidencias-api",
 						"api",
@@ -380,12 +380,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/{{new_id_b}}",
+					"raw": "http://{{ip}}:8080/s4_incidencias-api/api/empleados/{{new_id_b}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s4_incidencias-api",
 						"api",
@@ -419,12 +419,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s4_incidencias-api/api/empleados/1000",
+					"raw": "http://{{ip}}:8080/s4_incidencias-api/api/empleados/1000",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
 					],
-					"port": "{{puerto}}",
+					"port": "8080",
 					"path": [
 						"s4_incidencias-api",
 						"api",

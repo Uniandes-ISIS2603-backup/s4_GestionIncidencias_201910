@@ -25,7 +25,7 @@ public class TecnicoDetailDTO extends TecnicoDTO implements Serializable{
     }
               
     /**
-      * Método que retorna la lista de incidencias del empleado
+      * Método que retorna la lista de incidencias del tecnico
      * @return Las incidencias del empleado
      */
     public List<IncidenciaDTO> getIncidencias() {

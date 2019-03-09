@@ -34,10 +34,18 @@ import javax.ws.rs.WebApplicationException;
  */
 public class EmpleadoResource {    
        
+    /**
+     * Logica de la clase
+     */
     @Inject
     private EmpleadoLogic empleadoLogic;
     
-    
+    /**
+     * Crea un empleado con el JSON entrado por parametro
+     * @param empleado (JSON) Json con el empleado
+     * @return EmpledoDTO
+     * @throws BusinessLogicException Si se rompe alguna regla de negocio
+     */
     @POST
      public EmpleadoDTO createEmpleado(EmpleadoDTO empleado) throws BusinessLogicException{
         EmpleadoEntity nuevo= empleado.toEntity();
@@ -55,6 +63,11 @@ public class EmpleadoResource {
         return listEntity2DetailDTO(empleadoLogic.getEmpleados());                
     }    
     
+    /**
+     * Busca y devuelve el empleado del id que entra por paràmetro
+     * @return JSONA {@link EmpleadosDetailDTO} - El empleado encontrado     * 
+     * aplicación. Si no hay ninguno lanza Excepciòn
+    */
     @GET
     @Path("{id: \\d+}")
     public EmpleadoDetailDTO getEmpleado(@PathParam("id") Long id){
@@ -67,6 +80,13 @@ public class EmpleadoResource {
     }
     
     
+    /**
+     * Encuentra y actualiza el empleado con el JSON entrado pro parametro
+     * @return JSONArray {@link EmpleadosDetailDTO} - EL empleado actualizado
+     * @throws BusinessLogicException si no existe el empleado con el id 
+     * aplicación. Si no existe el empleado, lanza excepciòn
+    */
+    
     @PUT
     @Path("{id: \\d+}")
     public EmpleadoDetailDTO updateEmpleado(@PathParam("id") Long id, EmpleadoDetailDTO empleado) throws BusinessLogicException {
@@ -78,6 +98,11 @@ public class EmpleadoResource {
         return detailDTO;
     }
     
+    /**
+     * Borra el empleado con el id por paràmetro
+     * @param id del empleado a borrar
+     * @throws BusinessLogicException si no existe el empleado con el id 
+     */
     
     @DELETE
     @Path("{id: \\d+}")
