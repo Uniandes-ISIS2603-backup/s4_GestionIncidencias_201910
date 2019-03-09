@@ -6,10 +6,7 @@
 package co.edu.uniandes.csw.incidencias.resources;
 
 import co.edu.uniandes.csw.incidencias.dtos.EquipoComputoDTO;
-import co.edu.uniandes.csw.incidencias.dtos.EquipoComputoDTO;
 import co.edu.uniandes.csw.incidencias.ejb.EquipoComputoLogic;
-import co.edu.uniandes.csw.incidencias.ejb.EquipoComputoLogic;
-import co.edu.uniandes.csw.incidencias.entities.EquipoComputoEntity;
 import co.edu.uniandes.csw.incidencias.entities.EquipoComputoEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
 import java.util.logging.Level;

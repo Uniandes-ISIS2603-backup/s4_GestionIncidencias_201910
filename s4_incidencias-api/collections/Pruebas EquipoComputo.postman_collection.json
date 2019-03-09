@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "e3015357-e396-4827-b7ea-1f87e943399f",
+		"name": "Pruebas EquipoComputo",
+		"description": "Pruebas para la clase EquipoComputo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{ip}}:{{puerto}}/s4_incidencias-api/api/equipoComputo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6edc71a7-e057-45d6-b88c-b8e52528273a",
+						"exec": [
+							"tests[\"Creó el equipo\"] =responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"idEquipo\":2, \"descripcion\":\"prueba\"}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{puerto}}/s4_incidencias-api/api/equipos",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"equipos"
+					]
+				},
+				"description": "Crear primer equipoComputo"
+			},
+			"response": []
+		},
+		{
+			"name": "{{ip}}:{{puerto}}/s4_incidencias-api/api/equipoComputo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e33f733-83bc-4bcb-ba0e-52b55575e059",
+						"exec": [
+							"tests[\"Creó el equipo\"] =responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"idEquipo\":4, \"descripcion\":\"prueba2\"}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{puerto}}/s4_incidencias-api/api/equipos",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"equipos"
+					]
+				},
+				"description": "Crear segundo equipoComputo"
+			},
+			"response": []
+		},
+		{
+			"name": "{{ip}}:{{puerto}}/s4_incidencias-api/api/equipoComputo/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e7a6d5fb-e438-44b8-89d5-d277a7f31cbd",
+						"exec": [
+							"tests[\"Encontró el equipo\"] =responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{ip}}:{{puerto}}/s4_incidencias-api/api/equipos/1",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"equipos",
+						"1"
+					]
+				},
+				"description": "Busca el primer equipoComputo"
+			},
+			"response": []
+		},
+		{
+			"name": "{{ip}}:{{puerto}}/s4_incidencias-api/api/equipoComputo/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a8497bbc-bbe3-4752-8bbd-c9be2b7caa0d",
+						"exec": [
+							"tests[\"Actualizó el equipo\"] =responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"idEquipo\":4, \"descripcion\":\"prueba2\"}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{puerto}}/s4_incidencias-api/api/equipos/1",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"equipos",
+						"1"
+					]
+				},
+				"description": "Cambia la información del primer equipoComputo "
+			},
+			"response": []
+		}
+	]
+}

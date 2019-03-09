@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "cda1c480-b864-47ce-bff7-d2c9007301ae",
+		"name": "Pruebas Calificacion",
+		"description": "Pruebas de persistencia y logica de la clase Calificacion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{ip}}:{{puerto}}/s4_incidencias-api/api/calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cf470d37-cd28-4fb6-96b5-5209adffbb96",
+						"exec": [
+							"tests[\"Creó la calificación\"] =responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"numeroEst\":2, \"descripcion\":\"prueba\"}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{puerto}}/s4_incidencias-api/api/calificaciones",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"calificaciones"
+					]
+				},
+				"description": "Agregar calificación"
+			},
+			"response": []
+		},
+		{
+			"name": "{{ip}}:{{puerto}}/s4_incidencias-api/api/calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "02cd365d-36c9-4ffc-993c-e60b92799bdf",
+						"exec": [
+							"tests[\"Creó la calificación\"] =responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"numeroEst\":4, \"descripcion\":\"prueba2\"}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{puerto}}/s4_incidencias-api/api/calificaciones",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"calificaciones"
+					]
+				},
+				"description": "Agregar segunda calificación"
+			},
+			"response": []
+		},
+		{
+			"name": "{{ip}}:{{puerto}}/s4_incidencias-api/api/calificacion/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "81c41126-c041-4288-a4c8-b4feba1a173a",
+						"exec": [
+							"tests[\"Encontró la calificación\"] =responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{ip}}:{{puerto}}/s4_incidencias-api/api/calificaciones/1",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"calificaciones",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{ip}}:{{puerto}}/s4_incidencias-api/api/calificacion/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "47c3a88b-9608-4adf-8985-5deb276b700e",
+						"exec": [
+							"tests[\"Actualizó la calificación\"] =responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"numeroEst\":4, \"descripcion\":\"prueba2\"}"
+				},
+				"url": {
+					"raw": "{{ip}}:{{puerto}}/s4_incidencias-api/api/calificaciones/1",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"calificaciones",
+						"1"
+					]
+				},
+				"description": "Actualiza la información de la prueba1"
+			},
+			"response": []
+		}
+	]
+}
