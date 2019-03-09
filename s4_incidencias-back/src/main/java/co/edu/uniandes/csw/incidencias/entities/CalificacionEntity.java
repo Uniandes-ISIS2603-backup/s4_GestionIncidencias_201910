@@ -18,10 +18,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
     
     private String descripcion;
 
-    public CalificacionEntity()
-    {
-        
-    }
     /**
      * @return the numeroEst
      */
