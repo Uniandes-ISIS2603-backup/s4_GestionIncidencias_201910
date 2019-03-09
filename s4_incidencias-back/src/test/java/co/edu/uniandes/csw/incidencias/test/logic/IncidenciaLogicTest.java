@@ -5,12 +5,12 @@
  */
 package co.edu.uniandes.csw.incidencias.test.logic;
 
-import co.edu.uniandes.csw.incidencias.ejb.ActuacionLogic;
+
 import co.edu.uniandes.csw.incidencias.ejb.IncidenciaLogic;
-import co.edu.uniandes.csw.incidencias.entities.ActuacionEntity;
+
 import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.incidencias.persistence.ActuacionPersistence;
+
 import co.edu.uniandes.csw.incidencias.persistence.IncidenciaPersistence;
 import java.util.ArrayList;
 import java.util.List;

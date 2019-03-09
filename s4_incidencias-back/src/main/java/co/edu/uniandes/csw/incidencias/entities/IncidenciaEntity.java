@@ -8,10 +8,12 @@ package co.edu.uniandes.csw.incidencias.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,19 +26,24 @@ import javax.persistence.TemporalType;
 @Entity
 public class IncidenciaEntity extends BaseEntity implements  Serializable{
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE) 
     private Date fecha;
     private String descripcion; 
+    @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
     private EmpleadoEntity empleado;
      private String estado;
     private Double incidencia;
     
+    @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private CalificacionEntity calificacion;
     private EquipoComputoEntity equipoComputo;
+    @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
     private TecnicoEntity  tecnico;
  
+    @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private PrioridadEntity  prioridad;
     
+    @OneToMany (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private ArrayList<ActuacionEntity> actuaciones;
     
 

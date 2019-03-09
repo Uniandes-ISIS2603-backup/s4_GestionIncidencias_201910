@@ -5,9 +5,9 @@
  */
 package co.edu.uniandes.csw.incidencias.test.persistence;
 
-
+import co.edu.uniandes.csw.incidencias.entities.ActuacionEntity;
 import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
-
+import co.edu.uniandes.csw.incidencias.persistence.ActuacionPersistence;
 import co.edu.uniandes.csw.incidencias.persistence.IncidenciaPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author estudiante
  */
+
 @RunWith(Arquillian.class)
 public class IncidenciaPersistenceTest {
     
@@ -144,4 +145,5 @@ public class IncidenciaPersistenceTest {
         
         Assert.assertEquals(newEntity.getDescripcion(), "hola");
     }
+    
 }
