@@ -6,11 +6,18 @@
 package co.edu.uniandes.csw.incidencias.resources;
 
 import co.edu.uniandes.csw.incidencias.dtos.ActuacionDTO;
+import co.edu.uniandes.csw.incidencias.ejb.ActuacionLogic;
+import co.edu.uniandes.csw.incidencias.entities.ActuacionEntity;
+import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -23,8 +30,32 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class ActuacionResource {
     
-     @POST
-    public ActuacionDTO createIncidenciaDTO(ActuacionDTO incidencia){
-        return incidencia;
+    @Inject
+    private ActuacionLogic logica;
+    public ActuacionResource(ActuacionEntity actuacion){
+        
     }
+    
+     @POST
+    public ActuacionDTO createIncidenciaDTO(ActuacionDTO actuacion) throws BusinessLogicException{
+        
+        ActuacionEntity actuacionEntity = actuacion.toEntity();
+        actuacionEntity = logica.createActuacion(actuacionEntity);
+        return new ActuacionDTO(actuacionEntity);
+    }
+    
+    @GET
+    @Path("{equipoComputosId: \\d+}")
+    public ActuacionDTO getEquipoComputo(@PathParam("actuacionId") Long actuacionId) {
+       
+        ActuacionEntity ActuacionEntity =  logica.getActuacion(actuacionId);
+        if (ActuacionEntity == null) {
+            throw new WebApplicationException("El recurso /Actuaciones/" + actuacionId + " no existe.", 404);
+        }
+        ActuacionDTO ActuacionDTO = new ActuacionDTO(ActuacionEntity);
+       
+        return ActuacionDTO;
+    }
+    
+    
 }

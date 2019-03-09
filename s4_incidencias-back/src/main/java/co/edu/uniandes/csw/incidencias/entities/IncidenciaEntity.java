@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -29,20 +30,22 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
     @Temporal(TemporalType.DATE) 
     private Date fecha;
     private String descripcion; 
+    @PodamExclude
     @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
     private EmpleadoEntity empleado;
      private String estado;
     private Double incidencia;
-    
+   @PodamExclude
     @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private CalificacionEntity calificacion;
     private EquipoComputoEntity equipoComputo;
+    @PodamExclude
     @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
     private TecnicoEntity  tecnico;
- 
+    @PodamExclude
     @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private PrioridadEntity  prioridad;
-    
+    @PodamExclude 
     @OneToMany (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private ArrayList<ActuacionEntity> actuaciones;
     

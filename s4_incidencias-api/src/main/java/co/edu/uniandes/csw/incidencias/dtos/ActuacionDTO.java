@@ -19,12 +19,20 @@ public class ActuacionDTO implements Serializable {
     
     private Date fecha;
     private String descripcion;
-    private String Tipo;
+    private String tipo;
+    
+    public ActuacionEntity toEntity(){
+        ActuacionEntity actuacion = new ActuacionEntity();
+        actuacion.setDescripcion(this.descripcion);
+        actuacion.setFecha(this.fecha);
+        actuacion.setTipo(this.tipo);
+        return actuacion;
+    }
     
     public ActuacionDTO(ActuacionEntity actuacion){
        this.fecha = actuacion.getFecha();
        this.descripcion = actuacion.getDescripcion();
-       Tipo = null;
+       tipo = actuacion.getTipo();
     }
     public ActuacionDTO(){
         
@@ -62,22 +70,15 @@ public class ActuacionDTO implements Serializable {
      * @return the Tipo
      */
     public String getTipo() {
-        return Tipo;
+        return tipo;
     }
 
     /**
      * @param Tipo the Tipo to set
      */
     public void setTipo(String Tipo) {
-        this.Tipo = Tipo;
+        this.tipo = Tipo;
     }
     
-    public ActuacionEntity toEntity(){
-        ActuacionEntity actuacion1 = new ActuacionEntity();
-        actuacion1.setDescripcion(descripcion);
-        actuacion1.setFecha(fecha);
-        
-        return actuacion1;
-    }
-
+    
 }

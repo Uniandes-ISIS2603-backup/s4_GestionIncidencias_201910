@@ -22,6 +22,8 @@ public class ActuacionEntity extends BaseEntity  implements Serializable {
     private Date fecha;
     
     private String descripcion;
+    
+    private String tipo;
 
     /**
      * @return the fecha
@@ -54,6 +56,20 @@ public class ActuacionEntity extends BaseEntity  implements Serializable {
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
     
