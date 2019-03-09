@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "29da33bb-5463-4740-b2ed-d21c843beb64",
+		"name": "incidenciasResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://{{ip}}:{{puerto}}/s4_incidencias-api/api/Incidencias",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d5e7b48-bb31-400e-a3b6-e83899f888a3",
+						"exec": [
+							"test[\"No genera error en el get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{ip}}:{{puerto}}/s4_incidencias-api/api/Incidencias",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"Incidencias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://{{ip}}:{{puerto}}/s4_incidencias-api/api/Incidencias",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57741083-83f4-4d28-b651-87d4756e1abd",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGloblaVariable(\"new_id_e\", data.id);",
+							"test[\"No genera error en el get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"fecha\" : null,\n     \"descripcion\": \"ff\",\n     \"estado\" : \"f\",\n     \"incidencia\" : 1,2,\n    \n   \"calificacion\" : null,\n     \"equipoComputo\" : null\n   \"tecnico\": null,\n     \"empleado\" : null,\n    \"prioridad\" : null\n}"
+				},
+				"url": {
+					"raw": "https://{{ip}}:{{puerto}}/s4_incidencias-api/api/Incidencias",
+					"protocol": "https",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_incidencias-api",
+						"api",
+						"Incidencias"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
