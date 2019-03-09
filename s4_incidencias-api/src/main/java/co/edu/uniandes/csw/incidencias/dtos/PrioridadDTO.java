@@ -5,11 +5,12 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 
+import co.edu.uniandes.csw.incidencias.entities.PrioridadEntity;
 import java.io.Serializable;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Santamaría Álvarez
  */
 public class PrioridadDTO implements Serializable {
     
@@ -37,8 +38,12 @@ public class PrioridadDTO implements Serializable {
     }
    
     
-    public void toEntity(){
-        
+     public PrioridadEntity toEntity()
+    {
+        PrioridadEntity prioridadEntity = new PrioridadEntity();
+        prioridadEntity.setId(this.sla.getId());
+        prioridadEntity.setTipoPrioridad(this.tipoPrioridad);
+        return prioridadEntity;
     }
     
     public String toString(){

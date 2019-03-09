@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Santamaría Álvarez
  */
 
 @Entity

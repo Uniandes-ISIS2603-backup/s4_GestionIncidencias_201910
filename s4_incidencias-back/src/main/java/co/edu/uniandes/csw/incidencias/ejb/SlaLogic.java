@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Santamaría Álvarez
  */
 @Stateless
 public class SlaLogic {
