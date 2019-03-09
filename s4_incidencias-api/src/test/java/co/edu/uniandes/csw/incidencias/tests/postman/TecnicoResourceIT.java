@@ -20,11 +20,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- *
- * @author estudiante
+ * @author Valerie Parra Cortès
  */
 public class TecnicoResourceIT {
-        private static final String COLLECTION = "EmpleadosResourceTest.postman_collection";
+    private static final String COLLECTION = "TecnicoResourceTest.postman_collection";
 
     @Deployment(testable = true)
     public static WebArchive createDeployment() {

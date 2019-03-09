@@ -40,6 +40,8 @@ public class EmpleadoResource {
     @Inject
     private EmpleadoLogic empleadoLogic;
     
+    public final static String NO_EXISTE=" no existe.";
+    
     /**
      * Crea un empleado con el JSON entrado por parametro
      * @param empleado (JSON) Json con el empleado
@@ -49,9 +51,8 @@ public class EmpleadoResource {
     @POST
      public EmpleadoDTO createEmpleado(EmpleadoDTO empleado) throws BusinessLogicException{
         EmpleadoEntity nuevo= empleado.toEntity();
-        EmpleadoEntity eet=empleadoLogic.createEmpleadoEntity(nuevo);
-        EmpleadoDTO nuevoEmpleado = new EmpleadoDTO(eet);
-        return nuevoEmpleado;
+        EmpleadoEntity eet=empleadoLogic.createEmpleadoEntity(nuevo);        
+        return  new EmpleadoDTO(eet);
      }    
     /**
      * Busca y devuelve todos los empleados que existen en la aplicacion.    
@@ -73,10 +74,9 @@ public class EmpleadoResource {
     public EmpleadoDetailDTO getEmpleado(@PathParam("id") Long id){
         EmpleadoEntity empleado= empleadoLogic.getEmpleado(id);
          if (empleado == null) {
-            throw new WebApplicationException("El recurso /empleados/" + id + " no existe.", 404);
-        }
-        EmpleadoDetailDTO nuevo = new EmpleadoDetailDTO(empleado);
-        return nuevo;                  
+            throw new WebApplicationException("El recurso /empleados/" + id + NO_EXISTE, 404);
+        }        
+        return new EmpleadoDetailDTO(empleado);                  
     }
     
     
@@ -92,10 +92,10 @@ public class EmpleadoResource {
     public EmpleadoDetailDTO updateEmpleado(@PathParam("id") Long id, EmpleadoDetailDTO empleado) throws BusinessLogicException {
         empleado.setId(id);
         if (empleadoLogic.getEmpleado(id) == null) {
-            throw new WebApplicationException("El recurso /empleados/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /empleados/" + id + NO_EXISTE, 404);
         }
-        EmpleadoDetailDTO detailDTO = new EmpleadoDetailDTO(empleadoLogic.updateEmpleado(empleado.toEntity()));        
-        return detailDTO;
+        
+        return  new EmpleadoDetailDTO(empleadoLogic.updateEmpleado(empleado.toEntity()));        
     }
     
     /**
@@ -110,7 +110,7 @@ public class EmpleadoResource {
 
         EmpleadoEntity entity = empleadoLogic.getEmpleado(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /empleados/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /empleados/" + id + NO_EXISTE, 404);
         }        
         empleadoLogic.deleteEmpleado(id);
         

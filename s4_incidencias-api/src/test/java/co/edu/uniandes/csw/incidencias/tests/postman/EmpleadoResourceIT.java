@@ -40,14 +40,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- *  Pruebas de integracion de la cascara.
- * @author ISIS2603
+ * @author Valerie Parra Cortès
  */
 @RunWith(Arquillian.class)
 public class EmpleadoResourceIT {
 
-    private static final String COLLECTION = "TecnicoResourceTest.postman_collection";
-
+    
+private static final String COLLECTION = "EmpleadosResourceTest.postman_collection";
     @Deployment(testable = true)
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "s4_incidencias-api.war")//War del modulo api
