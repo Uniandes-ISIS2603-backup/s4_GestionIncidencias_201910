@@ -6,19 +6,17 @@
 package co.edu.uniandes.csw.incidencias.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author estudiante
  */
+@Entity
 public class EquipoComputoEntity extends BaseEntity implements Serializable {
     private Integer idEquipo;
     private String descripcion;
 
-    public EquipoComputoEntity()
-    {
-        
-    }
     /**
      * @return the idEquipo
      */

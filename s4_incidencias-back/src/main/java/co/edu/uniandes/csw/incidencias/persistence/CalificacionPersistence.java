@@ -18,21 +18,45 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class CalificacionPersistence {
-
-    @PersistenceContext(unitName = "incidenciasPU")
+    
+    @PersistenceContext (unitName = "incidenciasPU")
     protected EntityManager em;
-
+    
     public CalificacionEntity create(CalificacionEntity calificacionEntity) {
         em.persist(calificacionEntity);
         return calificacionEntity;
     }
-
-    public CalificacionEntity find(Long calificacionId) {
+    
+    public CalificacionEntity find(Long calificacionId) {   
         return em.find(CalificacionEntity.class, calificacionId);
     }
-
+    
     public List<CalificacionEntity> findAll() {
-        TypedQuery query = em.createQuery("select u from CalificacionEntity u", CalificacionEntity.class);
+        TypedQuery<CalificacionEntity> query = em.createQuery("select u from CalificacionEntity u", CalificacionEntity.class);
         return query.getResultList();
+    }
+    
+        public CalificacionEntity update(CalificacionEntity calificacionEntity) {
+        return em.merge(calificacionEntity);
+    }
+    
+    public void delete(Long calificacionId) {
+        CalificacionEntity entity = em.find(CalificacionEntity.class, calificacionId);
+        em.remove(entity);
+    }
+    
+    public CalificacionEntity findByDescription(String descripcion) {
+        TypedQuery query = em.createQuery("Select e From CalificacionEntity e where e.descripcion = :descripcion", CalificacionEntity.class);
+        query = query.setParameter("descripcion", descripcion);
+        List<CalificacionEntity> sameDescription = query.getResultList();
+        CalificacionEntity result;
+        if (sameDescription == null) {
+            result = null;
+        } else if (sameDescription.isEmpty()) {
+            result = null;
+        } else {
+            result = sameDescription.get(0);
+        }
+        return result;
     }
 }
