@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.incidencias.dtos;
 
 import co.edu.uniandes.csw.incidencias.entities.ActuacionEntity;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+
 import java.util.Date;
 
 /**
@@ -74,10 +74,10 @@ public class ActuacionDTO implements Serializable {
     }
 
     /**
-     * @param Tipo the Tipo to set
+     * @param tipo the Tipo to set
      */
-    public void setTipo(String Tipo) {
-        this.tipo = Tipo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
     

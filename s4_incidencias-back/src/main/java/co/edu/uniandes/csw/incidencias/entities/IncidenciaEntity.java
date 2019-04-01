@@ -38,6 +38,7 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
    @PodamExclude
     @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private CalificacionEntity calificacion;
+   @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private EquipoComputoEntity equipoComputo;
     @PodamExclude
     @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
