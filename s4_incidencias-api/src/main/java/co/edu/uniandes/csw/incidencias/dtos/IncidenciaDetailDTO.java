@@ -6,15 +6,12 @@
 package co.edu.uniandes.csw.incidencias.dtos;
 
 import co.edu.uniandes.csw.incidencias.entities.ActuacionEntity;
-import co.edu.uniandes.csw.incidencias.entities.CalificacionEntity;
-import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
-import co.edu.uniandes.csw.incidencias.entities.EquipoComputoEntity;
+
 import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
-import co.edu.uniandes.csw.incidencias.entities.PrioridadEntity;
-import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Hashtable;
+
 
 /**
  *
@@ -24,7 +21,7 @@ public class IncidenciaDetailDTO extends IncidenciaDTO implements Serializable
 {
     
     //private ArrayList<ActuacionDTO> actuaciones;
-    private ArrayList <ActuacionDTO> actuaciones = new ArrayList<ActuacionDTO>();
+    private ArrayList <ActuacionDTO> actuaciones = new ArrayList();
     
     public IncidenciaDetailDTO(){
              super();  
@@ -48,7 +45,7 @@ public class IncidenciaDetailDTO extends IncidenciaDTO implements Serializable
     public IncidenciaEntity toEntity(){
         
         IncidenciaEntity a = super.toEntity();
-        ArrayList<ActuacionEntity> o = new ArrayList<ActuacionEntity>();
+        ArrayList<ActuacionEntity> o = new ArrayList();
         for(ActuacionDTO z : actuaciones){
             o.add(z.toEntity()); 
         }

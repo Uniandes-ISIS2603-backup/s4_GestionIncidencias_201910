@@ -13,9 +13,8 @@ import co.edu.uniandes.csw.incidencias.entities.PrioridadEntity;
 import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
 import java.io.Serializable;
 
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.Hashtable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -28,8 +27,6 @@ public class IncidenciaDTO implements Serializable{
     private Date fecha;
     private String descripcion;
     private String estado;
-    private Double incidencia;
-    
     private CalificacionDTO calificacion;
     private EquipoComputoDTO equipoComputo;
     private TecnicoDTO tecnico;
@@ -42,7 +39,7 @@ public class IncidenciaDTO implements Serializable{
 
     
     //Constructor
-    //TODO: Implementar
+    
     public IncidenciaDTO(IncidenciaEntity entity){
         
         
@@ -50,7 +47,7 @@ public class IncidenciaDTO implements Serializable{
         this.descripcion = entity.getDescripcion();
         this.estado = entity.getEstado();
         
-        this.incidencia = entity.getIncidencia();
+        
         CalificacionDTO calificacion2 = new CalificacionDTO();
         calificacion2.setDescripcion(entity.getCalificacion().getDescripcion());
         calificacion2.setNumeroEst(entity.getCalificacion().getNumeroEst());
@@ -170,19 +167,7 @@ public class IncidenciaDTO implements Serializable{
         this.estado = estado;
     }
 
-    /**
-     * @return the incidencia
-     */
-    public Double getIncidencia() {
-        return incidencia;
-    }
-
-    /**
-     * @param incidencia the incidencia to set
-     */
-    public void setIncidencia(Double incidencia) {
-        this.incidencia = incidencia;
-    }
+  
 
     /**
      * @return the calificacion

@@ -34,7 +34,7 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
     @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
     private EmpleadoEntity empleado;
      private String estado;
-    private Double incidencia;
+   
    @PodamExclude
     @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private CalificacionEntity calificacion;
@@ -105,19 +105,7 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
         this.estado = estado;
     }
 
-    /**
-     * @return the incidencia
-     */
-    public Double getIncidencia() {
-        return incidencia;
-    }
-
-    /**
-     * @param incidencia the incidencia to set
-     */
-    public void setIncidencia(Double incidencia) {
-        this.incidencia = incidencia;
-    }
+   
 
     /**
      * @return the calificacion
