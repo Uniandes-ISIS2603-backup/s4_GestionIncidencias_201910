@@ -6,12 +6,10 @@
 package co.edu.uniandes.csw.incidencias.resources;
 
 import javax.ws.rs.Path;
-import co.edu.uniandes.csw.incidencias.dtos.IncidenciaDTO;
 import co.edu.uniandes.csw.incidencias.dtos.PrioridadDTO;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Produces;

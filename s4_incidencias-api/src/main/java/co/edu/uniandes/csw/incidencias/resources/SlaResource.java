@@ -5,14 +5,10 @@
  */
 package co.edu.uniandes.csw.incidencias.resources;
 
-import co.edu.uniandes.csw.incidencias.dtos.CalificacionDTO;
 import co.edu.uniandes.csw.incidencias.dtos.SlaDTO;
 import co.edu.uniandes.csw.incidencias.ejb.SlaLogic;
-import co.edu.uniandes.csw.incidencias.entities.CalificacionEntity;
 import co.edu.uniandes.csw.incidencias.entities.SlaEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
