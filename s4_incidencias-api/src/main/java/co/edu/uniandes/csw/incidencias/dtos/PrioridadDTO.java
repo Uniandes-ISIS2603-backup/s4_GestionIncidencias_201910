@@ -36,6 +36,11 @@ public class PrioridadDTO implements Serializable {
     public SlaDTO getSLA(){
         return sla;
     }
+    
+    public void setSLA(SlaDTO slaa)
+    {
+        this.sla = slaa;
+    }
    
     
      public PrioridadEntity toEntity()
