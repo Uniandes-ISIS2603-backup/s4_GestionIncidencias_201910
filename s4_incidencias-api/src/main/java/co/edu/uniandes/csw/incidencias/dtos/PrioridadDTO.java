@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.incidencias.dtos;
 
 import co.edu.uniandes.csw.incidencias.entities.PrioridadEntity;
+import co.edu.uniandes.csw.incidencias.entities.UsuarioEntity;
 import java.io.Serializable;
 
 /**
@@ -19,8 +20,10 @@ public class PrioridadDTO implements Serializable {
     
     public PrioridadDTO()
     {
-        
+        super();
     }
+    
+    
     
     public String getTipoPrioridad()
     {
