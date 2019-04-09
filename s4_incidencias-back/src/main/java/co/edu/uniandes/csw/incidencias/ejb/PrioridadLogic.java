@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.incidencias.ejb;
 
-import co.edu.uniandes.csw.incidencias.entities.DepartamentoEntity;
 import co.edu.uniandes.csw.incidencias.entities.PrioridadEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.incidencias.persistence.PrioridadPersistence;
@@ -38,18 +37,15 @@ public class PrioridadLogic {
     
     
     public List<PrioridadEntity> getPrioridades() {
-        List<PrioridadEntity> prioridades = persistence.findAll();
-        return prioridades;
+        return persistence.findAll();
     }
 
     public PrioridadEntity getPrioridad(Long prioridadId) {
-        PrioridadEntity prioridadEntity = persistence.find(prioridadId);
-        return prioridadEntity;
+        return persistence.find(prioridadId);
     }
 
     public PrioridadEntity updatePrioridad(Long prioridadId, PrioridadEntity prioridadEntity) {
-        PrioridadEntity newEntity = persistence.update(prioridadEntity);
-        return newEntity;
+        return persistence.update(prioridadEntity);
     }
 
     public void deletePrioridad(Long prioridadId) {
