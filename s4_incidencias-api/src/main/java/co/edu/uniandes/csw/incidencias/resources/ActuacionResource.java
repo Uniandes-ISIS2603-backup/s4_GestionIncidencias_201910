@@ -78,11 +78,11 @@ public class ActuacionResource {
      */
      @DELETE
     @Path("{id: \\d+}")
-    public void deleteTecnico(@PathParam("id") Long id) throws BusinessLogicException {
+    public void deleteActuacion(@PathParam("id") Long id) throws BusinessLogicException {
 
         ActuacionEntity entity = logica.getActuacion(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /tecnicos/" + id + "No existe", 404);
+            throw new WebApplicationException("El recurso /actuaciones/" + id + "No existe", 404);
         }        
        logica.deleteActuacion(id);
     }
@@ -95,7 +95,7 @@ public class ActuacionResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public ActuacionDTO updateTecnico(@PathParam("id") Long id, ActuacionDTO actuacion) throws BusinessLogicException {
+    public ActuacionDTO updateActuacion(@PathParam("id") Long id, ActuacionDTO actuacion) throws BusinessLogicException {
         
         if (logica.getActuacion(id) == null) {
             throw new WebApplicationException("El recurso /Actuaciones/" + id + "no existe", 404);

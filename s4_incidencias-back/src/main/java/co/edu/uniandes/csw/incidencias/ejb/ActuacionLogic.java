@@ -19,9 +19,18 @@ import javax.inject.Inject;
 
 @Stateless
 public class ActuacionLogic {
+    /**
+     * Atributo  que modela la relacion con la persistencia
+     */
     @Inject
     private ActuacionPersistence persistence;
     
+    /**
+     * Una actuacion a partir de una actuacion de tipo entity
+     * @param actuacion
+     * @return
+     * @throws BusinessLogicException 
+     */
     public ActuacionEntity createActuacion (ActuacionEntity  actuacion)throws BusinessLogicException{
         if( persistence.find(actuacion.getId()) != null)
         {
@@ -33,7 +42,10 @@ public class ActuacionLogic {
     
     
        
-    
+    /**
+     * Retorna todas las actuaciones que estan la base de datos
+     * @return 
+     */
     public List<ActuacionEntity> getActuaciones() {
         List<ActuacionEntity> prioridades = persistence.findAll();
         return prioridades;
@@ -41,18 +53,34 @@ public class ActuacionLogic {
 
 
 
-
+    /**
+     * Retornar la actuacion que tiene el id que entra por parametro
+     * @param prioridadId, identificador de la actuacion
+     * @return 
+     */
     public ActuacionEntity getActuacion(Long prioridadId) {
         ActuacionEntity prioridadEntity = persistence.find(prioridadId);
         return prioridadEntity;
     }
 
   
-
+    /**
+     * Elimina la actuacion que tiene asociado el id que entra por parametro
+     * @param ActuacionId, identificador de la actuacion
+     */
     public void deleteActuacion(Long ActuacionId) {
         persistence.delete(ActuacionId);
     }
-    
+    /**
+     * Actualiza la actuacion con  la actuacion que llega por parametro
+     * @param actuacionEntity
+     * @return 
+     */
+    public ActuacionEntity updateActuacion(ActuacionEntity actuacionEntity){
+      ActuacionEntity newEntity = persistence.update(actuacionEntity);
+        return newEntity;  
+    }
+
     
     
 }

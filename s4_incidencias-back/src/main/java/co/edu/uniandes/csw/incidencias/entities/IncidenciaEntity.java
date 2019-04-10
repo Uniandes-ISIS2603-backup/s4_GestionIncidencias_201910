@@ -19,43 +19,63 @@ import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
- * @author estudiante
+ * Clase que modela una incidencia en la base de datos
+ * @author Guillermo Lobaton
  */
 
 
 @Entity
 public class IncidenciaEntity extends BaseEntity implements  Serializable{
-
+    
+    /**
+     * Atribto que modela la fecha de una incidencia
+     */
     @Temporal(TemporalType.DATE) 
     private Date fecha;
-    private String descripcion; 
+      /**
+     * Atribto que modela la descricion de una incidencia
+     */
+    private String descripcion;
+      /**
+     * Atribto que modela el empleado que reporto la incidencia
+     */
     @PodamExclude
     @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
     private EmpleadoEntity empleado;
+      /**
+     * Atribto que modela el estado de una incidencia
+     */
      private String estado;
-   
+     /**
+     * Atribto que modela la calificacion de una incidencia
+     */
    @PodamExclude
     @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private CalificacionEntity calificacion;
+     /**
+     * Atribto que modela el equipo de computoque presenta una incidencia
+     */
    @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private EquipoComputoEntity equipoComputo;
+     /**
+     * Atribto que modela el tecnico que atiende la incidencia
+     */
     @PodamExclude
     @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
     private TecnicoEntity  tecnico;
+      /**
+     * Atribto que modela la prioridad de una incidencia
+     */
     @PodamExclude
     @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private PrioridadEntity  prioridad;
+      /**
+     * Atribto que modela la lista de actuaciones de una incidencia
+     */
     @PodamExclude 
     @OneToMany (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
     private ArrayList<ActuacionEntity> actuaciones;
-    
 
-
-    
-    
-    
-    
     /**
      * @return the fecha
      */

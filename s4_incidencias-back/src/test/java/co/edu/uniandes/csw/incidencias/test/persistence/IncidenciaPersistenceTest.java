@@ -88,7 +88,9 @@ public class IncidenciaPersistenceTest {
         IncidenciaEntity entity = em.find(IncidenciaEntity.class, de.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
-    
+    /**
+     * test para probar el metodo  get 
+     */
     @Test
     public void findIncidenciaTest() {
         
@@ -106,6 +108,9 @@ public class IncidenciaPersistenceTest {
        
     }
     
+    /**
+     * Test para probar el  metodo getAll de la clase de persistencia
+     */
     @Test
     public void findAllIncidenciaTest() {
        
@@ -117,7 +122,9 @@ public class IncidenciaPersistenceTest {
             Assert.assertEquals(4,lista.size());
         }   
      
-    
+    /**
+     * Test para probar el metodo delete de la clase de persistencia
+     */
     @Test
     public void deleteIncidenciaTest() {
         
@@ -132,7 +139,9 @@ public class IncidenciaPersistenceTest {
         List lista2 = dp.findAll();
         Assert.assertEquals(2, lista2.size());
     }
-
+    /**
+     * Metodo para probar el metodo update de la clase de persistencia
+     */
     @Test
     public void updateIncidenciaTest() {
         

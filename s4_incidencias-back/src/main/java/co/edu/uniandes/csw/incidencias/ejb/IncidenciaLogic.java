@@ -20,23 +20,39 @@ import javax.inject.Inject;
  */
 @Stateless
 public class IncidenciaLogic {
-    
+    /**
+     * Atributo  que modela la relacion con la persistencia
+     */
     @Inject
     private IncidenciaPersistence persistence;
-    
+    /**
+     * Atributo  que modela larelacion con la clase actuacion
+     */
     private ActuacionLogic actLogic;
-    
+    /**
+     * Lista de actuaciones asociada a una incidencia
+     */
     private ArrayList<ActuacionEntity> listaActuaciones = new ArrayList();
    
-    //Agrega una actuacion a la lista de actuaciones, ademas la crea en la base de datos
+    /**
+     * Agrega una actuacion a la lista de actuaciones de la inidencia actual
+     * @param act, la actuacion que se quiere agregar a la incidencia
+     * @throws BusinessLogicException 
+     */
     public void addActuacion(ActuacionEntity act ) throws BusinessLogicException{
        listaActuaciones.add(act); 
        actLogic.createActuacion(act);
     }
     
+    /**
+     * Crea una  incidencia a partir de un objeto entity
+     * @param incidencia, objeto entity  a partir del cual se crea la actuacion
+     * @return 
+     * @throws BusinessLogicException en caso deque la incidencia ya este creada en la base de datos
+     */
     public IncidenciaEntity createIncidencia(IncidenciaEntity incidencia)throws BusinessLogicException
     {
-        //Solo debe existir una prioridad
+        //Solo debe existir una incidencia con  ese id
         if( persistence.find(incidencia.getId()) != null)
         {
             throw new BusinessLogicException("Ya existe una incidencia Con el id\""+ incidencia.getId()+"\"" );
@@ -46,22 +62,37 @@ public class IncidenciaLogic {
     }
     
     
-    
+    /**
+     * Obtiene todas las incidencias que estan en la base de datos
+     * @return lista con todas las incidencias
+     */
     public List<IncidenciaEntity> getIncidencias() {
         List<IncidenciaEntity> prioridades = persistence.findAll();
         return prioridades;
     }
-
+    /**
+     * Obtiene la incidencia con  el id dado por parametro
+     * @param prioridadId
+     * @return devuelve la incidencia que tiene el id asociado
+     */
     public IncidenciaEntity getIncidencia(Long prioridadId) {
         IncidenciaEntity prioridadEntity = persistence.find(prioridadId);
         return prioridadEntity;
     }
-
-    public IncidenciaEntity updateIncidencia(Long prioridadId, IncidenciaEntity prioridadEntity) {
-        IncidenciaEntity newEntity = persistence.update(prioridadEntity);
+    /**
+     * Actualiza la incidencia que tiene el id dado por parametro
+     * @param incidenciaEntity 
+     * @return 
+     */
+    public IncidenciaEntity updateIncidencia(IncidenciaEntity incidenciaEntity) {
+        IncidenciaEntity newEntity = persistence.update(incidenciaEntity);
         return newEntity;
     }
 
+    /**
+     * Elimina la actuacion identificada con el id que entra por parametro
+     * @param IncidenciaId, identificador de la incidencia
+     */
     public void deleteIncidencia(Long IncidenciaId) {
         persistence.delete(IncidenciaId);
     }

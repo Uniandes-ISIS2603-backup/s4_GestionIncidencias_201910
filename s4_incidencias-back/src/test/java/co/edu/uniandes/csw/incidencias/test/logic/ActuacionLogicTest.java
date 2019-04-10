@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.incidencias.test.logic;
 import co.edu.uniandes.csw.incidencias.ejb.ActuacionLogic;
 
 import co.edu.uniandes.csw.incidencias.entities.ActuacionEntity;
-import co.edu.uniandes.csw.incidencias.entities.DepartamentoEntity;
+
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.incidencias.persistence.ActuacionPersistence;
 
@@ -87,7 +87,10 @@ public class ActuacionLogicTest {
             data.add(entity);
         }
     }
-    
+    /**
+     * Test para probar el metodo que crea una actuacion
+     * @throws BusinessLogicException 
+     */
     @Test
     public void createActuacionTest() throws BusinessLogicException {
         ActuacionEntity newEntity = factory.manufacturePojo(ActuacionEntity.class);
@@ -97,16 +100,21 @@ public class ActuacionLogicTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
        
     }
-    
+    /**
+     * Test para probar que pasa cuando dos actuaciones tienen el mismo id
+     * @throws BusinessLogicException 
+     */
     @Test(expected = BusinessLogicException.class)
     public void createActuacionMismoIdTest() throws BusinessLogicException {
         ActuacionEntity newEntity = factory.manufacturePojo(ActuacionEntity.class);
         newEntity.setId(data.get(0).getId());
         ActuacionLogic.createActuacion(newEntity);
     }
-    
+    /**
+     * test para probar el metodo getAll
+     */
     @Test
-    public void getDepartamentosTest() {
+    public void getActuacionesTest() {
         List<ActuacionEntity> list = ActuacionLogic.getActuaciones();
         Assert.assertEquals(data.size(), list.size());
         for (ActuacionEntity entity : list) {
@@ -119,9 +127,11 @@ public class ActuacionLogicTest {
             Assert.assertTrue(found);
         }
     }
-
+    /**
+     * Test para probar el metodo get
+     */
     @Test
-    public void getDepartamentoTest() {
+    public void getActuacionTest() {
         ActuacionEntity entity = data.get(0);
         ActuacionEntity resultEntity = ActuacionLogic.getActuacion(entity.getId());
         Assert.assertNotNull(resultEntity);
@@ -129,9 +139,12 @@ public class ActuacionLogicTest {
         
     }
 
-    
+    /**
+     * Test  para probar el metodo delete
+     * @throws BusinessLogicException 
+     */
     @Test
-    public void deleteDepartamentoTest() throws BusinessLogicException {
+    public void deleteActuacionTest() throws BusinessLogicException {
         ActuacionEntity entity = data.get(1);
        ActuacionLogic.deleteActuacion(entity.getId());
         ActuacionEntity deleted = em.find(ActuacionEntity.class, entity.getId());
@@ -139,4 +152,15 @@ public class ActuacionLogicTest {
     }
     
     
+     @Test
+    public void updateActuacionTest() {
+        ActuacionEntity entity = data.get(0);
+        ActuacionEntity pojoEntity = factory.manufacturePojo(ActuacionEntity.class);
+        pojoEntity.setId(entity.getId());
+        ActuacionLogic.updateActuacion(pojoEntity);
+        ActuacionEntity resp = em.find(ActuacionEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
+        
+    }
 }

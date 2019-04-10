@@ -12,17 +12,25 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author estudiante
+ *Atributo  que modela una actuacion el base de datos
+ * @author Guillermo Lobaton
  */
 @Entity
 public class ActuacionEntity extends BaseEntity  implements Serializable {
     
+    /**
+     * Atributo que modela la fecha de la actuacion
+     */
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
+    /**
+     * Atributo que modela la descripcion de la actuacion
+     */
     private String descripcion;
-    
+    /**
+     * Atributo que modela lel tipo de la actuacion
+     */
     private String tipo;
 
     /**

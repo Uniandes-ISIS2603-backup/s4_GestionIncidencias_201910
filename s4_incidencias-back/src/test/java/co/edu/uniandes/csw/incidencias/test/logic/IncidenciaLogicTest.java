@@ -143,7 +143,7 @@ public class IncidenciaLogicTest{
         IncidenciaEntity entity = data.get(0);
         IncidenciaEntity pojoEntity = factory.manufacturePojo(IncidenciaEntity.class);
         pojoEntity.setId(entity.getId());
-        IncidenciaLogic.updateIncidencia(pojoEntity.getId(), pojoEntity);
+        IncidenciaLogic.updateIncidencia( pojoEntity);
         IncidenciaEntity resp = em.find(IncidenciaEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
        

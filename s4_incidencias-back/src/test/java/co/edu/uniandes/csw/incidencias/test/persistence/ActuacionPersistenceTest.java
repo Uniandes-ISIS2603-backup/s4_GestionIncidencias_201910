@@ -85,7 +85,9 @@ public class ActuacionPersistenceTest {
             data.add(entity);
         }
     }
-    
+    /**
+     * Test que prueba el metodo crear de las clases de persistencia
+     */
     @Test
     public void createActuacionTest() {
         PodamFactory factory = new PodamFactoryImpl();
@@ -95,7 +97,9 @@ public class ActuacionPersistenceTest {
        ActuacionEntity entity = em.find(ActuacionEntity.class, de.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
-    
+     /**
+     * Test que prueba el metodo get de las clases de persistencia
+     */
     @Test
     public void findActuacionTest() {
        ActuacionEntity entity = data.get(0);
@@ -103,7 +107,9 @@ public class ActuacionPersistenceTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());  
     }
-    
+     /**
+     * Test que prueba el metodo getAll de las clases de persistencia
+     */
     @Test
     public void findAllActuacionTest() {
         List<ActuacionEntity> results = dp.findAll();
@@ -118,6 +124,29 @@ public class ActuacionPersistenceTest {
             Assert.assertTrue(found);
         }   
     } 
+    /**
+     * Test del metodo delete de persistence
+     */
+     @Test
+    public void deleteActuacionTest() {
+        ActuacionEntity entity = data.get(0);
+        dp.delete(entity.getId());
+        ActuacionEntity deleted = em.find(ActuacionEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    /**
+     * Test  del metodo update de persistence
+     */
+    @Test
+    public void updateActuacionTest() {
+        ActuacionEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        ActuacionEntity newEntity = factory.manufacturePojo(ActuacionEntity.class);
+        newEntity.setId(entity.getId());
+        dp.update(newEntity);
+        ActuacionEntity resp = em.find(ActuacionEntity.class, entity.getId());
+        Assert.assertEquals(newEntity.getId(), resp.getId());
+    }
     
    
 }
