@@ -24,13 +24,37 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class IncidenciaDTO implements Serializable{
     
+    /**
+     * Atributo que representa la fecha de una incidencia
+     */
     private Date fecha;
+    /**
+     * Atributo que representa la descipcion de una incidencia
+     */
     private String descripcion;
+    /**
+     * Atributo que representa el estado de una incidencia
+     */
     private String estado;
+    /**
+     * Atributo que representa la calificacion de una incidencia
+     */
     private CalificacionDTO calificacion;
+    /**
+     * Atributo que representa el equipo de computo del cual  es objeto una incidencia
+     */
     private EquipoComputoDTO equipoComputo;
+    /**
+     * Atributo que representa el tecnico que atiende una incidencia
+     */
     private TecnicoDTO tecnico;
+    /**
+     * Atributo que representa el empleado que reporta  una incidencia
+     */
     private EmpleadoDTO empleado;
+    /**
+     * Atributo que representa la prioridad de una incidencia
+     */
     private PrioridadDTO prioridad;
     
     
