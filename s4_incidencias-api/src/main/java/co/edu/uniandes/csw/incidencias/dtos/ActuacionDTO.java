@@ -17,10 +17,23 @@ import java.util.Date;
  */
 public class ActuacionDTO implements Serializable {
     
+    /**
+     * Atributo  que representa la fecha de la actuacion
+     */
     private Date fecha;
+     /**
+     * Atributo  que representa la descripcion de la actuacion
+     */
     private String descripcion;
+     /**
+     * Atributo  que representa lel tipo de la actuacion
+     */
     private String tipo;
     
+    /**
+     * Convierte esta actuacion en un objeto del tipo entidad
+     * @return la actuacion convertida a entidad
+     */
     public ActuacionEntity toEntity(){
         ActuacionEntity actuacion = new ActuacionEntity();
         actuacion.setDescripcion(this.descripcion);
@@ -29,11 +42,18 @@ public class ActuacionDTO implements Serializable {
         return actuacion;
     }
     
+    /**
+     * Crea una actuacionDTO apartir de un objeto entity
+     * @param actuacion, actuacion a partir de la cual se va a crear el DTO 
+     */
     public ActuacionDTO(ActuacionEntity actuacion){
        this.fecha = actuacion.getFecha();
        this.descripcion = actuacion.getDescripcion();
        tipo = actuacion.getTipo();
     }
+    /**
+     * Constructor vacio
+     */
     public ActuacionDTO(){
         
     }
