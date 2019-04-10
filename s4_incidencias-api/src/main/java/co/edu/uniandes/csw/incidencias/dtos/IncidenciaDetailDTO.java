@@ -20,13 +20,22 @@ import java.util.ArrayList;
 public class IncidenciaDetailDTO extends IncidenciaDTO implements Serializable
 {
     
-    //private ArrayList<ActuacionDTO> actuaciones;
+    /**
+     * Atributo  que modela la lista de actuaciones de una incidencia
+     */
     private ArrayList <ActuacionDTO> actuaciones = new ArrayList();
     
+    /**
+     * Contructor vacio
+     */
     public IncidenciaDetailDTO(){
              super();  
     } 
     
+    /**
+     * Crea la lista de incidencia a partir de una objeto del tipo entity
+     * @param incidencia - objeto de tipo rntidad
+     */
     public IncidenciaDetailDTO(IncidenciaEntity incidencia){
        super(incidencia);
        if(incidencia!=null){
@@ -41,7 +50,10 @@ public class IncidenciaDetailDTO extends IncidenciaDTO implements Serializable
        }
      
     }
-    
+    /**
+     * Crea un objeto de tipo entidad a partir de esta clase
+     * @return un objeto de tipo entidad
+     */
     public IncidenciaEntity toEntity(){
         
         IncidenciaEntity a = super.toEntity();
@@ -53,14 +65,17 @@ public class IncidenciaDetailDTO extends IncidenciaDTO implements Serializable
         return a;
     }
 
-    
-    
-    
-    
-    
+    /**
+     * Agrega un actuacion  a la lista de actuaciones
+     * @param actuacion, actuacion que se va a agregar
+     */
      public void addIncidencencia(ActuacionDTO actuacion){
         getActuaciones().add(actuacion);
     }
+     /**
+      * Elimina una actuacion de la lista de actuaciones
+      * @param actuacion 
+      */
       public void deleteIncidencencia(ActuacionDTO actuacion){
         getActuaciones().remove(actuacion);
     }

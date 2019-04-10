@@ -63,7 +63,10 @@ public class IncidenciaDTO implements Serializable{
 
     
     //Constructor
-    
+    /**
+     * Crea una incidencia a partir de un  objeto de tipo entity
+     * @param entity, objeto entity que se usa para construir la incidencia
+     */
     public IncidenciaDTO(IncidenciaEntity entity){
         
         
@@ -105,11 +108,18 @@ public class IncidenciaDTO implements Serializable{
     }
     
     //Constructor
+    /**
+     * Constructor vacio
+     */
     public IncidenciaDTO(){
         
     }
     
     //TODO: Implementar
+    /**
+     * Crea un objeto entidad a partir de esta incidencia
+     * @return un objeto de tipo entity
+     */
     public IncidenciaEntity toEntity(){
         IncidenciaEntity incidencia = new IncidenciaEntity();
         incidencia.setDescripcion(descripcion);

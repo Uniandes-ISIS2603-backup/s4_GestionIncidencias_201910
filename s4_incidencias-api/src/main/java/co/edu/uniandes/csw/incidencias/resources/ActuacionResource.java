@@ -20,8 +20,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
- * @author estudiante
+ *Clase que representacion un resource actuacion
+ * @author Guillermo Lobaton
  */
 @Path("Actuaciones")
 
@@ -29,12 +29,13 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class ActuacionResource {
-    
+    /**
+     * Atributo  que modela la conexion con la capa de logica
+     */
     @Inject
     private ActuacionLogic logica;
-    public ActuacionResource(ActuacionEntity actuacion){
-        
-    }
+    
+   
     
      @POST
     public ActuacionDTO createIncidenciaDTO(ActuacionDTO actuacion) throws BusinessLogicException{
