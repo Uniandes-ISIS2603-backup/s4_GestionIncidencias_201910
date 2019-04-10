@@ -5,29 +5,33 @@
  */
 package co.edu.uniandes.csw.incidencias.resources;
 
-import co.edu.uniandes.csw.incidencias.dtos.CalificacionDTO;
 import co.edu.uniandes.csw.incidencias.dtos.SlaDTO;
 import co.edu.uniandes.csw.incidencias.ejb.SlaLogic;
-import co.edu.uniandes.csw.incidencias.entities.CalificacionEntity;
 import co.edu.uniandes.csw.incidencias.entities.SlaEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author Daniel Santamaría Álvarez
  */
+
+@Path("Sla")
+@Produces("application/json")
+@Consumes("application/json")
+@RequestScoped
 public class SlaResource {
       
     private static final Logger LOGGER = Logger.getLogger(SlaResource.class.getName());

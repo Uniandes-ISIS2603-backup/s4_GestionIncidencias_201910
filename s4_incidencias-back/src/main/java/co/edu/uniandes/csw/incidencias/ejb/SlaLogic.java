@@ -30,18 +30,15 @@ public class SlaLogic {
     }
     
     public  List<SlaEntity> getSlas(){
-        List<SlaEntity> slas = persistence.findAll();
-        return slas;
+        return persistence.findAll();
      }
      
      public SlaEntity getSla(Long slaID) {
-        SlaEntity slaEntity = persistence.find(slaID);
-        return slaEntity;
+        return persistence.find(slaID);
     }
      
      public SlaEntity updateSla( SlaEntity entity) {
-        SlaEntity newEntity = persistence.update(entity);
-        return newEntity;
+        return persistence.update(entity);
     }
     
       public void deleteSla(Long slaId) {

@@ -19,8 +19,10 @@ public class PrioridadDTO implements Serializable {
     
     public PrioridadDTO()
     {
-        
+        super();
     }
+    
+    
     
     public String getTipoPrioridad()
     {
@@ -36,6 +38,11 @@ public class PrioridadDTO implements Serializable {
     public SlaDTO getSLA(){
         return sla;
     }
+    
+    public void setSLA(SlaDTO slaa)
+    {
+        this.sla = slaa;
+    }
    
     
      public PrioridadEntity toEntity()
@@ -46,8 +53,6 @@ public class PrioridadDTO implements Serializable {
         return prioridadEntity;
     }
     
-    public String toString(){
-        return "Prioridad{'tipoPrioridad':"+tipoPrioridad+",'SLA':"+sla.toString()+"} ";
-    }
+   
     
 }

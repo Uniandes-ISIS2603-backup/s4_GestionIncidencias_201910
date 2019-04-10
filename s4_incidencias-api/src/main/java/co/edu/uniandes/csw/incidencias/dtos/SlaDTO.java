@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 
-import co.edu.uniandes.csw.incidencias.entities.CalificacionEntity;
 import co.edu.uniandes.csw.incidencias.entities.SlaEntity;
 import java.io.Serializable;
 import java.util.logging.Logger;
