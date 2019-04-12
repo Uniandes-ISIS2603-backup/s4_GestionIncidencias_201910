@@ -9,6 +9,8 @@ import co.edu.uniandes.csw.incidencias.dtos.EquipoComputoDTO;
 import co.edu.uniandes.csw.incidencias.ejb.EquipoComputoLogic;
 import co.edu.uniandes.csw.incidencias.entities.EquipoComputoEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -47,6 +49,18 @@ public class EquipoComputoResource {
         return nuevoEquipoComputoDTO;
     }
 
+             @GET
+     public List<EquipoComputoDTO> getCalificaciones(){
+         return listEntity2DTO(equipoComputoLogic.getEquipoComputos());                
+     }
+
+         private List<EquipoComputoDTO> listEntity2DTO(List<EquipoComputoEntity> entityList) {
+        List<EquipoComputoDTO> list = new ArrayList<>();
+        for (EquipoComputoEntity entity : entityList) {
+            list.add(new EquipoComputoDTO(entity));
+        }
+        return list;
+    }
     @GET
     @Path("{equipoComputosId: \\d+}")
     public EquipoComputoDTO getEquipoComputo(@PathParam("equipoComputosId") Long equipoComputosId) {

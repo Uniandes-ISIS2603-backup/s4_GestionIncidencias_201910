@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.incidencias.dtos.CalificacionDTO;
 import co.edu.uniandes.csw.incidencias.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.incidencias.entities.CalificacionEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,7 +61,19 @@ public class CalificacionResource {
         LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: output: {0}", calificacionDetailDTO);
         return calificacionDetailDTO;
     }
+    
+         @GET
+     public List<CalificacionDTO> getCalificaciones(){
+         return listEntity2DTO(calificacionLogic.getCalificacions());                
+     }
 
+         private List<CalificacionDTO> listEntity2DTO(List<CalificacionEntity> entityList) {
+        List<CalificacionDTO> list = new ArrayList<>();
+        for (CalificacionEntity entity : entityList) {
+            list.add(new CalificacionDTO(entity));
+        }
+        return list;
+    }
     @PUT
     @Path("{calificacionsId: \\d+}")
     public CalificacionDTO updateCalificacion(@PathParam("calificacionsId") Long calificacionsId, CalificacionDTO calificacion) throws BusinessLogicException {
