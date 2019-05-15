@@ -42,7 +42,11 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
     @PodamExclude
     @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
     private EmpleadoEntity empleado;
-      /**
+    
+    
+    
+    
+    /**
      * Atribto que modela el estado de una incidencia
      */
      private String estado;
@@ -60,7 +64,8 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
      /**
      * Atribto que modela el tecnico que atiende la incidencia
      */
-    @PodamExclude
+ 
+   @PodamExclude
     @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
     private TecnicoEntity  tecnico;
       /**
@@ -73,7 +78,7 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
      * Atribto que modela la lista de actuaciones de una incidencia
      */
     @PodamExclude 
-    @OneToMany (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
+    @OneToMany (cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy= "incidencia" , fetch = javax.persistence.FetchType.LAZY)
     private ArrayList<ActuacionEntity> actuaciones;
 
     /**
