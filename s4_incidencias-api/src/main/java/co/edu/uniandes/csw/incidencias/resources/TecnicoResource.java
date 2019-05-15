@@ -68,7 +68,7 @@ public class TecnicoResource {
       * @return TecnicoDetailDto COon el respectivo tecnico
       */
      
-     @GET
+    @GET
     @Path("{id: \\d+}")
     public TecnicoDetailDTO getTecnico(@PathParam("id") Long id){
         TecnicoEntity tecnico= tecnicoLogic.getTecnico(id);

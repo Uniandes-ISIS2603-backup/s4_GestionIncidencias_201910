@@ -5,7 +5,12 @@
  */
 package co.edu.uniandes.csw.incidencias.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * Clase que representa un empleado
@@ -14,4 +19,9 @@ import javax.persistence.Entity;
 @Entity
 public class EmpleadoEntity extends UsuarioEntity {
          
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<IncidenciaEntity> reviews = new ArrayList<IncidenciaEntity>();
+    
 }

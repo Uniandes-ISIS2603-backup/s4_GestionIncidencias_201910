@@ -7,9 +7,12 @@ package co.edu.uniandes.csw.incidencias.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *Atributo  que modela una actuacion el base de datos
@@ -23,6 +26,14 @@ public class ActuacionEntity extends BaseEntity  implements Serializable {
      */
     @Temporal(TemporalType.DATE)
     private Date fecha;
+    
+    
+    
+    @PodamExclude
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private IncidenciaEntity incidencia;
+
+    
     
     /**
      * Atributo que modela la descripcion de la actuacion

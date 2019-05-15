@@ -29,8 +29,7 @@ public class ActuacionPersistence {
      * @param actuacionEntity objeto que se va apersistir en la base de datos
      * @return el objeto a persistir modificado
      */
-    public ActuacionEntity create(ActuacionEntity actuacionEntity){
-        
+    public ActuacionEntity create(ActuacionEntity actuacionEntity){        
         em.persist(actuacionEntity);
         return actuacionEntity;
     }
