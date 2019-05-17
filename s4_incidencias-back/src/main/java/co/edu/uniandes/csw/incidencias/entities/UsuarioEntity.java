@@ -20,13 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable
 {   
-    /**
-     * Atributo que representa la lista de incidencias del usuario
-     */
-    @PodamExclude
-    @OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
-    private List<IncidenciaEntity> incidencias;
-
+ 
     /**
      * Atributo para el usuario que tendrá el usuario
      */
@@ -47,23 +41,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable
      */
     private String name;     
     
-    /**
-     * Método que retorna la lista de incidencias del usuario
-     * @return Lista de incidencias del empleado
-     */
-    public List<IncidenciaEntity> getIncidencias()
-    {
-        return incidencias;
-    }
-    /**
-     * Método que cambia la lista de incidencias del usuario
-     * @param incidencias la nueva lista de incidencias
-     */
-    public void setIncidencias(List<IncidenciaEntity> incidencias)
-    {
-        this.incidencias = incidencias;
-    }
-    
+   
     /**
      * @return the user
      */
@@ -138,16 +116,14 @@ public class UsuarioEntity extends BaseEntity implements Serializable
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Objects.equals(this.incidencias, other.incidencias)) {
-            return false;
-        }
+
         return true;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.incidencias);
+        
         hash = 67 * hash + Objects.hashCode(this.usuario);
         hash = 67 * hash + Objects.hashCode(this.password);
         hash = 67 * hash + Objects.hashCode(this.cedula);

@@ -30,13 +30,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
      */
     
     public UsuarioDetailDTO(UsuarioEntity empleadoEntity) {
-        super(empleadoEntity);
-        if(empleadoEntity.getIncidencias()!=null){
-            incidencias= new ArrayList<>();
-            for(IncidenciaEntity entityIncidencia: empleadoEntity.getIncidencias()){
-                incidencias.add(new IncidenciaDTO(entityIncidencia));
-            }
-        }
+        super(empleadoEntity);        
     }
     
     /**
@@ -64,14 +58,8 @@ public class UsuarioDetailDTO extends UsuarioDTO {
 
     @Override
     public UsuarioEntity toEntity(){
-        UsuarioEntity eEntity= super.toEntity();
-           if(incidencias!=null){
-            List<IncidenciaEntity> incidenciasEntity=new ArrayList<>();
-            for (IncidenciaDTO incidenciaDTO : getIncidencias()) {
-                incidenciasEntity.add(incidenciaDTO.toEntity());
-            }
-            eEntity.setIncidencias(incidenciasEntity);
-        }
+        UsuarioEntity eEntity= super.toEntity();    
+        
         return eEntity;
     }
     

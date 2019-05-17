@@ -41,8 +41,7 @@ public class IncidenciaPersistence {
      * @return la incidencia que encuentra
      */
       public IncidenciaEntity find(Long IncidenciaId){
-        
-      return em.find(IncidenciaEntity.class,IncidenciaId);
+         return em.find(IncidenciaEntity.class,IncidenciaId);
     }
      /**
       * Retorna todas las incidencias de la base de datos

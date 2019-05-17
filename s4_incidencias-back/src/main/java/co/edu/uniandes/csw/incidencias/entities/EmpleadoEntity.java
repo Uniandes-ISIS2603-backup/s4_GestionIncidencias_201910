@@ -22,6 +22,26 @@ public class EmpleadoEntity extends UsuarioEntity {
     
     @PodamExclude
     @OneToMany(mappedBy = "empleado", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<IncidenciaEntity> reviews = new ArrayList<IncidenciaEntity>();
+    private List<IncidenciaEntity> incidencias = new ArrayList<IncidenciaEntity>();
+    
+     /**
+     * Método que retorna la lista de incidencias del usuario
+     * @return Lista de incidencias del empleado
+     */
+    public List<IncidenciaEntity> getIncidencias()
+    {
+        return incidencias;
+    }
+    /**
+     * Método que cambia la lista de incidencias del usuario
+     * @param incidencias la nueva lista de incidencias
+     */
+    public void setIncidencias(List<IncidenciaEntity> incidencias)
+    {
+        this.incidencias = incidencias;
+    }
+    
+    
+    
     
 }

@@ -56,11 +56,10 @@ private  IncidenciaLogic logic;
      */
     @GET
     @Path("{id: \\d+}")
-    public IncidenciaDTO getIncidenciaDTO(@PathParam ("IncidenciasId")Long id){
-        IncidenciaEntity incidenciaEntity = logic.getIncidencia(id);
-        
+    public IncidenciaDTO getIncidenciaDTO(@PathParam ("id")Long id){
+        IncidenciaEntity incidenciaEntity = logic.getIncidencia(id);        
         if(incidenciaEntity == null){
-            throw new WebApplicationException("El recuerso /incidencias/" + id + "no exiate", 404);
+            throw new WebApplicationException("El recuerso /incidencias/" + id + "no existe", 404);
         }
         return new IncidenciaDetailDTO(incidenciaEntity);
     } 

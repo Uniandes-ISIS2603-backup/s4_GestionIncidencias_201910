@@ -20,7 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class ActuacionEntity extends BaseEntity  implements Serializable {
-    
+        
     /**
      * Atributo que modela la fecha de la actuacion
      */
@@ -56,6 +56,10 @@ public class ActuacionEntity extends BaseEntity  implements Serializable {
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public IncidenciaEntity getIncidencia() {
+        return incidencia;
     }
 
    
