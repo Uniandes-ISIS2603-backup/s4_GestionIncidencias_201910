@@ -79,6 +79,25 @@ public class TecnicoResource {
         return new TecnicoDetailDTO(tecnico);                  
     }
     
+       /**
+     * Actualiza el tècnico dado por parametro con el JSON dado por parametro
+     * @param userName del tècnico a actualizar
+     * @return Tecnico actualizado
+     
+     */
+    
+    @GET
+    @Path("users/{username}")
+    public TecnicoDetailDTO getTecnicoPorUsuario(@PathParam("username") String userName){                 
+        TecnicoEntity tt = tecnicoLogic.getTecnicoPorUsuario(userName);
+        if (tt == null) {
+            throw new WebApplicationException("El recurso /tecnicos/" + userName + NO_EXISTE, 404);
+        }
+        return new TecnicoDetailDTO(tt);
+    }
+    
+    
+    
     /**
      * Actualiza el tècnico dado por parametro con el JSON dado por parametro
      * @param id del tècnico a actualizar

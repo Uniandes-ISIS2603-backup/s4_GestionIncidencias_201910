@@ -43,6 +43,10 @@ public class TecnicoLogic {
          tecnico=(TecnicoEntity) persistence.create(tecnico);
          return tecnico;
      }
+     
+     
+     
+     
      /**
       * Método que retorrna la lista de técnicos
       * @return lista de técnicos de la base de datos
@@ -59,6 +63,12 @@ public class TecnicoLogic {
      public TecnicoEntity getTecnico(Long tecnicoId) {
         return persistence.find(tecnicoId);        
     }
+     
+     
+     public TecnicoEntity getTecnicoPorUsuario(String user){
+         return persistence.findByUsuario(user);
+     }
+     
      /**
       * Métodoque actualiza un técnico dela base de datos con una entidad dada por parámetro
       * @param tecnicoEntity entidad a persistir

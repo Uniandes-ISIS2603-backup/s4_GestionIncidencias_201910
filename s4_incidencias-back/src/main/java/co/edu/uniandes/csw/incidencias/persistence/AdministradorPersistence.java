@@ -23,7 +23,7 @@ public class AdministradorPersistence extends UsuarioPersistence
     
     public List<AdministradorEntity> findAll()
     {
-        TypedQuery<AdministradorEntity> query = em.createQuery("SELECT u FROM AministradorEntity u", AdministradorEntity.class);
+        TypedQuery<AdministradorEntity> query = em.createQuery("SELECT u FROM AdministradorEntity u", AdministradorEntity.class);
         return query.getResultList();
     }
     
@@ -40,7 +40,7 @@ public class AdministradorPersistence extends UsuarioPersistence
     
     public AdministradorEntity findByUsuario(String user)
     {
-        TypedQuery query = em.createQuery("SELECT e FROM AministradorEntity e WHERE e.usuario = :nombre", AdministradorEntity.class);
+        TypedQuery query = em.createQuery("SELECT e FROM AdministradorEntity e WHERE e.usuario = :nombre", AdministradorEntity.class);
         query = query.setParameter("nombre", user);
         List<AdministradorEntity> sameName = query.getResultList();
         
