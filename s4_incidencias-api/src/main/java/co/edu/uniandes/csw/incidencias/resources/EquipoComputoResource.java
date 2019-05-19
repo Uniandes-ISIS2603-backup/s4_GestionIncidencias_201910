@@ -37,7 +37,7 @@ public class EquipoComputoResource {
 
     
     private static final Logger LOGGER = Logger.getLogger(EquipoComputoResource.class.getName());
-    
+        
  @Inject
     private EquipoComputoLogic equipoComputoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 

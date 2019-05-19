@@ -52,10 +52,7 @@ public class IncidenciaDTO implements Serializable{
      * Atributo que representa el empleado que reporta  una incidencia
      */
     private EmpleadoDTO empleado;
-    /**
-     * Atributo que representa la prioridad de una incidencia
-     */
-    private PrioridadDTO prioridad;
+    
     
     
             
@@ -101,9 +98,7 @@ public class IncidenciaDTO implements Serializable{
        empleado1.setId(entity.getEmpleado().getId());
        empleado = empleado1;
        
-       PrioridadDTO prioridad1 = new PrioridadDTO();
-       prioridad1.setTipoPrioridad(entity.getPrioridad().getTipoPrioridad());
-       prioridad = prioridad1;
+       
        
     }
     
@@ -152,10 +147,8 @@ public class IncidenciaDTO implements Serializable{
        empleado1.setId(this.getEmpleado().getId());
        incidencia.settEmpleado(empleado1);
        
-       PrioridadEntity prioridad1 = new PrioridadEntity();
-       prioridad1.setTipoPrioridad(this.getPrioridad().getTipoPrioridad());
         
-        incidencia.setPrioridad(prioridad1);
+        
         return incidencia;
     }
     
@@ -259,19 +252,7 @@ public class IncidenciaDTO implements Serializable{
         this.empleado = empleado;
     }
 
-    /**
-     * @return the prioridad
-     */
-    public PrioridadDTO getPrioridad() {
-        return prioridad;
-    }
-
-    /**
-     * @param prioridad the prioridad to set
-     */
-    public void setPrioridad(PrioridadDTO prioridad) {
-        this.prioridad = prioridad;
-    }
+   
 
      @Override
     public String toString() {

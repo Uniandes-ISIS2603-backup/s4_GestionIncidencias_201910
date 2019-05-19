@@ -60,7 +60,7 @@ public class AdministradorResource
     @GET
     public List<AdministradorDetailDTO> getAdministradores()
     {
-        return listEntity2DetailDTO( logica.getAdministradores() );            
+            return listEntity2DetailDTO( logica.getAdministradores() );            
     }    
        
     /**
