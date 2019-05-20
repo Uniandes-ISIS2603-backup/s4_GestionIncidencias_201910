@@ -39,7 +39,7 @@ public class TecnicoResource {
     @Inject
     private TecnicoLogic tecnicoLogic;
      
-        public final static String NO_EXISTE=" no existe.";
+        public final static String NO_EXISTE="";
     /**
      * Crea un tècnico con el JSON entrado por parametro
      * @param tecnico (JSON) con la informaciòn del objeto a crear

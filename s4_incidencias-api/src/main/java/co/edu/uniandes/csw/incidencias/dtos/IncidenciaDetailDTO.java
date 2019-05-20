@@ -11,7 +11,9 @@ import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
+//-------------------------Revisado y terminado-------------------------
 
 /**
  *
@@ -23,7 +25,7 @@ public class IncidenciaDetailDTO extends IncidenciaDTO implements Serializable
     /**
      * Atributo  que modela la lista de actuaciones de una incidencia
      */
-    private ArrayList <ActuacionDTO> actuaciones = new ArrayList();
+    private List <ActuacionDTO> actuaciones = new ArrayList();
     
     /**
      * Contructor vacio
@@ -39,9 +41,10 @@ public class IncidenciaDetailDTO extends IncidenciaDTO implements Serializable
     public IncidenciaDetailDTO(IncidenciaEntity incidencia){
        super(incidencia);
        if(incidencia!=null){
-        if( incidencia.getActuaciones()!= null)  {
+        if( incidencia.getActuaciones() != null)  {
+            
             ArrayList <ActuacionDTO> r = new ArrayList();
-            for(ActuacionEntity a : incidencia.getActuaciones()){
+            for (ActuacionEntity a : incidencia.getActuaciones()){
                 r.add(new ActuacionDTO(a));    
             }
             this.setActuaciones(r);
@@ -57,48 +60,36 @@ public class IncidenciaDetailDTO extends IncidenciaDTO implements Serializable
     public IncidenciaEntity toEntity(){
         
         IncidenciaEntity a = super.toEntity();
+        
+        if(getActuaciones()!= null){
         ArrayList<ActuacionEntity> o = new ArrayList();
-        for(ActuacionDTO z : actuaciones){
+        
+        for(ActuacionDTO z : getActuaciones()){
             o.add(z.toEntity()); 
         }
         a.setActuaciones(o);
+        }
+        
         return a;
     }
 
     /**
-     * Agrega un actuacion  a la lista de actuaciones
-     * @param actuacion, actuacion que se va a agregar
-     */
-     public void addIncidencencia(ActuacionDTO actuacion){
-        getActuaciones().add(actuacion);
-    }
-     /**
-      * Elimina una actuacion de la lista de actuaciones
-      * @param actuacion 
-      */
-      public void deleteIncidencencia(ActuacionDTO actuacion){
-        getActuaciones().remove(actuacion);
-    }
-      
- 
-
-    /**
      * @return the actuaciones
      */
-    public ArrayList <ActuacionDTO> getActuaciones() {
+    public List <ActuacionDTO> getActuaciones() {
         return actuaciones;
     }
 
     /**
      * @param actuaciones the actuaciones to set
      */
-    public void setActuaciones(ArrayList <ActuacionDTO> actuaciones) {
+    public void setActuaciones(List <ActuacionDTO> actuaciones) {
         this.actuaciones = actuaciones;
     }
 
-    /**
-     * @return the actuaciones
-     */
+  
+  
+   
   
  
 }

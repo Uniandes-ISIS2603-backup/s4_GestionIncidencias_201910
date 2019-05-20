@@ -58,15 +58,6 @@ public class ActuacionEntity extends BaseEntity  implements Serializable {
         this.fecha = fecha;
     }
 
-    public IncidenciaEntity getIncidencia() {
-        return incidencia;
-    }
-
-   
-
-    
-
- 
     /**
      * @return the descripcion
      */
@@ -94,7 +85,17 @@ public class ActuacionEntity extends BaseEntity  implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    /**
+     * @param incidencia the incidencia to set
+     */
+    public void setIncidencia(IncidenciaEntity incidencia) {
+        this.incidencia = incidencia;
+    }
     
     
+    public IncidenciaEntity getIncidencia() {
+        return incidencia;
+    }
     
 }

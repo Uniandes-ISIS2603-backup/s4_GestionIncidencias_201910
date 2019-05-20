@@ -30,19 +30,24 @@ public class ActuacionDTO implements Serializable {
      */
     private String tipo;
     
-    /**
-     * Convierte esta actuacion en un objeto del tipo entidad
-     * @return la actuacion convertida a entidad
-     */
-    public ActuacionEntity toEntity(){
-        ActuacionEntity actuacion = new ActuacionEntity();
-        actuacion.setDescripcion(this.descripcion);
-        actuacion.setFecha(this.fecha);
-        actuacion.setTipo(this.tipo);
-        return actuacion;
-    }
     
     /**
+     * Relacion a una incidecnia 
+     */
+    private IncidenciaDTO incidencia;
+    
+    
+     
+    
+    /**
+     * Constructor vacio
+     */
+    public ActuacionDTO(){
+        
+    }
+    
+    
+     /**
      * Crea una actuacionDTO apartir de un objeto entity
      * @param actuacion, actuacion a partir de la cual se va a crear el DTO 
      */
@@ -50,14 +55,37 @@ public class ActuacionDTO implements Serializable {
        this.fecha = actuacion.getFecha();
        this.descripcion = actuacion.getDescripcion();
        tipo = actuacion.getTipo();
+       
+       if(actuacion.getIncidencia()!= null){
+           IncidenciaDTO incidencia2 = new IncidenciaDTO(actuacion.getIncidencia());
+           this.incidencia = incidencia2; 
+       }
+       else{
+           this.incidencia = null; 
+       }
     }
+    
+    
+    
     /**
-     * Constructor vacio
+     * Convierte esta actuacion en un objeto del tipo entidad
+     * @return la actuacion convertida a entidad
      */
-    public ActuacionDTO(){
+    public ActuacionEntity toEntity(){
+       
+        ActuacionEntity actuacion = new ActuacionEntity();
+        actuacion.setDescripcion(this.descripcion);
+        actuacion.setFecha(this.fecha);
+        actuacion.setTipo(this.tipo);
         
+        if(this.incidencia!= null){
+        actuacion.setIncidencia(this.incidencia.toEntity());
+        }
+        return actuacion;
     }
-
+    
+   
+  
     /**
      * @return the fecha
      */

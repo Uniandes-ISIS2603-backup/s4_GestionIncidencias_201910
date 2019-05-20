@@ -9,7 +9,6 @@ import co.edu.uniandes.csw.incidencias.entities.CalificacionEntity;
 import co.edu.uniandes.csw.incidencias.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.incidencias.entities.EquipoComputoEntity;
 import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
-import co.edu.uniandes.csw.incidencias.entities.PrioridadEntity;
 import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
 import java.io.Serializable;
 
@@ -20,10 +19,31 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": number,
+ *      "name": string,
+ *      "isbn": string,
+ *      "image: string,
+ *      "description": string,
+ *      "publishingdate": date,
+ *      "editorial": {@link EditorialDTO}
+ *   }
+ * </pre> Por ejemplo una editorial se representa asi:<br>
+/**
+ *
  * @author estudiante
  */
+
+
+//-------------------------Revisado y terminado-------------------------
+
 public class IncidenciaDTO implements Serializable{
-    
+    /**
+     * id de la  incidencia
+     */
+    private Long id;
     /**
      * Atributo que representa la fecha de una incidencia
      */
@@ -53,12 +73,16 @@ public class IncidenciaDTO implements Serializable{
      */
     private EmpleadoDTO empleado;
     
+        //Constructor
+    /**
+     * Constructor vacio
+     */
+    public IncidenciaDTO(){
+        
+    }
     
     
-            
-            
-
-    
+     
     //Constructor
     /**
      * Crea una incidencia a partir de un  objeto de tipo entity
@@ -66,7 +90,7 @@ public class IncidenciaDTO implements Serializable{
      */
     public IncidenciaDTO(IncidenciaEntity entity){
         
-        
+        this.id = entity.getId();
         this.fecha = entity.getFecha();
         this.descripcion = entity.getDescripcion();
         this.estado = entity.getEstado();
@@ -102,14 +126,6 @@ public class IncidenciaDTO implements Serializable{
        
     }
     
-    //Constructor
-    /**
-     * Constructor vacio
-     */
-    public IncidenciaDTO(){
-        
-    }
-    
     //TODO: Implementar
     /**
      * Crea un objeto entidad a partir de esta incidencia
@@ -117,6 +133,7 @@ public class IncidenciaDTO implements Serializable{
      */
     public IncidenciaEntity toEntity(){
         IncidenciaEntity incidencia = new IncidenciaEntity();
+        incidencia.setId(getId());
         incidencia.setDescripcion(descripcion);
         incidencia.setFecha(fecha);
         incidencia.setEstado(estado);
@@ -252,13 +269,24 @@ public class IncidenciaDTO implements Serializable{
         this.empleado = empleado;
     }
 
-   
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
 
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
      @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
-    
-   
+
     
 }
