@@ -62,6 +62,16 @@ public class EmpleadoLogic {
         return persistence.find(empleadoID);        
     }
      
+     
+     /**
+     * Encuentra un empleado con el usuario dado por parametro
+     * @param userName El usuario del empleado a buscar
+     * @return Entity del empleado buscado
+     */
+     public EmpleadoEntity getEmpleadoByUserName(String userName) {
+        return persistence.findByUsuario(userName);
+    }
+     
      /**
       * Actualiza un empleado con la inf dad por parametro
       * @param entity Entidad a actualizar

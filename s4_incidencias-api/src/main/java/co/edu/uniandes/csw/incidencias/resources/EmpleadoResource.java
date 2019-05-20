@@ -84,6 +84,16 @@ public class EmpleadoResource {
     }
     
     
+    @GET
+    @Path("users/{username}")
+    public EmpleadoDetailDTO getEmpleadoByName(@PathParam("username") String userName){                 
+        EmpleadoEntity tt = empleadoLogic.getEmpleadoByUserName(userName);
+        if (tt == null) {
+            throw new WebApplicationException("El recurso /empleados/" + userName + NO_EXISTE, 404);
+        }
+        return new EmpleadoDetailDTO(tt);                  
+    }
+    
     /**
      * Encuentra y actualiza el empleado con el JSON entrado pro parametro
      * @return JSONArray {@link EmpleadosDetailDTO} - EL empleado actualizado
