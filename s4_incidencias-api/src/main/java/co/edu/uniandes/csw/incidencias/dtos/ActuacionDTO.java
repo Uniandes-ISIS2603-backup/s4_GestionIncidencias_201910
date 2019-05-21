@@ -11,12 +11,15 @@ import java.io.Serializable;
 
 import java.util.Date;
 
+
+//-------------------------------TERMINADO-------------------------
 /**
  *
  * @author estudiante
  */
 public class ActuacionDTO implements Serializable {
     
+    private Long id;
     /**
      * Atributo  que representa la fecha de la actuacion
      */
@@ -52,6 +55,7 @@ public class ActuacionDTO implements Serializable {
      * @param actuacion, actuacion a partir de la cual se va a crear el DTO 
      */
     public ActuacionDTO(ActuacionEntity actuacion){
+       this.id = actuacion.getId();
        this.fecha = actuacion.getFecha();
        this.descripcion = actuacion.getDescripcion();
        tipo = actuacion.getTipo();
@@ -74,6 +78,7 @@ public class ActuacionDTO implements Serializable {
     public ActuacionEntity toEntity(){
        
         ActuacionEntity actuacion = new ActuacionEntity();
+        actuacion.setId(this.id);
         actuacion.setDescripcion(this.descripcion);
         actuacion.setFecha(this.fecha);
         actuacion.setTipo(this.tipo);
@@ -127,6 +132,21 @@ public class ActuacionDTO implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    
+    /**
+     * @return the Tipo
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param tipo the Tipo to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     
     
 }

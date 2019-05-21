@@ -12,6 +12,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,12 +21,20 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class IncidenciaPersistence {
+    
+    
+    
+    private static final Logger LOGGER = Logger.getLogger(IncidenciaPersistence.class.getName());
+
     /***
      * Atributo  que modela la relacion con el entity manager
      */
     @PersistenceContext(unitName =  "incidenciasPU")
     protected EntityManager em;
     
+    
+   
+
     /**
      * Crea unaa incidencia en la base de datos
      * @param incidenciaEntity, datos de la incidencia
@@ -40,8 +50,10 @@ public class IncidenciaPersistence {
      * @param IncidenciaId, identificador de la incidencia buscada
      * @return la incidencia que encuentra
      */
-      public IncidenciaEntity find(Long IncidenciaId){
-         return em.find(IncidenciaEntity.class,IncidenciaId);
+      public IncidenciaEntity find(Long IncidenciasId){
+          
+         LOGGER.log(Level.INFO, "Consultando el libro con id={0}", IncidenciasId);
+         return em.find(IncidenciaEntity.class,IncidenciasId);
     }
      /**
       * Retorna todas las incidencias de la base de datos

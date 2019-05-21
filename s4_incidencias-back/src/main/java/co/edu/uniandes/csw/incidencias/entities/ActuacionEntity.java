@@ -32,8 +32,6 @@ public class ActuacionEntity extends BaseEntity  implements Serializable {
     @PodamExclude
     @ManyToOne(cascade = CascadeType.PERSIST)
     private IncidenciaEntity incidencia;
-
-    
     
     /**
      * Atributo que modela la descripcion de la actuacion

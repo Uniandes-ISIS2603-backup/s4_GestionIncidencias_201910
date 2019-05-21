@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.incidencias.entities.ActuacionEntity;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.runner.RunWith;
 import co.edu.uniandes.csw.incidencias.entities.DepartamentoEntity;
+import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
 import co.edu.uniandes.csw.incidencias.persistence.ActuacionPersistence;
 import co.edu.uniandes.csw.incidencias.persistence.DepartamentoPersistence;
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
+
+
+//----------------------------Clase terminada-------------------------------------------
 /**
  *
  * @author estudiante
@@ -36,25 +40,35 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class ActuacionPersistenceTest {
     
      @Inject
-    private ActuacionPersistence dp;
-    
+    private ActuacionPersistence actuacionPersistence;
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Inject
     UserTransaction utx;
-    
+
     private List<ActuacionEntity> data = new ArrayList<ActuacionEntity>();
-    
+	
+    private List<IncidenciaEntity> dataInc = new ArrayList<IncidenciaEntity>();
+
+    /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
     @Deployment
-    public static JavaArchive createDeployment() {   
+    public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(ActuacionEntity.class.getPackage())
                 .addPackage(ActuacionPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
+     /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest() {
         try {
@@ -73,80 +87,93 @@ public class ActuacionPersistenceTest {
         }
     }
 
-    private void clearData() {
+      private void clearData() {
         em.createQuery("delete from ActuacionEntity").executeUpdate();
+        em.createQuery("delete from IncidenciaEntity").executeUpdate();
     }
 
-    private void insertData() {
+      private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
+            IncidenciaEntity entity = factory.manufacturePojo(IncidenciaEntity.class);
+            em.persist(entity);
+            dataInc.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
             ActuacionEntity entity = factory.manufacturePojo(ActuacionEntity.class);
+            if (i == 0) {
+                entity.setIncidencia(dataInc.get(0));
+            }
             em.persist(entity);
             data.add(entity);
         }
-    }
-    /**
-     * Test que prueba el metodo crear de las clases de persistencia
+      }
+        
+        
+         /**
+     * Prueba para crear una actuacion.
      */
     @Test
-    public void createActuacionTest() {
+    public void createRActuacionTest() {
+
         PodamFactory factory = new PodamFactoryImpl();
         ActuacionEntity newEntity = factory.manufacturePojo(ActuacionEntity.class);
-        ActuacionEntity de = dp.create(newEntity);
-        Assert.assertNotNull(de);
-       ActuacionEntity entity = em.find(ActuacionEntity.class, de.getId());
+        ActuacionEntity result = actuacionPersistence.create(newEntity);
+
+        Assert.assertNotNull(result);
+
+        ActuacionEntity entity = em.find(ActuacionEntity.class, result.getId());
+
+        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
     }
-     /**
-     * Test que prueba el metodo get de las clases de persistencia
-     */
-    @Test
-    public void findActuacionTest() {
-       ActuacionEntity entity = data.get(0);
-        ActuacionEntity newEntity = dp.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getId(), newEntity.getId());  
-    }
-     /**
-     * Test que prueba el metodo getAll de las clases de persistencia
-     */
-    @Test
-    public void findAllActuacionTest() {
-        List<ActuacionEntity> results = dp.findAll();
-        Assert.assertEquals(data.size(), results.size());
-        for (ActuacionEntity ent : results) {
-            boolean found = false;
-            for (ActuacionEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
-        }   
-    } 
+    
     /**
-     * Test del metodo delete de persistence
+     * Prueba para consultar una actuacion.
      */
-     @Test
-    public void deleteActuacionTest() {
+    @Test
+    public void getReviewTest() {
         ActuacionEntity entity = data.get(0);
-        dp.delete(entity.getId());
+        ActuacionEntity newEntity = actuacionPersistence.find(dataInc.get(0).getId(), entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getTipo(), newEntity.getTipo());
+        Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
+    }
+    
+    
+     /**
+     * Prueba para eliminar un Review.
+     */
+    @Test
+    public void deleteReviewTest() {
+        ActuacionEntity entity = data.get(0);
+        actuacionPersistence.delete(entity.getId());
         ActuacionEntity deleted = em.find(ActuacionEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    /**
-     * Test  del metodo update de persistence
-     */
-    @Test
-    public void updateActuacionTest() {
+    
+     @Test
+    public void updateReviewTest() {
         ActuacionEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         ActuacionEntity newEntity = factory.manufacturePojo(ActuacionEntity.class);
+
         newEntity.setId(entity.getId());
-        dp.update(newEntity);
+
+        actuacionPersistence.update(newEntity);
+
         ActuacionEntity resp = em.find(ActuacionEntity.class, entity.getId());
+
         Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getTipo(), resp.getTipo());
+         Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
     }
+        
+        
     
-   
+      
+      
+    
 }

@@ -34,16 +34,7 @@ public class IncidenciaLogic {
      */
     private ArrayList<ActuacionEntity> listaActuaciones = new ArrayList();
    
-    /**
-     * Agrega una actuacion a la lista de actuaciones de la inidencia actual
-     * @param act, la actuacion que se quiere agregar a la incidencia
-     * @throws BusinessLogicException 
-     */
-    public void addActuacion(ActuacionEntity act ) throws BusinessLogicException{
-       listaActuaciones.add(act); 
-       actLogic.createActuacion(act);
-    }
-    
+  
     /**
      * Crea una  incidencia a partir de un objeto entity
      * @param incidencia, objeto entity  a partir del cual se crea la actuacion
