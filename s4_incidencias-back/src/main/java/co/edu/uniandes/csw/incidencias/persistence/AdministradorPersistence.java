@@ -54,7 +54,7 @@ public class AdministradorPersistence extends UsuarioPersistence
     
      public AdministradorEntity findByCedula(String cedula)
      {
-        TypedQuery query = em.createQuery("SELECT e FROM AministradorEntity e WHERE e.cedula = :nombre", AdministradorEntity.class);
+        TypedQuery query = em.createQuery("SELECT e FROM AdministradorEntity e WHERE e.cedula = :nombre", AdministradorEntity.class);
         query = query.setParameter("nombre", cedula);
         List<AdministradorEntity> sameName = query.getResultList();
         
