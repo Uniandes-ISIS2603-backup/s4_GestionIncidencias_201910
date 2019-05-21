@@ -23,8 +23,9 @@ public class EquipoComputoLogic {
     private EquipoComputoPersistence persistence;
     
     public EquipoComputoEntity createEquipoComputo(EquipoComputoEntity equipoComputoEntity) throws BusinessLogicException{
-        if (persistence.findById(equipoComputoEntity.getIdEquipo()) != null) {
-             throw new BusinessLogicException("Ya existe un EquipoComputo con el id de equipo\"" + equipoComputoEntity.getIdEquipo()+ "\"");
+        if (persistence.findById(equipoComputoEntity.getId()) != null)
+        {
+             throw new BusinessLogicException("Ya existe un EquipoComputo con el id de equipo\"" + equipoComputoEntity.getId()+ "\"");
         }
         equipoComputoEntity = persistence.create(equipoComputoEntity);
         return equipoComputoEntity;

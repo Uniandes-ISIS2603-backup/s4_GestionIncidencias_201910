@@ -67,7 +67,7 @@ public class EquipoComputoResource {
         LOGGER.log(Level.INFO, "EquipoComputoResource getEquipoComputo: input: {0}", equipoComputosId);
         EquipoComputoEntity equipoComputoEntity = equipoComputoLogic.getEquipoComputo(equipoComputosId);
         if (equipoComputoEntity == null) {
-            throw new WebApplicationException("El recurso /equipoComputos/" + equipoComputosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /equipos/" + equipoComputosId + " no existe.", 404);
         }
         EquipoComputoDTO equipoComputoDetailDTO = new EquipoComputoDTO(equipoComputoEntity);
         LOGGER.log(Level.INFO, "EquipoComputoResource getEquipoComputo: output: {0}", equipoComputoDetailDTO);

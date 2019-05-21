@@ -50,7 +50,7 @@ public class EquipoComputoPersistenceTest {
 
         EquipoComputoEntity entity = em.find(EquipoComputoEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getIdEquipo(), entity.getIdEquipo());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
     }
     
@@ -60,7 +60,7 @@ public class EquipoComputoPersistenceTest {
         EquipoComputoEntity newEntity = factory.manufacturePojo(EquipoComputoEntity.class);
         EquipoComputoEntity result = calificacionPersistence.create(newEntity);
         result.setDescripcion("prueba");
-        result.setIdEquipo(2);
+        result.setId(result.getId());
         calificacionPersistence.update(result);
 
         EquipoComputoEntity entity = em.find(EquipoComputoEntity.class, result.getId());

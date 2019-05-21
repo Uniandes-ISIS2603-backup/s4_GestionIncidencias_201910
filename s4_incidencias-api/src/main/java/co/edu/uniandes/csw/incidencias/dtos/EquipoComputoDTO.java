@@ -13,7 +13,6 @@ import co.edu.uniandes.csw.incidencias.entities.EquipoComputoEntity;
  */
 public class EquipoComputoDTO {
     private Long id;
-    private Integer idEquipo;
     private String descripcion;
 
     
@@ -26,31 +25,20 @@ public class EquipoComputoDTO {
     {
         if(equipo != null)
         {
-            this.idEquipo = equipo.getIdEquipo();
+            this.id = equipo.getId();
             this.descripcion = equipo.getDescripcion();
         }
                 
-    }
-    /**
-     * @return the idEquipo
-     */
-    public Integer getIdEquipo() {
-        return idEquipo;
     }
 
     public EquipoComputoEntity toEntity()
     {
         EquipoComputoEntity equipoComputoEntity = new EquipoComputoEntity();
-        equipoComputoEntity.setIdEquipo(this.idEquipo);
+        equipoComputoEntity.setId(this.id);
         equipoComputoEntity.setDescripcion(this.descripcion);
         return equipoComputoEntity;
     }
-    /**
-     * @param idEquipo the idEquipo to set
-     */
-    public void setIdEquipo(Integer idEquipo) {
-        this.idEquipo = idEquipo;
-    }
+
 
     /**
      * @return the descripcion

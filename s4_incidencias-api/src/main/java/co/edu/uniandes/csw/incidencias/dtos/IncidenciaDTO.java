@@ -103,7 +103,7 @@ public class IncidenciaDTO implements Serializable{
         
         EquipoComputoDTO equipo = new EquipoComputoDTO();
         equipo.setDescripcion(entity.getEquipoComputo().getDescripcion());
-        equipo.setIdEquipo(entity.getEquipoComputo().getIdEquipo());
+        equipo.setId(entity.getEquipoComputo().getId());
         equipoComputo = equipo;
         
         TecnicoDTO tecnico1 = new TecnicoDTO();
@@ -145,7 +145,7 @@ public class IncidenciaDTO implements Serializable{
         
         EquipoComputoEntity equipo = new EquipoComputoEntity();
         equipo.setDescripcion(this.getEquipoComputo().getDescripcion());
-        equipo.setIdEquipo(this.getEquipoComputo().getIdEquipo());
+        equipo.setId(this.getEquipoComputo().getId());
         incidencia.setEquipoComputo(equipo);
         
         TecnicoEntity tecnico1 = new TecnicoEntity();

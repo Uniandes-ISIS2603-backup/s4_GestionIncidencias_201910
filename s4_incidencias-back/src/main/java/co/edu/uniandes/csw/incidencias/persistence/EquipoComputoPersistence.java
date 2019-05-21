@@ -35,8 +35,8 @@ public class EquipoComputoPersistence {
         return query.getResultList();
     }
 
-    public EquipoComputoEntity findById(Integer idEquipo) {
-        TypedQuery<EquipoComputoEntity> query = em.createQuery("Select e from EquipoComputoEntity e where e.idEquipo = :idEquipo",EquipoComputoEntity.class);
+    public EquipoComputoEntity findById(Long idEquipo) {
+        TypedQuery<EquipoComputoEntity> query = em.createQuery("Select e from EquipoComputoEntity e where e.id = :idEquipo",EquipoComputoEntity.class);
         query = query.setParameter("idEquipo", idEquipo);
         List<EquipoComputoEntity> sameId = query.getResultList();
         EquipoComputoEntity result;

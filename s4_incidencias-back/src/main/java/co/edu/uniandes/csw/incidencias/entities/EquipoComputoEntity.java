@@ -14,22 +14,7 @@ import javax.persistence.Entity;
  */
 @Entity
 public class EquipoComputoEntity extends BaseEntity implements Serializable {
-    private Integer idEquipo;
     private String descripcion;
-
-    /**
-     * @return the idEquipo
-     */
-    public Integer getIdEquipo() {
-        return idEquipo;
-    }
-
-    /**
-     * @param idEquipo the idEquipo to set
-     */
-    public void setIdEquipo(Integer idEquipo) {
-        this.idEquipo = idEquipo;
-    }
 
     /**
      * @return the descripcion

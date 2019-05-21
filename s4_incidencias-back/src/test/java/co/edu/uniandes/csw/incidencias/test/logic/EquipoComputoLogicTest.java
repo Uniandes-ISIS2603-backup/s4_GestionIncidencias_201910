@@ -98,7 +98,7 @@ public class EquipoComputoLogicTest {
     @Test(expected = BusinessLogicException.class)
     public void createEquipoComputoConMismoIdEquipo() throws BusinessLogicException {
         EquipoComputoEntity newEntity = factory.manufacturePojo(EquipoComputoEntity.class);
-        newEntity.setIdEquipo(data.get(0).getIdEquipo());
+        newEntity.setId(data.get(0).getId());
         equipoComputoLogic.createEquipoComputo(newEntity);
     }
     
