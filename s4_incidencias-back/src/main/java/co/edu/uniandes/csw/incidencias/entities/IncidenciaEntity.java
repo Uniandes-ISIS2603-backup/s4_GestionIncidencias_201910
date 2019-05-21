@@ -43,9 +43,6 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
     @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
     private EmpleadoEntity empleado;
     
-    
-    
-    
     /**
      * Atribto que modela el estado de una incidencia
      */

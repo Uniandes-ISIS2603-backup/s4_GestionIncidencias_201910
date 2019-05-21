@@ -133,7 +133,7 @@ public class ActuacionPersistenceTest {
      * Prueba para consultar una actuacion.
      */
     @Test
-    public void getReviewTest() {
+    public void getActuacionTest() {
         ActuacionEntity entity = data.get(0);
         ActuacionEntity newEntity = actuacionPersistence.find(dataInc.get(0).getId(), entity.getId());
         Assert.assertNotNull(newEntity);
@@ -147,7 +147,7 @@ public class ActuacionPersistenceTest {
      * Prueba para eliminar un Review.
      */
     @Test
-    public void deleteReviewTest() {
+    public void deleteActuacionTest() {
         ActuacionEntity entity = data.get(0);
         actuacionPersistence.delete(entity.getId());
         ActuacionEntity deleted = em.find(ActuacionEntity.class, entity.getId());
@@ -155,7 +155,7 @@ public class ActuacionPersistenceTest {
     }
     
      @Test
-    public void updateReviewTest() {
+    public void updateActuacionTest() {
         ActuacionEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         ActuacionEntity newEntity = factory.manufacturePojo(ActuacionEntity.class);
