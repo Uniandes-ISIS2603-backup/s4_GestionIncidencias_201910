@@ -11,10 +11,9 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javax.persistence.Query;
 /**
  *
  * @author Lobaton
@@ -33,51 +32,66 @@ public class IncidenciaPersistence {
     protected EntityManager em;
     
     
-   
-
     /**
-     * Crea unaa incidencia en la base de datos
-     * @param incidenciaEntity, datos de la incidencia
-     * @return la incidencia creada
+     * Crea una incidencia
+     * @param incidenciaEntity
+     * @return 
      */
-    public IncidenciaEntity create(IncidenciaEntity incidenciaEntity){
-        
+     public IncidenciaEntity create(IncidenciaEntity incidenciaEntity) {
+        LOGGER.log(Level.INFO, "Creando una incidencia nueva");
         em.persist(incidenciaEntity);
+        LOGGER.log(Level.INFO, "Incidencia creada");
         return incidenciaEntity;
     }
     /**
-     * Encuentra una incidencia y la retorna
-     * @param IncidenciaId, identificador de la incidencia buscada
-     * @return la incidencia que encuentra
+     * Devuelve todas las incidencias de la base de datos.
+     *
+     * @return una lista con todos los libros que encuentre en la base de datos,
+     * "select u from BookEntity u" es como un "select * from BookEntity;" -
+     * "SELECT * FROM table_name" en SQL.
      */
-      public IncidenciaEntity find(Long IncidenciasId){
-          
-         LOGGER.log(Level.INFO, "Consultando el libro con id={0}", IncidenciasId);
-         return em.find(IncidenciaEntity.class,IncidenciasId);
+    public List<IncidenciaEntity> findAll() {
+        LOGGER.log(Level.INFO, "Consultando todas las incidencias");
+        Query q = em.createQuery("select u from IncidenciaEntity u");
+        return q.getResultList();
+    }
+    /**
+     * Busca si hay alguna incidencia con el id que se envía de argumento
+     *
+     * @param IncidenciasId: id correspondiente al libro buscado.
+     * @return un libro.
+     */
+    public IncidenciaEntity find(Long IncidenciasId) {
+        LOGGER.log(Level.INFO, "Consultando la incidencia con id={0}", IncidenciasId);
+        return em.find(IncidenciaEntity.class, IncidenciasId);
     }
      /**
-      * Retorna todas las incidencias de la base de datos
-      * @return 
-      */
-     public List<IncidenciaEntity> findAll() {
-        TypedQuery <IncidenciaEntity> query = em.createQuery("select u from IncidenciaEntity u", IncidenciaEntity.class);
-        return query.getResultList();
-    }
-     /**
-      * Actualiza un a incidencia 
-      * @param incidenciaEntity, informacion  ha actualizar
-      * @return 
-      */
-         public IncidenciaEntity update(IncidenciaEntity incidenciaEntity) {
+     * Actualiza un libro.
+     *
+     * @param incidenciaEntity: la incidencia que viene con los nuevos cambios. Por ejemplo
+     * el nombre pudo cambiar. En ese caso, se haria uso del método update.
+     * @return un libro con los cambios aplicados.
+     */
+    public IncidenciaEntity update(IncidenciaEntity incidenciaEntity) {
+        LOGGER.log(Level.INFO, "Actualizando la incidencia con id={0}", incidenciaEntity.getId());
         return em.merge(incidenciaEntity);
     }
-    
      /**
-      * Borra una incidencia d ela base de datos
-      * @param incidenciaId, identificador de la incidencia aborrar
-      */
+     *
+     * Borra un libro de la base de datos recibiendo como argumento el id del
+     * libro
+     *
+     * @param incidenciaId: id correspondiente al libro a borrar.
+     */
     public void delete(Long incidenciaId) {
-        IncidenciaEntity entity = em.find(IncidenciaEntity.class, incidenciaId);
-        em.remove(entity);
+        LOGGER.log(Level.INFO, "Borrando  la incidencia con id={0}", incidenciaId);
+       IncidenciaEntity bookEntity = em.find(IncidenciaEntity.class, incidenciaId);
+        em.remove(bookEntity);
     }
+
+   
+    //Acá el metodo  que saca todas las incidencias por el  id de empleado ---- pendiente
+    
+    
+    
 }

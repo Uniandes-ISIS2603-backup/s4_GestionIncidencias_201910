@@ -46,22 +46,31 @@ public class IncidenciaPersistenceTest {
     
     private  List<IncidenciaEntity> data = new ArrayList ();
     
+   
+    /**
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
     @Deployment
-    public static JavaArchive createDeployment() {   
+    public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(IncidenciaEntity.class.getPackage())
                 .addPackage(IncidenciaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
+     /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest() {
         try {
             utx.begin();
             em.joinTransaction();
             clearData();
-           
+            insertData();
             utx.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,87 +81,115 @@ public class IncidenciaPersistenceTest {
             }
         }
     }
-
+    
+    
+        /**
+     * Limpia las tablas que están implicadas en la prueba.
+     */
     private void clearData() {
-        em.createQuery("delete from IncidenciaEntityntity").executeUpdate();
+        em.createQuery("delete from IncidenciaEntity").executeUpdate();
     }
-
-
     
-    @Test
+     /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     */
+    private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            IncidenciaEntity entity = factory.manufacturePojo(IncidenciaEntity.class);
+
+            em.persist(entity);
+            data.add(entity);
+        }
+    }
+    /**
+     * 
+     */
+   @Test
     public void createIncidenciaTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-       IncidenciaEntity newEntity = factory.manufacturePojo(IncidenciaEntity.class);
-       IncidenciaEntity de = dp.create(newEntity);
-        Assert.assertNotNull(de);
-        IncidenciaEntity entity = em.find(IncidenciaEntity.class, de.getId());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-    }
-    /**
-     * test para probar el metodo  get 
-     */
-    @Test
-    public void findIncidenciaTest() {
-        
-       PodamFactory factory = new PodamFactoryImpl();
-       IncidenciaEntity newEntity = factory.manufacturePojo(IncidenciaEntity.class);
-       IncidenciaEntity e = dp.create(newEntity);
-         
-       IncidenciaEntity newEntity2 = factory.manufacturePojo(IncidenciaEntity.class);
-       IncidenciaEntity e2 = dp.create(newEntity2);
-       
-       Assert.assertNotNull(e);
-       IncidenciaEntity u = em.find(IncidenciaEntity.class, e.getId());
-       Assert.assertEquals(e,u);
-       
-       
-    }
-    
-    /**
-     * Test para probar el  metodo getAll de la clase de persistencia
-     */
-    @Test
-    public void findAllIncidenciaTest() {
-       
-      
-       
-       List lista = dp.findAll();
-              
-            
-            Assert.assertEquals(4,lista.size());
-        }   
-     
-    /**
-     * Test para probar el metodo delete de la clase de persistencia
-     */
-    @Test
-    public void deleteIncidenciaTest() {
-        
-        PodamFactory factory = new PodamFactoryImpl();
-        IncidenciaEntity newEntity2 = factory.manufacturePojo(IncidenciaEntity.class);
-        IncidenciaEntity e2 = dp.create(newEntity2);
-        List lista = dp.findAll();
-        
-        Assert.assertEquals(3, lista.size());
-        dp.delete(e2.getId());
-        
-        List lista2 = dp.findAll();
-        Assert.assertEquals(2, lista2.size());
-    }
-    /**
-     * Metodo para probar el metodo update de la clase de persistencia
-     */
-    @Test
-    public void updateIncidenciaTest() {
-        
         PodamFactory factory = new PodamFactoryImpl();
         IncidenciaEntity newEntity = factory.manufacturePojo(IncidenciaEntity.class);
        
-        IncidenciaEntity e2 = dp.create(newEntity);
-        newEntity.setDescripcion("hola");
-        dp.update(newEntity);
-        
-        Assert.assertEquals(newEntity.getDescripcion(), "hola");
+     
+        IncidenciaEntity result = dp.create(newEntity);
+
+        Assert.assertNotNull(result);
+
+        IncidenciaEntity entity = em.find(IncidenciaEntity.class, result.getId());
+
+        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+        Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
+    } 
+    
+    
+     /**
+     * Prueba para consultar la lista de Books.
+     */
+    @Test
+    public void getIncidenciasTest() {
+        List<IncidenciaEntity> list = dp.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (IncidenciaEntity ent : list) {
+            boolean found = false;
+            for (IncidenciaEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
     }
+    
+    /**
+     * Prueba para consultar un Book.
+     */
+    @Test
+    public void getIncidenciaTest() {
+        IncidenciaEntity entity = data.get(0);
+        IncidenciaEntity newEntity = dp.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        
+        Assert.assertEquals(entity.getActuaciones(), newEntity.getActuaciones());
+        Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getPrioridad(), newEntity.getPrioridad());
+    }
+
+     /**
+     * Prueba para eliminar un Book.
+     */
+    @Test
+    public void deleteIncidenciaTest() {
+        IncidenciaEntity entity = data.get(0);
+        dp.delete(entity.getId());
+        IncidenciaEntity deleted = em.find(IncidenciaEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+     /**
+     * Prueba para actualizar un Book.
+     */
+    @Test
+    public void updateIncidenciaTest() {
+        IncidenciaEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        IncidenciaEntity newEntity = factory.manufacturePojo(IncidenciaEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        dp.update(newEntity);
+
+        IncidenciaEntity resp = em.find(IncidenciaEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getCalificacion(), resp.getCalificacion());
+        Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
+        Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getPrioridad(), resp.getPrioridad());
+    }
+
+    
     
 }

@@ -72,7 +72,10 @@ public class IncidenciaDTO implements Serializable{
      * Atributo que representa el empleado que reporta  una incidencia
      */
     private EmpleadoDTO empleado;
-    
+    /**
+     * prioridad de la incidencia, a que se debe de incluir el sla
+     */
+    private String prioridad;
         //Constructor
     /**
      * Constructor vacio
@@ -94,7 +97,7 @@ public class IncidenciaDTO implements Serializable{
         this.fecha = entity.getFecha();
         this.descripcion = entity.getDescripcion();
         this.estado = entity.getEstado();
-        
+        this.prioridad = entity.getPrioridad();
         
         CalificacionDTO calificacion2 = new CalificacionDTO();
         calificacion2.setDescripcion(entity.getCalificacion().getDescripcion());
@@ -132,13 +135,16 @@ public class IncidenciaDTO implements Serializable{
      * @return un objeto de tipo entity
      */
     public IncidenciaEntity toEntity(){
+        
         IncidenciaEntity incidencia = new IncidenciaEntity();
         incidencia.setId(getId());
         incidencia.setDescripcion(descripcion);
         incidencia.setFecha(fecha);
         incidencia.setEstado(estado);
+        incidencia.setPrioridad(prioridad);
         
-          CalificacionEntity calificacion2 = new CalificacionEntity();
+        
+        CalificacionEntity calificacion2 = new CalificacionEntity();
         calificacion2.setDescripcion(this.getCalificacion().getDescripcion());
         calificacion2.setNumeroEst(this.getCalificacion().getNumeroEst());
         incidencia.setCalificacion(calificacion2);
@@ -162,7 +168,8 @@ public class IncidenciaDTO implements Serializable{
         empleado1.setPassword(this.getEmpleado().getPassword());
         empleado1.setUsuario(this.getEmpleado().getUsuario());
        empleado1.setId(this.getEmpleado().getId());
-       incidencia.settEmpleado(empleado1);
+ 
+       incidencia.setEmpleado(empleado1);
        
         
         

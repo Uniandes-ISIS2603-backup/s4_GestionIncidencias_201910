@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.incidencias.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -36,48 +37,49 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
      * Atribto que modela la descricion de una incidencia
      */
     private String descripcion;
-      /**
-     * Atribto que modela el empleado que reporto la incidencia
-     */
-    @PodamExclude
-    @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
-    private EmpleadoEntity empleado;
-    
-    /**
+     /**
      * Atribto que modela el estado de una incidencia
      */
      private String estado;
      /**
+     * Atribto que modela la prioridad de una incidencia, debe contener el sla
+     */
+    private String prioridad;
+    
+    /**
+     * Atribto que modela el empleado que reporto la incidencia
+     */
+    @PodamExclude
+    @ManyToOne 
+    private EmpleadoEntity empleado;
+     
+    /**
      * Atribto que modela la calificacion de una incidencia
      */
-   @PodamExclude
-    @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
+    @PodamExclude
+    @OneToOne 
     private CalificacionEntity calificacion;
+   
      /**
      * Atribto que modela el equipo de computoque presenta una incidencia
      */
-   @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
+   @OneToOne ( cascade = CascadeType.PERSIST)
     private EquipoComputoEntity equipoComputo;
      /**
      * Atribto que modela el tecnico que atiende la incidencia
      */
- 
    @PodamExclude
-    @ManyToOne (cascade = CascadeType.PERSIST,  fetch = javax.persistence.FetchType.LAZY)
+    @ManyToOne 
     private TecnicoEntity  tecnico;
-      /**
-     * Atribto que modela la prioridad de una incidencia
-     */
-    @PodamExclude
-    @OneToOne (cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = javax.persistence.FetchType.LAZY)
-    private PrioridadEntity  prioridad;
+   
       /**
      * Atribto que modela la lista de actuaciones de una incidencia
      */
     @PodamExclude 
-    @OneToMany (cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy= "incidencia" , fetch = javax.persistence.FetchType.LAZY)
-    private ArrayList<ActuacionEntity> actuaciones;
+    @OneToMany ( mappedBy= "incidencia" , cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<ActuacionEntity> actuaciones = new ArrayList<ActuacionEntity>();
 
+    
     /**
      * @return the fecha
      */
@@ -105,13 +107,6 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    public EmpleadoEntity getEmpleado(){
-        return empleado;
-    }
-    public void settEmpleado(EmpleadoEntity empleado){
-        this.empleado=empleado;
-    }
 
     /**
      * @return the estado
@@ -127,7 +122,33 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
         this.estado = estado;
     }
 
-   
+    /**
+     * @return the prioridad
+     */
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    /**
+     * @param prioridad the prioridad to set
+     */
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    /**
+     * @return the empleado
+     */
+    public EmpleadoEntity getEmpleado() {
+        return empleado;
+    }
+
+    /**
+     * @param empleado the empleado to set
+     */
+    public void setEmpleado(EmpleadoEntity empleado) {
+        this.empleado = empleado;
+    }
 
     /**
      * @return the calificacion
@@ -172,30 +193,19 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
     }
 
     /**
-     * @return the prioridad
-     */
-    public PrioridadEntity getPrioridad() {
-        return prioridad;
-    }
-
-    /**
-     * @param prioridad the prioridad to set
-     */
-    public void setPrioridad(PrioridadEntity prioridad) {
-        this.prioridad = prioridad;
-    }
-
-    /**
      * @return the actuaciones
      */
-    public ArrayList<ActuacionEntity> getActuaciones() {
+    public List<ActuacionEntity> getActuaciones() {
         return actuaciones;
     }
 
     /**
      * @param actuaciones the actuaciones to set
      */
-    public void setActuaciones(ArrayList<ActuacionEntity> actuaciones) {
+    public void setActuaciones(List<ActuacionEntity> actuaciones) {
         this.actuaciones = actuaciones;
     }
+
+    
+    
 }

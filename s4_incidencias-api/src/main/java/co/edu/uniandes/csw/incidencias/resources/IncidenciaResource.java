@@ -10,7 +10,9 @@ import co.edu.uniandes.csw.incidencias.dtos.IncidenciaDetailDTO;
 import co.edu.uniandes.csw.incidencias.ejb.IncidenciaLogic;
 import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -22,6 +24,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author estudiante
@@ -32,67 +36,105 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class IncidenciaResource {
     
+    
+    
        //transforma a DTO
 private final static Logger LOGGER = Logger.getLogger(IncidenciaResource.class.getName());
+
 @Inject
 private  IncidenciaLogic logic;  
 
-    /**
-     * Crea una incidencia a partir del JSON que entra como parametro
-     * @param incidencia JSON a partir del cual se crea la incidencia
-     * @return una incidencia despues de haberla creado en la base de datos
-     * @throws BusinessLogicException en caso de que se rompa una regla de negocio
-     */
+  /**
+   * 
+   * @param incidencia
+   * @return
+   * @throws BusinessLogicException 
+   */
     @POST
-    public IncidenciaDTO createIncidenciaDTO(IncidenciaDTO incidencia) throws BusinessLogicException{
-        IncidenciaEntity incidenciaEntity = incidencia.toEntity();
-       logic.createIncidencia(incidenciaEntity);
-        return new IncidenciaDTO(incidenciaEntity);
+    public IncidenciaDTO createIncidencia(IncidenciaDTO incidencia) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "BookResource createBook: input: {0}", incidencia);
+        IncidenciaDTO nuevoBookDTO = new IncidenciaDTO(logic.createIncidencia(incidencia.toEntity()));
+        LOGGER.log(Level.INFO, "IncidenciaResource createIncidencia: output: {0}", nuevoBookDTO);
+        return nuevoBookDTO;
     }
+
+    
     /**
-     * Obtiene  la incidencia que tiene asociado el  id que entra por parametro
-     * @param id identifiador de la incidencia
-     * @return la incidencia que tien  el id asociado
+     * 
+     * @return 
      */
     @GET
-    @Path("{id: \\d+}")
-    public IncidenciaDTO getIncidenciaDTO(@PathParam ("id")Long id){
-        IncidenciaEntity incidenciaEntity = logic.getIncidencia(id);        
-        if(incidenciaEntity == null){
-            throw new WebApplicationException("El recuerso /incidencias/" + id + "no existe", 404);
-        }
-        return new IncidenciaDetailDTO(incidenciaEntity);
-    } 
-    /**
-     * elimina la incidencia identificada con el id que entra por parametro
-     * @param id identificador de la idencia que se desea eliminar
-     * @throws BusinessLogicException si se incumple una de las reglas del  negocio
-     */
-    @DELETE
-    @Path("{id: \\d+}")
-    public void deleteIncidencia(@PathParam("id") Long id) throws BusinessLogicException {
-
-        IncidenciaEntity entity = logic.getIncidencia(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /Incidencias/" + id + "No existe", 404);
-        }        
-       logic.deleteIncidencia(id);
+    public List<IncidenciaDetailDTO> getIncidencias() {
+        LOGGER.info("IncidenciaResource getIncidencias: input: void");
+        
+        List<IncidenciaDetailDTO> listaBooks = listEntity2DetailDTO(logic.getIncidencias());
+        LOGGER.log(Level.INFO, "IncidenciaResource getIncidencias: output: {0}", listaBooks);
+        return listaBooks;
     }
     /**
-     * Actualiza a incidencia dado por parametro con el JSON dado por parametro
-     * @param id de la incidencia a actualizar
-     * @param incidencia (JSON) con la info actualizada
-     * @return incidencia actualizado
+     * 
+     * @param IncidenciaId
+     * @return 
+     */
+    @GET
+    @Path("{IncidenciaId: \\d+}")
+    public IncidenciaDetailDTO getIncidencia(@PathParam("IncidenciaId") Long IncidenciaId) {
+        LOGGER.log(Level.INFO, "IncidenciaResource getIncidencia: input: {0}", IncidenciaId);
+        IncidenciaEntity incidenciaEntity = logic.getIncidencia(IncidenciaId);
+        if (incidenciaEntity == null) {
+            throw new WebApplicationException("El recurso /books/" + IncidenciaId + " no existe.", 404);
+        }
+        IncidenciaDetailDTO bookDetailDTO = new IncidenciaDetailDTO(incidenciaEntity);
+        LOGGER.log(Level.INFO, "IncidenciaResource getIncidencia: output: {0}", bookDetailDTO);
+        return bookDetailDTO;
+    }
+   /**
+    * Actualiza una incidencia
+    * @param IncidenciaId
+    * @param incidencia
+    * @return
+    * @throws BusinessLogicException 
+    */
+     @PUT
+    @Path("{IncidenciaId: \\d+}")
+    public IncidenciaDetailDTO updateBook(@PathParam("IncidenciaId") Long IncidenciaId, IncidenciaDetailDTO incidencia) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "IncidenciaResource updateIncidencias: input: id: {0} , book: {1}", new Object[]{IncidenciaId, incidencia});
+        incidencia.setId(IncidenciaId);
+        if (logic.getIncidencia(IncidenciaId) == null) {
+            throw new WebApplicationException("El recurso /books/" + IncidenciaId + " no existe.", 404);
+        }
+        IncidenciaDetailDTO detailDTO = new IncidenciaDetailDTO(logic.updateIncidencia(IncidenciaId, incidencia.toEntity()));
+        LOGGER.log(Level.INFO, "IncidenciaResource updateIncidencia: output: {0}", detailDTO);
+        return detailDTO;
+    }
+    /**
+     * 
+     * @param booksId
      * @throws BusinessLogicException 
      */
-    @PUT
-    @Path("{id: \\d+}")
-    public IncidenciaDTO updateTecnico(@PathParam("id") Long id, IncidenciaDTO actuacion) throws BusinessLogicException {
-        
-        if (logic.getIncidencia(id) == null) {
-            throw new WebApplicationException("El recurso /Incidencias/" + id + "no existe", 404);
-        }        
-        return  new IncidenciaDTO(logic.updateIncidencia( actuacion.toEntity()));        
+    @DELETE
+    @Path("{IncidenciasId: \\d+}")
+    public void deleteBook(@PathParam("IncidenciasId") Long IncidenciasId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "IncidenciaResource deleteIncidencia: input: {0}", IncidenciasId);
+        IncidenciaEntity entity = logic.getIncidencia(IncidenciasId);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /Incidencias/" + IncidenciasId + " no existe.", 404);
+        }
+        logic.deleteIncidencia(IncidenciasId);
+        LOGGER.info("IncidenciaResource deleteIncidencia: output: void");
     }
     
+
+    /**
+     * 
+     * @param entityList
+     * @return 
+     */
+    private List<IncidenciaDetailDTO> listEntity2DetailDTO(List<IncidenciaEntity> entityList) {
+        List<IncidenciaDetailDTO> list = new ArrayList<>();
+        for (IncidenciaEntity entity : entityList) {
+            list.add(new IncidenciaDetailDTO(entity));
+        }
+        return list;
+    }
 }
