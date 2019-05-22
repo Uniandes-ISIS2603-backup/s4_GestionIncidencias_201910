@@ -31,21 +31,18 @@ public class UbicacionLogic {
     }
     
     public List<UbicacionEntity> getUbicacions() {
-        List<UbicacionEntity> ubicaciones = persistence.findAll();
-        return ubicaciones;
+        return persistence.findAll();
     }
 
     public UbicacionEntity getUbicacion(Long ubicacionId) {
-        UbicacionEntity ubicacionEntity = persistence.find(ubicacionId);
-        return ubicacionEntity;
+        return persistence.find(ubicacionId);
     }
 
-    public UbicacionEntity updateUbicacion(Long ubicacionId, UbicacionEntity ubicacionEntity) {
-        UbicacionEntity newEntity = persistence.update(ubicacionEntity);
-        return newEntity;
+    public UbicacionEntity updateUbicacion(UbicacionEntity ubicacionEntity) {
+        return  persistence.update(ubicacionEntity);
     }
 
-    public void deleteUbicacion(Long ubicacionId) throws BusinessLogicException {
+    public void deleteUbicacion(Long ubicacionId){
         persistence.delete(ubicacionId);
     }
 }

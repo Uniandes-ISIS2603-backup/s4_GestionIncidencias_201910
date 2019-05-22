@@ -131,7 +131,7 @@ public class UbicacionLogicTest {
         UbicacionEntity entity = data.get(0);
         UbicacionEntity pojoEntity = factory.manufacturePojo(UbicacionEntity.class);
         pojoEntity.setId(entity.getId());
-        ubicacionLogic.updateUbicacion(pojoEntity.getId(), pojoEntity);
+        ubicacionLogic.updateUbicacion( pojoEntity);
         UbicacionEntity resp = em.find(UbicacionEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
