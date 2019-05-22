@@ -70,7 +70,7 @@ public class ActuacionLogic {
      * @return 
      */
      public ActuacionEntity getActuacion(Long incidenciasId, Long actuacionesId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar la actuacion con id = {0} de la incidencia con id = " + incidenciasId, actuacionesId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar la actuacion con id = {0} ");
         return actuacion.find(incidenciasId, actuacionesId);
     }
     /**
@@ -80,21 +80,21 @@ public class ActuacionLogic {
      * @throws BusinessLogicException 
      */
      public void deleteActuacion(Long incidenciasId, Long actuacionesId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar la actuacion con id = {0} de la incidencia con id = " + incidenciasId, actuacionesId);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la actuacion con id = {0} ");
        ActuacionEntity old = getActuacion(incidenciasId, actuacionesId);
         if (old == null) {
             throw new BusinessLogicException("El review con id = " + actuacionesId + " no esta asociado a el libro con id = " + incidenciasId);
         }
         actuacion.delete(old.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar la actuacion con id = {0} de la incidencia con id= " + incidenciasId, actuacionesId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la actuacion con id = {0}");
     }
   
    public ActuacionEntity updateActuacion(Long incidenciasId, ActuacionEntity actuacionesId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la actuacion  con id = {0} de la incidencia con id = " + incidenciasId, actuacionesId.getId());
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la actuacion  con id = {0} ");
         IncidenciaEntity bookEntity = incidencia.find(incidenciasId);
         actuacionesId.setIncidencia(bookEntity);
         actuacion.update(actuacionesId);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar la actuacion  con id = {0} de la incidencia con id = " + incidenciasId, actuacionesId.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la actuacion  con id = {0} " );
         return actuacionesId;
     }
 
