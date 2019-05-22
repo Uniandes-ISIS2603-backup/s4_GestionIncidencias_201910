@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.incidencias.persistence;
 
 import co.edu.uniandes.csw.incidencias.entities.ActuacionEntity;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -58,13 +57,13 @@ public class ActuacionPersistence {
      
      /**
       * 
-      * @param ActuacionesId 
+      * @param actuacionesId 
       */
-    public void delete(Long ActuacionesId) {
-        LOGGER.log(Level.INFO, "Borrando actuacion con id = {0}", ActuacionesId);
-        ActuacionEntity actuacionEntity = em.find(ActuacionEntity.class, ActuacionesId);
+    public void delete(Long actuacionesId) {
+        LOGGER.log(Level.INFO, "Borrando actuacion con id = {0}", actuacionesId);
+        ActuacionEntity actuacionEntity = em.find(ActuacionEntity.class, actuacionesId);
         em.remove(actuacionEntity);
-        LOGGER.log(Level.INFO, "Saliendo de borrar la actuacion con id = {0}", ActuacionesId);
+        LOGGER.log(Level.INFO, "Saliendo de borrar la actuacion con id = {0}", actuacionesId);
     }
 
 
@@ -80,22 +79,18 @@ public class ActuacionPersistence {
 
 
 
-        public ActuacionEntity find(Long IncidenciaId, Long ActuacionesId) {
+        public ActuacionEntity find(Long incidenciaId, Long actuacionesId) {
             
-        LOGGER.log(Level.INFO, "Consultando el review con id = {0} del libro con id = " + IncidenciaId, ActuacionesId);
+        LOGGER.log(Level.INFO, "Consultando el review con id = {0} " , actuacionesId);
         TypedQuery<ActuacionEntity> q = em.createQuery("select p from ActuacionEntity p where (p.incidencia.id = :incidenciaid) and (p.id = :ActuacionesId)", ActuacionEntity.class);
-        q.setParameter("incidenciaid", IncidenciaId);
-        q.setParameter("ActuacionesId", ActuacionesId);
+        q.setParameter("incidenciaid", incidenciaId);
+        q.setParameter("ActuacionesId", actuacionesId);
         List<ActuacionEntity> results = q.getResultList();
         ActuacionEntity actuacion = null;
-        if (results == null) {
-            actuacion = null;
-        } else if (results.isEmpty()) {
-            actuacion = null;
-        } else if (results.size() >= 1) {
+        if ( !(results.isEmpty()) ) {
             actuacion = results.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar el review con id = {0} del libro con id =" + IncidenciaId,ActuacionesId);
+        LOGGER.log(Level.INFO, "Saliendo de consultar el review con id = {0} " ,actuacionesId);
         return actuacion;
     }
          
