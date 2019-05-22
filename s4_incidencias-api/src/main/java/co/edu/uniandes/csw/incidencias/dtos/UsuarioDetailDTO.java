@@ -5,9 +5,7 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 
-import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
 import co.edu.uniandes.csw.incidencias.entities.UsuarioEntity;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,7 +19,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     /**
      * Lista de incidencias del empleado
      */
-    protected List<IncidenciaDTO> incidencias;
+    private List<IncidenciaDTO> incidencias;
    
     /**
      * Constructor que dado en Entity construye un DTO
@@ -58,9 +56,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
 
     @Override
     public UsuarioEntity toEntity(){
-        UsuarioEntity eEntity= super.toEntity();    
-        
-        return eEntity;
+        return super.toEntity(); 
     }
     
 }
