@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.incidencias.test.logic;
 import co.edu.uniandes.csw.incidencias.ejb.TecnicoLogic;
 import co.edu.uniandes.csw.incidencias.entities.TecnicoEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.incidencias.persistence.DepartamentoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -46,7 +45,6 @@ public class TecnicoLogicTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(TecnicoEntity.class.getPackage())
                 .addPackage(TecnicoLogic.class.getPackage())
-                .addPackage(DepartamentoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }

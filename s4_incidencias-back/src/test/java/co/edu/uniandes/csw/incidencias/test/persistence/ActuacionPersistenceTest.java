@@ -6,12 +6,8 @@
 package co.edu.uniandes.csw.incidencias.test.persistence;
 
 import co.edu.uniandes.csw.incidencias.entities.ActuacionEntity;
-import org.jboss.arquillian.junit.Arquillian;
-import org.junit.runner.RunWith;
-import co.edu.uniandes.csw.incidencias.entities.DepartamentoEntity;
 import co.edu.uniandes.csw.incidencias.entities.IncidenciaEntity;
 import co.edu.uniandes.csw.incidencias.persistence.ActuacionPersistence;
-import co.edu.uniandes.csw.incidencias.persistence.DepartamentoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
