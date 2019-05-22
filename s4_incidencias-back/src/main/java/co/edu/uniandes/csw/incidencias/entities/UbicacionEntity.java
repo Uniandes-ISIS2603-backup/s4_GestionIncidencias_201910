@@ -17,11 +17,7 @@ public class UbicacionEntity extends BaseEntity implements Serializable {
     
     private String descripcion;
     
-    /*
-    *
-    // constructor de la clase, vacio
-    *
-    */
+    //constructor vacio
     public UbicacionEntity () {
         
     }  
