@@ -12,7 +12,6 @@ import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -35,7 +34,7 @@ import java.util.logging.Level;
 @Consumes("application/json")
 public class ActuacionResource {
     
-    
+    private final static String NE = "no existe.";
      private static final Logger LOGGER = Logger.getLogger(ActuacionResource.class.getName());
      /**
      * Atributo  que modela la conexion con la capa de logica
@@ -46,34 +45,33 @@ public class ActuacionResource {
     
    /**
     * 
-    * @param IncidenciasId
+    * @param incidenciasId
     * @param actuacion
     * @return
     * @throws BusinessLogicException 
     */
     @POST
-    public  ActuacionDTO createActuacion(@PathParam("IncidenciasId") Long IncidenciasId, ActuacionDTO actuacion) throws BusinessLogicException {
+    public  ActuacionDTO createActuacion(@PathParam("incidenciasId") Long incidenciasId, ActuacionDTO actuacion) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ActuacionResource createActuacion: input: {0}", actuacion); 
-        ActuacionDTO nuevoActuacionDTO = new ActuacionDTO(logica.createActuacion(IncidenciasId, actuacion.toEntity()));
+        ActuacionDTO nuevoActuacionDTO = new ActuacionDTO(logica.createActuacion(incidenciasId, actuacion.toEntity()));
         LOGGER.log(Level.INFO, "ActuacionResource createActuacion: output: {0}", nuevoActuacionDTO);        
         return nuevoActuacionDTO;
     }
     /**
      * 
-     * @param booksId
-     * @param ActuacionesId
+     * @param actuacionesId
      * @return
      * @throws BusinessLogicException 
      */
   
     @GET
     @Path("{ActuacionesId: \\d+}")
-    public ActuacionDTO getActuacion(@PathParam("IncidenciasId") Long booksId, @PathParam("ActuacionesId") Long ActuacionesId) throws BusinessLogicException {
+    public ActuacionDTO getActuacion(@PathParam("IncidenciasId") Long incidenciasId, @PathParam("ActuacionesId") Long actuacionesId) throws BusinessLogicException {
        
-        LOGGER.log(Level.INFO, "ActuacionResource getActuacion: input: {0}", ActuacionesId);
-        ActuacionEntity entity = logica.getActuacion(booksId, ActuacionesId);
+        LOGGER.log(Level.INFO, "ActuacionResource getActuacion: input: {0}", actuacionesId);
+        ActuacionEntity entity = logica.getActuacion(incidenciasId, actuacionesId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /books/" + booksId + "/reviews/" + ActuacionesId+ " no existe.", 404);
+            throw new WebApplicationException("El recurso /books/" + incidenciasId + "/reviews/" + actuacionesId+ NE, 404);
         }
         ActuacionDTO reviewDTO = new ActuacionDTO(entity);
         LOGGER.log(Level.INFO, "ReviewResource getReview: output: {0}", reviewDTO);
@@ -83,32 +81,32 @@ public class ActuacionResource {
     @DELETE
     @Path("{ActuacionesId: \\d+}")
     
-    public void deleteActuacion(@PathParam("IncidenciasId") Long IncidenciasId, @PathParam("ActuacionesId") Long ActuacionesId) throws BusinessLogicException {
+    public void deleteActuacion(@PathParam("IncidenciasId") Long incidenciasId, @PathParam("ActuacionesId") Long actuacionesId) throws BusinessLogicException {
       
-        ActuacionEntity entity = logica.getActuacion(IncidenciasId, ActuacionesId);
+        ActuacionEntity entity = logica.getActuacion(incidenciasId, actuacionesId);
         
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Incidencias/" + IncidenciasId + "/Actuaciones/" + ActuacionesId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Incidencias/" + incidenciasId + "/Actuaciones/" + actuacionesId + NE, 404);
         }
-        logica.deleteActuacion(IncidenciasId, ActuacionesId);
+        logica.deleteActuacion(incidenciasId, actuacionesId);
     }
 
     
     @PUT
     @Path("{ActuacionesId: \\d+}")
-    public ActuacionDTO updateActuacion(@PathParam("IncidenciasId") Long IncidenciasId, @PathParam("ActuacionesId") Long ActuacionesId, ActuacionDTO actuacion) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "ActuacionResource updateActuacion: input: IncideniciasId: {0} , ActuacionesId: {1} , actuacion:{2}", new Object[]{IncidenciasId, ActuacionesId, actuacion});
+    public ActuacionDTO updateActuacion(@PathParam("IncidenciasId") Long incidenciasId, @PathParam("ActuacionesId") Long actuacionesId, ActuacionDTO actuacion) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "ActuacionResource updateActuacion: input: IncideniciasId: {0} , ActuacionesId: {1} , actuacion:{2}", new Object[]{incidenciasId, actuacionesId, actuacion});
         
-        if (ActuacionesId.equals(actuacion.getId())) {
+        if (actuacionesId.equals(actuacion.getId())) {
             throw new BusinessLogicException("Los ids del Review no coinciden.");
         }
-        ActuacionEntity entity = logica.getActuacion(IncidenciasId, ActuacionesId);
+        ActuacionEntity entity = logica.getActuacion(incidenciasId, actuacionesId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /books/" + IncidenciasId + "/reviews/" + ActuacionesId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /books/" + incidenciasId + "/reviews/" + actuacionesId + NE, 404);
 
         }
         
-        ActuacionDTO reviewDTO = new ActuacionDTO(logica.updateActuacion(IncidenciasId, actuacion.toEntity()));
+        ActuacionDTO reviewDTO = new ActuacionDTO(logica.updateActuacion(incidenciasId, actuacion.toEntity()));
         LOGGER.log(Level.INFO, "ReviewResource updateReview: output:{0}", reviewDTO);
         return reviewDTO;
 
@@ -119,15 +117,15 @@ public class ActuacionResource {
     
   /**
    * Obtiene la lista de las actuaciones
-   * @param IncidenciasId
+   * @param incidenciasId
    * @return 
    */
      
       @GET
-    public List<ActuacionDTO> getActuaciones(@PathParam("IncidenciasId") Long IncidenciasId) {
-        LOGGER.log(Level.INFO, "ActuacionResource getActuaciones: input: {0}", IncidenciasId);
+    public List<ActuacionDTO> getActuaciones(@PathParam("IncidenciasId") Long incidenciasId) {
+        LOGGER.log(Level.INFO, "ActuacionResource getActuaciones: input: {0}", incidenciasId);
         
-        List<ActuacionDTO> listaDTOs = listEntity2DTO(logica.getActuaciones(IncidenciasId));
+        List<ActuacionDTO> listaDTOs = listEntity2DTO(logica.getActuaciones(incidenciasId));
         LOGGER.log(Level.INFO, "ActuacionResource getActuaciones: output: {0}", listaDTOs);
         return listaDTOs;
     }
