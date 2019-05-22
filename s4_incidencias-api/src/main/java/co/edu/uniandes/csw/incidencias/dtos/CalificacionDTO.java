@@ -6,12 +6,13 @@
 package co.edu.uniandes.csw.incidencias.dtos;
 
 import co.edu.uniandes.csw.incidencias.entities.CalificacionEntity;
+import java.io.Serializable;
 
 /**
  *
  * @author estudiante
  */
-public class CalificacionDTO {
+public class CalificacionDTO implements Serializable {
     private Long id;
     private Integer numeroEst;
     private String descripcion;

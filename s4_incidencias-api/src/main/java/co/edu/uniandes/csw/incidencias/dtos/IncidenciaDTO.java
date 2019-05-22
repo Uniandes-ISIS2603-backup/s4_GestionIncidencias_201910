@@ -130,7 +130,6 @@ public class IncidenciaDTO implements Serializable{
        
     }
     
-    //TODO: Implementar
     /**
      * Crea un objeto entidad a partir de esta incidencia
      * @return un objeto de tipo entity

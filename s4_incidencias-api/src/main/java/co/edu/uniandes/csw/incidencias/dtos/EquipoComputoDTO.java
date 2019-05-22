@@ -6,12 +6,13 @@
 package co.edu.uniandes.csw.incidencias.dtos;
 
 import co.edu.uniandes.csw.incidencias.entities.EquipoComputoEntity;
+import java.io.Serializable;
 
 /**
  *
  * @author estudiante
  */
-public class EquipoComputoDTO {
+public class EquipoComputoDTO implements Serializable {
     private Long id;
     private String descripcion;
 

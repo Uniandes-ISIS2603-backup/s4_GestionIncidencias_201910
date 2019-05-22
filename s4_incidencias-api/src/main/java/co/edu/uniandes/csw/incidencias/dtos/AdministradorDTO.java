@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.incidencias.dtos;
-import co.edu.uniandes.csw.incidencias.entities.AdministradorEntity;
 import co.edu.uniandes.csw.incidencias.entities.UsuarioEntity;
 import java.io.Serializable;
 import java.util.logging.Logger;
@@ -14,7 +13,6 @@ import java.util.logging.Logger;
  * @author Valerie Parra Cortés
  */
 public class AdministradorDTO extends UsuarioDetailDTO implements Serializable{
-     private static final Logger LOG = Logger.getLogger(AdministradorDTO.class.getName());  
     
     public AdministradorDTO() {
         super();
