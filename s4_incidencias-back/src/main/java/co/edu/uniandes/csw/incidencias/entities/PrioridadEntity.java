@@ -18,7 +18,9 @@ public class PrioridadEntity extends BaseEntity  implements Serializable{
     
     private String tipoPrioridad;    
 
-    
+    /**
+     * metodo constructor vacio
+     */
     public PrioridadEntity(){
         
     }

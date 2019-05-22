@@ -18,7 +18,9 @@ public class SlaEntity extends BaseEntity  implements Serializable{
     
     private String descripcion;    
 
-    
+    /**
+     * metodo constructor vacio
+     */
     public SlaEntity(){
         
     }
