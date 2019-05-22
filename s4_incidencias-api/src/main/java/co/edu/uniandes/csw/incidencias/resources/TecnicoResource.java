@@ -91,7 +91,7 @@ public class TecnicoResource {
     public TecnicoDetailDTO getTecnicoPorUsuario(@PathParam("username") String userName){                 
         TecnicoEntity tt = tecnicoLogic.getTecnicoPorUsuario(userName);
         if (tt == null) {
-            throw new WebApplicationException("El recurso /tecnicos/" + userName + NO_EXISTE, 404);
+            throw new WebApplicationException("No existe el usuario: " + userName , 404);
         }
         return new TecnicoDetailDTO(tt);
     }

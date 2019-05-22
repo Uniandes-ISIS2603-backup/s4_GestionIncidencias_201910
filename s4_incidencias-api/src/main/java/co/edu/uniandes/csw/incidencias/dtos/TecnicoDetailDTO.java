@@ -40,10 +40,10 @@ public class TecnicoDetailDTO extends TecnicoDTO implements Serializable{
     }
     
      public TecnicoDetailDTO(TecnicoEntity tecnicoEntity){
-        super(tecnicoEntity);
-        List<IncidenciaDTO> incidenciasDTO=new ArrayList<>();
+        super(tecnicoEntity);    
+        incidencias = new ArrayList();
             for (IncidenciaEntity ie : tecnicoEntity.getIncidencias()) {
-                incidenciasDTO.add(new IncidenciaDTO(ie));
+                incidencias.add(new IncidenciaDTO(ie));
             }            
         }   
         

@@ -89,7 +89,7 @@ public class EmpleadoResource {
     public EmpleadoDetailDTO getEmpleadoByName(@PathParam("username") String userName){                 
         EmpleadoEntity tt = empleadoLogic.getEmpleadoByUserName(userName);
         if (tt == null) {
-            throw new WebApplicationException("El recurso /empleados/" + userName + NO_EXISTE, 404);
+            throw new WebApplicationException("No existe el usuario: " + userName + NO_EXISTE, 404);
         }
         return new EmpleadoDetailDTO(tt);                  
     }
