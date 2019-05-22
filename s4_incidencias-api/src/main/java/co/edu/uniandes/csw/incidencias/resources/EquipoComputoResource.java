@@ -37,7 +37,9 @@ public class EquipoComputoResource {
 
     
     private static final Logger LOGGER = Logger.getLogger(EquipoComputoResource.class.getName());
-        
+    private final static String NE = " no existe.";
+    private final static String RA = "El recurso /calificacions/";
+    
  @Inject
     private EquipoComputoLogic equipoComputoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
@@ -67,7 +69,7 @@ public class EquipoComputoResource {
         LOGGER.log(Level.INFO, "EquipoComputoResource getEquipoComputo: input: {0}", equipoComputosId);
         EquipoComputoEntity equipoComputoEntity = equipoComputoLogic.getEquipoComputo(equipoComputosId);
         if (equipoComputoEntity == null) {
-            throw new WebApplicationException("El recurso /equipos/" + equipoComputosId + " no existe.", 404);
+            throw new WebApplicationException(RA + equipoComputosId + NE, 404);
         }
         EquipoComputoDTO equipoComputoDetailDTO = new EquipoComputoDTO(equipoComputoEntity);
         LOGGER.log(Level.INFO, "EquipoComputoResource getEquipoComputo: output: {0}", equipoComputoDetailDTO);
@@ -79,18 +81,20 @@ public class EquipoComputoResource {
     public EquipoComputoDTO updateEquipoComputo(@PathParam("equipoComputosId") Long equipoComputosId, EquipoComputoDTO equipoComputo) throws BusinessLogicException {
         equipoComputo.setId(equipoComputosId);
         if (equipoComputoLogic.getEquipoComputo(equipoComputosId) == null) {
-            throw new WebApplicationException("El recurso /equipoComputos/" + equipoComputosId + " no existe.", 404);
+            throw new WebApplicationException(RA + equipoComputosId + NE, 404);
         }
-        EquipoComputoDTO detailDTO = new EquipoComputoDTO(equipoComputoLogic.updateEquipoComputo(equipoComputosId, equipoComputo.toEntity()));
+        EquipoComputoDTO detailDTO = new EquipoComputoDTO(equipoComputoLogic.updateEquipoComputo( equipoComputo.toEntity()));
         return detailDTO;
     }
 
+    
+    
     @DELETE
     @Path("{equipoComputosId: \\d+}")
     public void deleteEquipoComputo(@PathParam("equipoComputosId") Long equipoComputosId) throws BusinessLogicException {
         EquipoComputoEntity entity = equipoComputoLogic.getEquipoComputo(equipoComputosId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /equipoComputos/" + equipoComputosId + " no existe.", 404);
+            throw new WebApplicationException(RA + equipoComputosId + NE, 404);
         }
         equipoComputoLogic.deleteEquipoComputo(equipoComputosId);
         LOGGER.info("EquipoComputoResource deleteEquipoComputo: output: void");

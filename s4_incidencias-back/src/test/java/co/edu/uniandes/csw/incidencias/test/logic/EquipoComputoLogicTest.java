@@ -131,7 +131,7 @@ public class EquipoComputoLogicTest {
         EquipoComputoEntity entity = data.get(0);
         EquipoComputoEntity pojoEntity = factory.manufacturePojo(EquipoComputoEntity.class);
         pojoEntity.setId(entity.getId());
-        equipoComputoLogic.updateEquipoComputo(pojoEntity.getId(), pojoEntity);
+        equipoComputoLogic.updateEquipoComputo( pojoEntity);
         EquipoComputoEntity resp = em.find(EquipoComputoEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());

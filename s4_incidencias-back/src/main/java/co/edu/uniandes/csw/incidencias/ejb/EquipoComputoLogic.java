@@ -32,21 +32,18 @@ public class EquipoComputoLogic {
     }
     
     public List<EquipoComputoEntity> getEquipoComputos() {
-        List<EquipoComputoEntity> equipoComputoes = persistence.findAll();
-        return equipoComputoes;
+        return persistence.findAll();
     }
 
     public EquipoComputoEntity getEquipoComputo(Long equipoComputoId) {
-        EquipoComputoEntity equipoComputoEntity = persistence.find(equipoComputoId);
-        return equipoComputoEntity;
+        return  persistence.find(equipoComputoId);
     }
 
-    public EquipoComputoEntity updateEquipoComputo(Long equipoComputoId, EquipoComputoEntity equipoComputoEntity) {
-        EquipoComputoEntity newEntity = persistence.update(equipoComputoEntity);
-        return newEntity;
+    public EquipoComputoEntity updateEquipoComputo( EquipoComputoEntity equipoComputoEntity) {
+        return  persistence.update(equipoComputoEntity);
     }
 
-    public void deleteEquipoComputo(Long equipoComputoId) throws BusinessLogicException {
+    public void deleteEquipoComputo(Long equipoComputoId) {
         persistence.delete(equipoComputoId);
     }
 }

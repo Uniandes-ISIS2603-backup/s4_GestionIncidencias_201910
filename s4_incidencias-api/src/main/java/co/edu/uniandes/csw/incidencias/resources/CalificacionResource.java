@@ -80,8 +80,7 @@ public class CalificacionResource {
         if (calificacionLogic.getCalificacion(calificacionsId) == null) {
             throw new WebApplicationException(RA + calificacionsId + NE, 404);
         }
-        CalificacionDTO detailDTO = new CalificacionDTO(calificacionLogic.updateCalificacion( calificacion.toEntity()));
-        return detailDTO;
+        return new CalificacionDTO(calificacionLogic.updateCalificacion( calificacion.toEntity()));
     }
 
     @DELETE
