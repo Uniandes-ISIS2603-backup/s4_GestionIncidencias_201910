@@ -51,7 +51,11 @@ public class IncidenciaDTO implements Serializable{
     /**
      * Atributo que representa la descipcion de una incidencia
      */
-    private String descripcion;
+    private String descripcion; 
+    /**
+     * prioridad de la incidencia, a que se debe de incluir el sla
+     */
+    private String prioridad;
     /**
      * Atributo que representa el estado de una incidencia
      */
@@ -72,10 +76,7 @@ public class IncidenciaDTO implements Serializable{
      * Atributo que representa el empleado que reporta  una incidencia
      */
     private EmpleadoDTO empleado;
-    /**
-     * prioridad de la incidencia, a que se debe de incluir el sla
-     */
-    private String prioridad;
+  
         //Constructor
     /**
      * Constructor vacio
@@ -138,10 +139,11 @@ public class IncidenciaDTO implements Serializable{
         
         IncidenciaEntity incidencia = new IncidenciaEntity();
         incidencia.setId(getId());
-        incidencia.setDescripcion(descripcion);
-        incidencia.setFecha(fecha);
-        incidencia.setEstado(estado);
-        incidencia.setPrioridad(prioridad);
+        incidencia.setDescripcion(this.descripcion);
+        incidencia.setFecha(this.fecha);
+        incidencia.setEstado(this.estado);
+        incidencia.setPrioridad(this.prioridad);
+        
         
         
         CalificacionEntity calificacion2 = new CalificacionEntity();
@@ -294,6 +296,9 @@ public class IncidenciaDTO implements Serializable{
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
-
+   public void setPrioridad(String prioridad){
+     
+       this.prioridad=prioridad;
+   }
     
 }

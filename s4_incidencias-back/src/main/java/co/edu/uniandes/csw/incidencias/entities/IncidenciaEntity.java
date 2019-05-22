@@ -57,7 +57,7 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
      * Atribto que modela la calificacion de una incidencia
      */
     @PodamExclude
-    @OneToOne 
+    @OneToOne ( cascade = CascadeType.PERSIST)
     private CalificacionEntity calificacion;
    
      /**
