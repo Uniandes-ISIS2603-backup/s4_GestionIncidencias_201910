@@ -35,8 +35,9 @@ import javax.ws.rs.WebApplicationException;
  */
 public class CalificacionResource {
 
-    
     private static final Logger LOGGER = Logger.getLogger(CalificacionResource.class.getName());
+    private final static String NE = " no existe.";
+    private final static String RA = "El recurso /calificacions/";
     
  @Inject
     private CalificacionLogic calificacionLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -44,9 +45,7 @@ public class CalificacionResource {
     @POST
     public CalificacionDTO createCalificacion(CalificacionDTO calificacion) throws BusinessLogicException {
         
-        CalificacionDTO nuevoCalificacionDTO = new CalificacionDTO(calificacionLogic.createCalificacion(calificacion.toEntity()));
- 
-        return nuevoCalificacionDTO;
+        return new CalificacionDTO(calificacionLogic.createCalificacion(calificacion.toEntity()));
     }
 
     @GET
@@ -55,7 +54,7 @@ public class CalificacionResource {
         LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: input: {0}", calificacionsId);
         CalificacionEntity calificacionEntity = calificacionLogic.getCalificacion(calificacionsId);
         if (calificacionEntity == null) {
-            throw new WebApplicationException("El recurso /calificacions/" + calificacionsId + " no existe.", 404);
+            throw new WebApplicationException("" + calificacionsId + "", 404);
         }
         CalificacionDTO calificacionDetailDTO = new CalificacionDTO(calificacionEntity);
         LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: output: {0}", calificacionDetailDTO);
@@ -79,7 +78,7 @@ public class CalificacionResource {
     public CalificacionDTO updateCalificacion(@PathParam("calificacionsId") Long calificacionsId, CalificacionDTO calificacion) throws BusinessLogicException {
         calificacion.setId(calificacionsId);
         if (calificacionLogic.getCalificacion(calificacionsId) == null) {
-            throw new WebApplicationException("El recurso /calificacions/" + calificacionsId + " no existe.", 404);
+            throw new WebApplicationException(RA + calificacionsId + NE, 404);
         }
         CalificacionDTO detailDTO = new CalificacionDTO(calificacionLogic.updateCalificacion( calificacion.toEntity()));
         return detailDTO;
@@ -90,7 +89,7 @@ public class CalificacionResource {
     public void deleteCalificacion(@PathParam("calificacionsId") Long calificacionsId) throws BusinessLogicException {
         CalificacionEntity entity = calificacionLogic.getCalificacion(calificacionsId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /calificacions/" + calificacionsId + " no existe.", 404);
+            throw new WebApplicationException(RA+ calificacionsId + NE, 404);
         }
         calificacionLogic.deleteCalificacion(calificacionsId);
         LOGGER.info("CalificacionResource deleteCalificacion: output: void");
