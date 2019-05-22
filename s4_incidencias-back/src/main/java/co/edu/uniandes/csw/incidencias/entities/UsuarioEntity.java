@@ -89,16 +89,6 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     }   
 
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        
-        hash = 67 * hash + Objects.hashCode(this.usuario);
-        hash = 67 * hash + Objects.hashCode(this.password);
-        hash = 67 * hash + Objects.hashCode(this.cedula);
-        hash = 67 * hash + Objects.hashCode(this.name);
-        return hash;
-    }
     
     
 }

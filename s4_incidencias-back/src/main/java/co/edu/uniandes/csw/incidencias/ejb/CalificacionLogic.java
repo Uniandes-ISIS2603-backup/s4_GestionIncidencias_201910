@@ -31,21 +31,18 @@ public class CalificacionLogic {
     }
     
     public List<CalificacionEntity> getCalificacions() {
-        List<CalificacionEntity> calificaciones = persistence.findAll();
-        return calificaciones;
+        return persistence.findAll();
     }
 
     public CalificacionEntity getCalificacion(Long calificacionId) {
-        CalificacionEntity calificacionEntity = persistence.find(calificacionId);
-        return calificacionEntity;
+        return persistence.find(calificacionId);
     }
 
-    public CalificacionEntity updateCalificacion(Long calificacionId, CalificacionEntity calificacionEntity) {
-        CalificacionEntity newEntity = persistence.update(calificacionEntity);
-        return newEntity;
+    public CalificacionEntity updateCalificacion( CalificacionEntity calificacionEntity) {
+        return persistence.update(calificacionEntity);
     }
 
-    public void deleteCalificacion(Long calificacionId) throws BusinessLogicException {
+    public void deleteCalificacion(Long calificacionId) {
         persistence.delete(calificacionId);
     }
 

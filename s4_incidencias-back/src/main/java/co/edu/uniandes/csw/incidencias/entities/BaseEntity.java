@@ -24,7 +24,6 @@ SOFTWARE.
 package co.edu.uniandes.csw.incidencias.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -56,11 +55,4 @@ public abstract class BaseEntity implements Serializable {
 
     
 
-    @Override
-    public int hashCode() {
-        if (this.getId() != null) {
-            return this.getId().hashCode();
-        }
-        return super.hashCode();
-    }
 }
