@@ -39,7 +39,9 @@ public class IncidenciaResource {
     
     
        //transforma a DTO
-private final static Logger LOGGER = Logger.getLogger(IncidenciaResource.class.getName());
+private static final Logger LOGGER = Logger.getLogger(IncidenciaResource.class.getName());
+private final static String NE = " no existe.";
+private final static String RA = "El recurso /calificacions/";
 
 @Inject
 private  IncidenciaLogic logic;  
@@ -73,16 +75,16 @@ private  IncidenciaLogic logic;
     }
     /**
      * 
-     * @param IncidenciaId
+     * @param incidenciaId
      * @return 
      */
     @GET
     @Path("{IncidenciaId: \\d+}")
-    public IncidenciaDetailDTO getIncidencia(@PathParam("IncidenciaId") Long IncidenciaId) {
-        LOGGER.log(Level.INFO, "IncidenciaResource getIncidencia: input: {0}", IncidenciaId);
-        IncidenciaEntity incidenciaEntity = logic.getIncidencia(IncidenciaId);
+    public IncidenciaDetailDTO getIncidencia(@PathParam("IncidenciaId") Long incidenciaId) {
+        LOGGER.log(Level.INFO, "IncidenciaResource getIncidencia: input: {0}", incidenciaId);
+        IncidenciaEntity incidenciaEntity = logic.getIncidencia(incidenciaId);
         if (incidenciaEntity == null) {
-            throw new WebApplicationException("El recurso /books/" + IncidenciaId + " no existe.", 404);
+            throw new WebApplicationException(RA+ incidenciaId + NE, 404);
         }
         IncidenciaDetailDTO bookDetailDTO = new IncidenciaDetailDTO(incidenciaEntity);
         LOGGER.log(Level.INFO, "IncidenciaResource getIncidencia: output: {0}", bookDetailDTO);
@@ -90,20 +92,20 @@ private  IncidenciaLogic logic;
     }
    /**
     * Actualiza una incidencia
-    * @param IncidenciaId
+    * @param incidenciaId
     * @param incidencia
     * @return
     * @throws BusinessLogicException 
     */
      @PUT
     @Path("{IncidenciaId: \\d+}")
-    public IncidenciaDetailDTO updateBook(@PathParam("IncidenciaId") Long IncidenciaId, IncidenciaDetailDTO incidencia) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "IncidenciaResource updateIncidencias: input: id: {0} , book: {1}", new Object[]{IncidenciaId, incidencia});
-        incidencia.setId(IncidenciaId);
-        if (logic.getIncidencia(IncidenciaId) == null) {
-            throw new WebApplicationException("El recurso /books/" + IncidenciaId + " no existe.", 404);
+    public IncidenciaDetailDTO updateBook(@PathParam("IncidenciaId") Long incidenciaId, IncidenciaDetailDTO incidencia) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "IncidenciaResource updateIncidencias: input: id: {0} , book: {1}", new Object[]{incidenciaId, incidencia});
+        incidencia.setId(incidenciaId);
+        if (logic.getIncidencia(incidenciaId) == null) {
+            throw new WebApplicationException(RA+ incidenciaId + NE, 404);
         }
-        IncidenciaDetailDTO detailDTO = new IncidenciaDetailDTO(logic.updateIncidencia(IncidenciaId, incidencia.toEntity()));
+        IncidenciaDetailDTO detailDTO = new IncidenciaDetailDTO(logic.updateIncidencia(incidenciaId, incidencia.toEntity()));
         LOGGER.log(Level.INFO, "IncidenciaResource updateIncidencia: output: {0}", detailDTO);
         return detailDTO;
     }
@@ -114,13 +116,13 @@ private  IncidenciaLogic logic;
      */
     @DELETE
     @Path("{IncidenciasId: \\d+}")
-    public void deleteBook(@PathParam("IncidenciasId") Long IncidenciasId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "IncidenciaResource deleteIncidencia: input: {0}", IncidenciasId);
-        IncidenciaEntity entity = logic.getIncidencia(IncidenciasId);
+    public void deleteBook(@PathParam("IncidenciasId") Long incidenciasId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "IncidenciaResource deleteIncidencia: input: {0}", incidenciasId);
+        IncidenciaEntity entity = logic.getIncidencia(incidenciasId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Incidencias/" + IncidenciasId + " no existe.", 404);
+            throw new WebApplicationException(RA + incidenciasId + NE, 404);
         }
-        logic.deleteIncidencia(IncidenciasId);
+        logic.deleteIncidencia(incidenciasId);
         LOGGER.info("IncidenciaResource deleteIncidencia: output: void");
     }
     
