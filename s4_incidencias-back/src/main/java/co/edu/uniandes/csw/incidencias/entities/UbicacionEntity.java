@@ -18,9 +18,9 @@ public class UbicacionEntity extends BaseEntity implements Serializable {
     private String descripcion;
     
     /*
-    This is a comment
-    // this is a nested comment 
-    This is another comment
+    *
+    // constructor de la clase, vacio
+    *
     */
     public UbicacionEntity () {
         
