@@ -39,14 +39,13 @@ public class ActuacionLogic {
     
     /**
      * Crea una actuacion 
-     * @param IncidenciasId
+     * @param incidenciasId
      * @param actuacionEntity
      * @return
-     * @throws BusinessLogicException 
      */
-    public ActuacionEntity createActuacion(Long IncidenciasId, ActuacionEntity actuacionEntity) throws BusinessLogicException {
+    public ActuacionEntity createActuacion(Long incidenciasId, ActuacionEntity actuacionEntity){
         LOGGER.log(Level.INFO, "Inicia proceso de crear actuacion");
-        IncidenciaEntity incidencia3= incidencia.find(IncidenciasId);
+        IncidenciaEntity incidencia3= incidencia.find(incidenciasId);
         actuacionEntity.setIncidencia(incidencia3);
                 
         LOGGER.log(Level.INFO, "Termina proceso de creación del review");
@@ -55,48 +54,48 @@ public class ActuacionLogic {
    
 /**
  * Obtiene la lista de actuaciones de la incidencia que entra por parametro
- * @param IncidenciasId
+ * @param incidenciasId
  * @return 
  */
-    public List<ActuacionEntity> getActuaciones(Long IncidenciasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar los reviews asociados al book con id = {0}", IncidenciasId);
-        IncidenciaEntity incidenciaEntity = incidencia.find(IncidenciasId);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar los reviews asociados al book con id = {0}", IncidenciasId);
+    public List<ActuacionEntity> getActuaciones(Long incidenciasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar los reviews asociados al book con id = {0}", incidenciasId);
+        IncidenciaEntity incidenciaEntity = incidencia.find(incidenciasId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar los reviews asociados al book con id = {0}", incidenciasId);
         return incidenciaEntity.getActuaciones();
     }
     /**
      * Obtiene la actuacion identificada con el id que entra por parametro  de la incidencia cuyo id entra por parametro
-     * @param IncidenciasId
-     * @param ActuacionesId
+     * @param incidenciasId
+     * @param actuacionesId
      * @return 
      */
-     public ActuacionEntity getActuacion(Long IncidenciasId, Long ActuacionesId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar la actuacion con id = {0} de la incidencia con id = " + IncidenciasId, ActuacionesId);
-        return actuacion.find(IncidenciasId, ActuacionesId);
+     public ActuacionEntity getActuacion(Long incidenciasId, Long actuacionesId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar la actuacion con id = {0} de la incidencia con id = " + incidenciasId, actuacionesId);
+        return actuacion.find(incidenciasId, actuacionesId);
     }
     /**
      * Borrar
-     * @param IncidenciasId
-     * @param ActuacionesId
+     * @param incidenciasId
+     * @param actuacionesId
      * @throws BusinessLogicException 
      */
-     public void deleteActuacion(Long IncidenciasId, Long ActuacionesId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar la actuacion con id = {0} de la incidencia con id = " + IncidenciasId, ActuacionesId);
-       ActuacionEntity old = getActuacion(IncidenciasId, ActuacionesId);
+     public void deleteActuacion(Long incidenciasId, Long actuacionesId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la actuacion con id = {0} de la incidencia con id = " + incidenciasId, actuacionesId);
+       ActuacionEntity old = getActuacion(incidenciasId, actuacionesId);
         if (old == null) {
-            throw new BusinessLogicException("El review con id = " + ActuacionesId + " no esta asociado a el libro con id = " + IncidenciasId);
+            throw new BusinessLogicException("El review con id = " + actuacionesId + " no esta asociado a el libro con id = " + incidenciasId);
         }
         actuacion.delete(old.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar la actuacion con id = {0} de la incidencia con id= " + IncidenciasId, ActuacionesId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la actuacion con id = {0} de la incidencia con id= " + incidenciasId, actuacionesId);
     }
   
-   public ActuacionEntity updateActuacion(Long IncidenciasId, ActuacionEntity ActuacionesId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la actuacion  con id = {0} de la incidencia con id = " + IncidenciasId, ActuacionesId.getId());
-        IncidenciaEntity bookEntity = incidencia.find(IncidenciasId);
-        ActuacionesId.setIncidencia(bookEntity);
-        actuacion.update(ActuacionesId);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar la actuacion  con id = {0} de la incidencia con id = " + IncidenciasId, ActuacionesId.getId());
-        return ActuacionesId;
+   public ActuacionEntity updateActuacion(Long incidenciasId, ActuacionEntity actuacionesId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la actuacion  con id = {0} de la incidencia con id = " + incidenciasId, actuacionesId.getId());
+        IncidenciaEntity bookEntity = incidencia.find(incidenciasId);
+        actuacionesId.setIncidencia(bookEntity);
+        actuacion.update(actuacionesId);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la actuacion  con id = {0} de la incidencia con id = " + incidenciasId, actuacionesId.getId());
+        return actuacionesId;
     }
 
     
