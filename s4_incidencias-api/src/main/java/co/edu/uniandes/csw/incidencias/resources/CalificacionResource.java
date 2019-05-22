@@ -81,7 +81,7 @@ public class CalificacionResource {
         if (calificacionLogic.getCalificacion(calificacionsId) == null) {
             throw new WebApplicationException("El recurso /calificacions/" + calificacionsId + " no existe.", 404);
         }
-        CalificacionDTO detailDTO = new CalificacionDTO(calificacionLogic.updateCalificacion(calificacionsId, calificacion.toEntity()));
+        CalificacionDTO detailDTO = new CalificacionDTO(calificacionLogic.updateCalificacion( calificacion.toEntity()));
         return detailDTO;
     }
 

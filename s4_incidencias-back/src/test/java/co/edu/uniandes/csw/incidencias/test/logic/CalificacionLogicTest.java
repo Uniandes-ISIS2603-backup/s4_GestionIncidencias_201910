@@ -131,7 +131,7 @@ public class CalificacionLogicTest {
         CalificacionEntity entity = data.get(0);
         CalificacionEntity pojoEntity = factory.manufacturePojo(CalificacionEntity.class);
         pojoEntity.setId(entity.getId());
-        ubicacionLogic.updateCalificacion(pojoEntity.getId(), pojoEntity);
+        ubicacionLogic.updateCalificacion( pojoEntity);
         CalificacionEntity resp = em.find(CalificacionEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
