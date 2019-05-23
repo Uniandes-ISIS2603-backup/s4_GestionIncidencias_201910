@@ -9,12 +9,14 @@ import co.edu.uniandes.csw.incidencias.entities.AdministradorEntity;
 import co.edu.uniandes.csw.incidencias.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.incidencias.persistence.AdministradorPersistence;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Juan Pablo Correa Puerta
  */
+@Stateless
 public class AdministradorLogic
 {
     @Inject
