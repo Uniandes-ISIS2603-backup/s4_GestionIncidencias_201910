@@ -60,4 +60,9 @@ public class EmpleadoDetailDTO extends EmpleadoDTO implements Serializable {
     public void setIncidencias(List<IncidenciaDTO> incidencias) {
         this.incidencias = incidencias;
     }           
+    
+    
+    public EmpleadoEntity toEntityy(){
+        return super.toEntity() ;
+    }
 }

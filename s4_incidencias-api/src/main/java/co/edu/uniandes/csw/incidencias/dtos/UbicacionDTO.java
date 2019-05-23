@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.incidencias.dtos;
 
+import co.edu.uniandes.csw.incidencias.entities.UbicacionEntity;
 import java.io.Serializable;
 /**
  *
@@ -12,18 +13,18 @@ import java.io.Serializable;
  */
 public class UbicacionDTO  implements Serializable{
 	
-	private String id;
+	private long id;
 	private String descripcion;
 	
 	public UbicacionDTO () {
 		
 	}
 	
-	public String getId () {
+	public long getId () {
 		return id;
 	}
 	
-	public void setId (String id) {
+	public void setId (long id) {
 		this.id = id;
 	}
 	
@@ -35,5 +36,13 @@ public class UbicacionDTO  implements Serializable{
 	public void setDescripcion (String descripcion) {
 		this.descripcion = descripcion;
 	}
+        
+        public UbicacionEntity toentity()
+        {
+            UbicacionEntity ue = new UbicacionEntity();
+            ue.setId(this.id);
+            ue.setDescripcion(this.descripcion);
+            return ue;
+        }
     
 }
