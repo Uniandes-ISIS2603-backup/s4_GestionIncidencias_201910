@@ -53,7 +53,7 @@ private  IncidenciaLogic logic;
    * @throws BusinessLogicException 
    */
     @POST
-    public IncidenciaDTO createIncidencia(IncidenciaDTO incidencia) throws BusinessLogicException {
+    public IncidenciaDTO createIncidencia(IncidenciaDTO incidencia) throws BusinessLogicException, Exception {
         LOGGER.log(Level.INFO, "BookResource createBook: input: {0}", incidencia);
         IncidenciaDTO nuevoBookDTO = new IncidenciaDTO(logic.createIncidencia(incidencia.toEntity()));
         LOGGER.log(Level.INFO, "IncidenciaResource createIncidencia: output: {0}", nuevoBookDTO);
