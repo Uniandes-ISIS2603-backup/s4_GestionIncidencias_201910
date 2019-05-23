@@ -20,7 +20,6 @@ public class AdministradorDetailDTO extends UsuarioDetailDTO implements Serializ
     public AdministradorDetailDTO( AdministradorEntity entidad )
     {
         super( entidad );
-        List<IncidenciaDTO> incidencias = new ArrayList<>();
         
         
     }   
@@ -33,9 +32,7 @@ public class AdministradorDetailDTO extends UsuarioDetailDTO implements Serializ
     @Override
     public AdministradorEntity toEntity()
     {
-        AdministradorEntity entidad = (AdministradorEntity) super.toEntity();
-        
-        return entidad;
+       return (AdministradorEntity) super.toEntity();
     }
         
 }

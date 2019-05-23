@@ -37,8 +37,8 @@ public class EquipoComputoResource {
 
     
     private static final Logger LOGGER = Logger.getLogger(EquipoComputoResource.class.getName());
-    private final static String NE = " no existe.";
-    private final static String RA = "El recurso /calificacions/";
+    private static final String NE = " no existe.";
+    private static final String RA = "El recurso /calificacions/";
     
  @Inject
     private EquipoComputoLogic equipoComputoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -46,9 +46,7 @@ public class EquipoComputoResource {
     @POST
     public EquipoComputoDTO createEquipoComputo(EquipoComputoDTO equipoComputo) throws BusinessLogicException {
         
-        EquipoComputoDTO nuevoEquipoComputoDTO = new EquipoComputoDTO(equipoComputoLogic.createEquipoComputo(equipoComputo.toEntity()));
- 
-        return nuevoEquipoComputoDTO;
+        return new EquipoComputoDTO(equipoComputoLogic.createEquipoComputo(equipoComputo.toEntity()));
     }
 
              @GET
@@ -83,8 +81,7 @@ public class EquipoComputoResource {
         if (equipoComputoLogic.getEquipoComputo(equipoComputosId) == null) {
             throw new WebApplicationException(RA + equipoComputosId + NE, 404);
         }
-        EquipoComputoDTO detailDTO = new EquipoComputoDTO(equipoComputoLogic.updateEquipoComputo( equipoComputo.toEntity()));
-        return detailDTO;
+        return new EquipoComputoDTO(equipoComputoLogic.updateEquipoComputo( equipoComputo.toEntity()));
     }
 
     
