@@ -50,7 +50,7 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
      * Atribto que modela el empleado que reporto la incidencia
      */
     @PodamExclude
-    @ManyToOne 
+    @ManyToOne ( cascade = CascadeType.PERSIST)
     private EmpleadoEntity empleado;
      
     /**
@@ -69,7 +69,7 @@ public class IncidenciaEntity extends BaseEntity implements  Serializable{
      * Atribto que modela el tecnico que atiende la incidencia
      */
    @PodamExclude
-    @ManyToOne 
+    @ManyToOne ( cascade = CascadeType.PERSIST)
     private TecnicoEntity  tecnico;
    
       /**
