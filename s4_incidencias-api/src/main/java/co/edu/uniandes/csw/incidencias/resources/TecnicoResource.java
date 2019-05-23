@@ -38,8 +38,10 @@ public class TecnicoResource {
      */
     @Inject
     private TecnicoLogic tecnicoLogic;
-     
-        public final static String NO_EXISTE="";
+    
+    
+    private static final String NO_EXISTE=" no existe.";
+    private static final String RA = "El recurso /calificacions/";
     /**
      * Crea un tècnico con el JSON entrado por parametro
      * @param tecnico (JSON) con la informaciòn del objeto a crear
@@ -73,7 +75,7 @@ public class TecnicoResource {
     public TecnicoDetailDTO getTecnico(@PathParam("id") Long id){
         TecnicoEntity tecnico= tecnicoLogic.getTecnico(id);
          if (tecnico == null) {
-            throw new WebApplicationException("El recurso /tecnicos/" + id + NO_EXISTE, 404);
+            throw new WebApplicationException(RA + id + NO_EXISTE, 404);
         }
          
         return new TecnicoDetailDTO(tecnico);                  
@@ -110,7 +112,7 @@ public class TecnicoResource {
     public TecnicoDetailDTO updateTecnico(@PathParam("id") Long id, TecnicoDetailDTO tecnico) throws BusinessLogicException {
         tecnico.setId(id);
         if (tecnicoLogic.getTecnico(id) == null) {
-            throw new WebApplicationException("El recurso /tecnicos/" + id + NO_EXISTE, 404);
+            throw new WebApplicationException(RA + id + NO_EXISTE, 404);
         }        
         return  new TecnicoDetailDTO(tecnicoLogic.updateTecnico(tecnico.toEntity()));        
     }
@@ -127,7 +129,7 @@ public class TecnicoResource {
 
         TecnicoEntity entity = tecnicoLogic.getTecnico(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /tecnicos/" + id + NO_EXISTE, 404);
+            throw new WebApplicationException(RA + id + NO_EXISTE, 404);
         }        
         tecnicoLogic.deleteTecnico(id);        
     }
