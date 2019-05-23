@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.incidencias.persistence.IncidenciaPersistence;
 import co.edu.uniandes.csw.incidencias.persistence.TecnicoPersistence;
 import co.edu.uniandes.csw.incidencias.persistence.EmpleadoPersistence;
 import co.edu.uniandes.csw.incidencias.persistence.EquipoComputoPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -47,8 +48,12 @@ public class IncidenciaLogic {
      * @throws BusinessLogicException 
      */
     
-       public IncidenciaEntity createIncidencia(IncidenciaEntity incidenciaEntity)throws Exception {
+       public IncidenciaEntity createIncidencia(IncidenciaEntity incidenciaEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del libro");
+      
+        
+        
+          
          persistence.create(incidenciaEntity);
          LOGGER.log(Level.INFO, "Termina proceso de creación de la incidencia");
          return incidenciaEntity;
