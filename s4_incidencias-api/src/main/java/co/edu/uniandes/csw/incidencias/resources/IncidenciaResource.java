@@ -53,11 +53,16 @@ private  IncidenciaLogic logic;
    * @throws BusinessLogicException 
    */
     @POST
-    public IncidenciaDTO createIncidencia(IncidenciaDTO incidencia) throws Exception {
+    public IncidenciaDTO createIncidencia(IncidenciaDTO incidencia) {
+    try {
         LOGGER.log(Level.INFO, "BookResource createBook: input: {0}", incidencia);
         IncidenciaDTO nuevoBookDTO = new IncidenciaDTO(logic.createIncidencia(incidencia.toEntity()));
         LOGGER.log(Level.INFO, "IncidenciaResource createIncidencia: output: {0}", nuevoBookDTO);
         return nuevoBookDTO;
+    } catch (BusinessLogicException ex) {
+        Logger.getLogger(IncidenciaResource.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return null;
     }
 
     
@@ -111,7 +116,7 @@ private  IncidenciaLogic logic;
     }
     /**
      * 
-     * @param booksId
+     * @param incidenciasId
      * @throws BusinessLogicException 
      */
     @DELETE
