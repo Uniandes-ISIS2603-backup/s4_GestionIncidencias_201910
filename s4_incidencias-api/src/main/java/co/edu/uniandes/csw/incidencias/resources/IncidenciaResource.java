@@ -139,4 +139,22 @@ private  IncidenciaLogic logic;
         }
         return list;
     }
+    
+    
+    /**
+     * 
+     *
+     * @param IncidenciasId
+     * @return 
+     */
+     @Path("{IncidenciasId: \\d+}/actuaciones")
+    public Class<ActuacionResource> getActuacionResource(@PathParam("IncidenciasId") Long IncidenciasId) {
+        if (logic.getIncidencia(IncidenciasId) == null) {
+            throw new WebApplicationException("El recurso /Incidencias/" + IncidenciasId + "/actuaciones no existe.", 404);
+        }
+        return ActuacionResource.class;
+    }
+    
+   
+    
 }
