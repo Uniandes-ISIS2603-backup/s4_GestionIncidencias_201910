@@ -49,10 +49,6 @@ public class IncidenciaLogic {
     
        public IncidenciaEntity createIncidencia(IncidenciaEntity incidenciaEntity)throws Exception {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del libro");
-      
-        
-        
-          
          persistence.create(incidenciaEntity);
          LOGGER.log(Level.INFO, "Termina proceso de creación de la incidencia");
          return incidenciaEntity;
