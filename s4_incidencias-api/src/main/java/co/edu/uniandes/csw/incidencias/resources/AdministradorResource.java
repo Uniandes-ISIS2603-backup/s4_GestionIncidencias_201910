@@ -40,8 +40,8 @@ public class AdministradorResource
     @Inject
     private AdministradorLogic logica;
      
-    private final static String NE = " no existe.";
-    private final static String RA = "El recurso /calificacions/";
+    private static final String NE = " no existe.";
+    private static final String RA = "El recurso /calificacions/";
     
     
     @POST
