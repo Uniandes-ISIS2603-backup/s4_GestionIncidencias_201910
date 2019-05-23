@@ -40,8 +40,8 @@ public class IncidenciaResource {
     
        //transforma a DTO
 private static final Logger LOGGER = Logger.getLogger(IncidenciaResource.class.getName());
-private final static String NE = " no existe.";
-private final static String RA = "El recurso /calificacions/";
+private static final String NE = " no existe.";
+private static final String RA = "El recurso /calificacions/";
 
 @Inject
 private  IncidenciaLogic logic;  
@@ -53,7 +53,7 @@ private  IncidenciaLogic logic;
    * @throws BusinessLogicException 
    */
     @POST
-    public IncidenciaDTO createIncidencia(IncidenciaDTO incidencia) throws BusinessLogicException, Exception {
+    public IncidenciaDTO createIncidencia(IncidenciaDTO incidencia) throws Exception {
         LOGGER.log(Level.INFO, "BookResource createBook: input: {0}", incidencia);
         IncidenciaDTO nuevoBookDTO = new IncidenciaDTO(logic.createIncidencia(incidencia.toEntity()));
         LOGGER.log(Level.INFO, "IncidenciaResource createIncidencia: output: {0}", nuevoBookDTO);
@@ -144,13 +144,13 @@ private  IncidenciaLogic logic;
     /**
      * 
      *
-     * @param IncidenciasId
+     * @param incidenciasId
      * @return 
      */
      @Path("{IncidenciasId: \\d+}/actuaciones")
-    public Class<ActuacionResource> getActuacionResource(@PathParam("IncidenciasId") Long IncidenciasId) {
-        if (logic.getIncidencia(IncidenciasId) == null) {
-            throw new WebApplicationException("El recurso /Incidencias/" + IncidenciasId + "/actuaciones no existe.", 404);
+    public Class<ActuacionResource> getActuacionResource(@PathParam("IncidenciasId") Long incidenciasId) {
+        if (logic.getIncidencia(incidenciasId) == null) {
+            throw new WebApplicationException("El recurso /Incidencias/" + incidenciasId + "/actuaciones no existe.", 404);
         }
         return ActuacionResource.class;
     }
