@@ -40,7 +40,6 @@ public class IncidenciaDetailDTO extends IncidenciaDTO implements Serializable
      */
     public IncidenciaDetailDTO(IncidenciaEntity incidencia){
        super(incidencia);
-       if(incidencia!=null){
         if( incidencia.getActuaciones() != null)  {
             
             ArrayList <ActuacionDTO> r = new ArrayList();
@@ -50,13 +49,13 @@ public class IncidenciaDetailDTO extends IncidenciaDTO implements Serializable
             this.setActuaciones(r);
         }
          
-       }
-     
+       
     }
     /**
      * Crea un objeto de tipo entidad a partir de esta clase
      * @return un objeto de tipo entidad
      */
+    @Override
     public IncidenciaEntity toEntity(){
         
         IncidenciaEntity a = super.toEntity();
