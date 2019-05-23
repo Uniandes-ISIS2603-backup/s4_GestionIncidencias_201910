@@ -17,10 +17,14 @@ public class CalificacionDTO implements Serializable {
     private Integer numeroEst;
     private String descripcion;
 
+    
+    //Constructor vacio
     public CalificacionDTO()
     {
         
     }
+    
+    
     public CalificacionDTO(CalificacionEntity nuevoCalificacionEntity) {
                  if (nuevoCalificacionEntity != null) {
             this.numeroEst = nuevoCalificacionEntity.getNumeroEst();

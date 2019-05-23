@@ -15,6 +15,7 @@ public class DepartamentoDTO  implements Serializable{
 	private String id;
 	private String nombre;
 	
+        //Constructor vacio
 	public DepartamentoDTO () {
 		
 	}
@@ -36,4 +37,10 @@ public class DepartamentoDTO  implements Serializable{
 		this.nombre = nombre;
 	}
     
+       // public DepartamentoEntity toEntity()
+       // {
+       //    DepartamentoEntity de = new DepartamentoEntity();
+       //     
+       //     return de;
+       // }
 }

@@ -22,11 +22,11 @@ public class EmpleadoDTO extends UsuarioDTO implements Serializable{
     @Override
     public EmpleadoEntity toEntity(){
         EmpleadoEntity ue= new EmpleadoEntity();
-        ue.setCedula(cedula);
-        ue.setId(id);
-        ue.setName(name);
-        ue.setPassword(password);
-        ue.setUsuario(usuario);
+        ue.setCedula(this.cedula);
+        ue.setId(this.id);
+        ue.setName(this.name);
+        ue.setPassword(this.password);
+        ue.setUsuario(this.usuario);
         return ue; 
     }
   }

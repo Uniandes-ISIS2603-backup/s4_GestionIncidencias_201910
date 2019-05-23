@@ -14,22 +14,27 @@ import java.io.Serializable;
  * Clase que representa un técnico base
  * @author Valerie Parra Cortés
  */
-public class TecnicoDTO extends UsuarioDTO implements Serializable{            
+public class TecnicoDTO extends UsuarioDTO implements Serializable{  
+    
+    //Constructor vacio
     public TecnicoDTO() {
     }
     
+    //constructor de Entity
     public TecnicoDTO (UsuarioEntity uE){
         super(uE);
     }
     
+    
+    //Metodo toEntity
     @Override
     public TecnicoEntity toEntity(){
         TecnicoEntity ue= new TecnicoEntity();
-        ue.setCedula(cedula);
-        ue.setId(id);
-        ue.setName(name);
-        ue.setPassword(password);
-        ue.setUsuario(usuario);
+        ue.setCedula(this.cedula);
+        ue.setId(this.id);
+        ue.setName(this.name);
+        ue.setPassword(this.password);
+        ue.setUsuario(this.usuario);
         return ue; 
     }
       

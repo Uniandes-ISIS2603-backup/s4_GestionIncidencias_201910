@@ -37,7 +37,7 @@ public class UbicacionDTO  implements Serializable{
 		this.descripcion = descripcion;
 	}
         
-        public UbicacionEntity toentity()
+        public UbicacionEntity toEntity()
         {
             UbicacionEntity ue = new UbicacionEntity();
             ue.setId(this.id);
