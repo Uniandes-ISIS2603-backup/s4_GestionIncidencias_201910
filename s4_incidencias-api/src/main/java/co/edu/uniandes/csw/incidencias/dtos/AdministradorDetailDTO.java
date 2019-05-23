@@ -7,8 +7,6 @@ package co.edu.uniandes.csw.incidencias.dtos;
 
 import co.edu.uniandes.csw.incidencias.entities.AdministradorEntity;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Juan Pablo Correa Puerta
