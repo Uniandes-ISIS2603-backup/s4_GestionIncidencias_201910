@@ -32,6 +32,7 @@ import java.util.logging.Level;
 
 @Produces("application/json")
 @Consumes("application/json")
+
 public class ActuacionResource {
     
     private final static String NE = "no existe.";

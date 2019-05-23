@@ -49,18 +49,9 @@ public class IncidenciaLogic {
     
        public IncidenciaEntity createIncidencia(IncidenciaEntity incidenciaEntity)throws Exception {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del libro");
-        if(incidenciaEntity.getEmpleado() == null || emplPersitence.find(incidenciaEntity.getEmpleado().getId() ) == null ){
-            
-             throw new BusinessLogicException("El empleado no existe");
-        }
-          if(incidenciaEntity.getTecnico() == null || tecPersistence.find(incidenciaEntity.getTecnico().getId() ) == null ){
-            
-             throw new BusinessLogicException("El tecnico no existe");
-        }
-          if(incidenciaEntity.getEquipoComputo() == null || equipoComPersitence.find(incidenciaEntity.getEquipoComputo().getId() ) == null ){
-            
-             throw new BusinessLogicException("El equipo de computo asociado no existe");
-        }
+      
+        
+        
           
          persistence.create(incidenciaEntity);
          LOGGER.log(Level.INFO, "Termina proceso de creación de la incidencia");
