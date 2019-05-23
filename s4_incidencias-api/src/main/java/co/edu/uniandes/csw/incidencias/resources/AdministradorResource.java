@@ -40,6 +40,10 @@ public class AdministradorResource
     @Inject
     private AdministradorLogic logica;
      
+    private final static String NE = " no existe.";
+    private final static String RA = "El recurso /calificacions/";
+    
+    
     @POST
     /**
      * Crea un administrador con base en el JSON que se envía
@@ -86,11 +90,11 @@ public class AdministradorResource
     */
     @GET
     @Path("{id: \\d+}")
-    public AdministradorDetailDTO getAdministrador( @PathParam("id") Long id ) throws WebApplicationException
+    public AdministradorDetailDTO getAdministrador( @PathParam("id") Long id )
     {
         AdministradorEntity admin = logica.getAdministrador(id);
          if (admin == null)
-            throw new WebApplicationException("El recurso /empleados/" + id + " no existe.", 404);
+            throw new WebApplicationException(RA + id + NE, 404);
         
         return new AdministradorDetailDTO( admin );
     }
@@ -107,7 +111,7 @@ public class AdministradorResource
     {
         admin.setId(id);
         if ( logica.getAdministrador(id) == null)
-            throw new WebApplicationException("El administrador de id " + id + " no existe.", 404 );
+            throw new WebApplicationException(RA + id + NE, 404 );
         
         return new AdministradorDetailDTO( logica.updateAdministrador( admin.toEntity() ) );
     }
@@ -123,7 +127,7 @@ public class AdministradorResource
     {
         AdministradorEntity entidad = logica.getAdministrador( id );
         if( entidad == null)
-            throw new WebApplicationException("El administrador de id " + id + " no existe.", 404 );
+            throw new WebApplicationException(RA + id + NE, 404 );
                
         logica.deleteAdministrador( id );        
     }
